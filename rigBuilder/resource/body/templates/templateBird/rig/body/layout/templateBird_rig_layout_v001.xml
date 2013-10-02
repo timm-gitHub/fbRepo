@@ -1,0 +1,1 @@
+<?xml version="1.0" ?><rig name="templateBird"><comp><namespace>torso</namespace><asset>torso4</asset><mapping>none</mapping><symmetry>1</symmetry><count>1</count></comp><comp><namespace>leg</namespace><asset>hindLegB</asset><mapping>none</mapping><symmetry>1</symmetry><count>1</count></comp></rig>

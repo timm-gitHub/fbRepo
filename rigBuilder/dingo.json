@@ -1,0 +1,12 @@
+{
+    "name":"rigBuilder",
+    "version":"0.1.24",
+    "platforms":["nt"],
+    "deps":[],
+    "env":
+    [
+        {"key":"PYTHONPATH", "mode":"append", "value":"${VERSION_ROOT}\\source"},
+		{"key":"RIG_BUILDER_PATH", "mode":"append", "value":"${VERSION_ROOT}"},
+		{"key":"RIG_BUILDER_PROJECT_ROOT", "mode":"append", "value":"YOU_MUST_SET_THIS_VARIABLE TO YOUR RIGGING PROJECT ROOT"}
+    ]
+}

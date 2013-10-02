@@ -1,0 +1,6 @@
+config_version : 0
+
+requires:
+- python-2.6+<3
+- maya
+- advancedSkeleton
