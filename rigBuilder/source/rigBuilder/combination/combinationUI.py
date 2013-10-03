@@ -32,6 +32,9 @@ def showRigCombinationBuilderUI():
 
 
 class RigCombinationBuilderUI(QtGui.QWidget):
+    """Combination Builder UI.
+    This is where you launch the body and face building UI's.
+    This is also where you can combine the facial rig and the body rig to make the combination rig."""
 
     ASSET_TYPES = ['BodyRig', 'FaceRig']
     ASSET_VERSIONS = dict()
