@@ -1,0 +1,5042 @@
+{
+    "C_face_bsp_0.C_lipLowerCenterDown_shp_0": [
+        {
+            "C_lipLowerCenter_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    1.7763568394002505e-15, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipLowerCenterUp_shp_0": [
+        {
+            "C_lipLowerCenter_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipLowerCurlIn_shp_0": [
+        {
+            "C_lipLower_ctl_0.translateZ": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipLowerCurlOut_shp_0": [
+        {
+            "C_lipLower_ctl_0.translateZ": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipLowerDown_shp_0": [
+        {
+            "C_lipLower_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipLowerLeft_shp_0": [
+        {
+            "C_lipLower_ctl_0.translateX": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipLowerMiniPump_shp_0": [
+        {
+            "C_lipLower_ctl_0.miniPump": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipLowerRight_shp_0": [
+        {
+            "C_lipLower_ctl_0.translateX": {
+                "drivenValue": [
+                    1.0, 
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -0.99362504482269287, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    0.0, 
+                    -2.4012338977709651
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    -2.4012338977709651, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipLowerUp_shp_0": [
+        {
+            "C_lipLower_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipUpperCenterDown_shp_0": [
+        {
+            "C_lipUpperCenter_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipUpperCenterUp_shp_0": [
+        {
+            "C_lipUpperCenter_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipUpperCurlIn_shp_0": [
+        {
+            "C_lipUpper_ctl_0.translateZ": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipUpperCurlOut_shp_0": [
+        {
+            "C_lipUpper_ctl_0.translateZ": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipUpperDown_shp_0": [
+        {
+            "C_lipUpper_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipUpperLeft_shp_0": [
+        {
+            "C_lipUpper_ctl_0.translateX": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipUpperMiniPump_shp_0": [
+        {
+            "C_lipUpper_ctl_0.miniPump": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipUpperRight_shp_0": [
+        {
+            "C_lipUpper_ctl_0.translateX": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_lipUpperUp_shp_0": [
+        {
+            "C_lipUpper_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_noseDown_shp_0": [
+        {
+            "C_nose_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_noseLeft_shp_0": [
+        {
+            "C_nose_ctl_0.translateX": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -3.5527136788005009e-15, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_noseRight_shp_0": [
+        {
+            "C_nose_ctl_0.translateX": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.C_noseUp_shp_0": [
+        {
+            "C_nose_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    1.4210854715202004e-14, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browCenterDown_shp_0": [
+        {
+            "L_browCenter_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -1.7763568394002505e-15
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browCenterUp_shp_0": [
+        {
+            "L_browCenter_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browDown_shp_0": [
+        {
+            "L_browMain_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -8.8817841970012523e-16
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browIn_shp_0": [
+        {
+            "L_browMain_ctl_0.translateX": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    8.8817841970012523e-16, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browInnerDown_shp_0": [
+        {
+            "L_browInner_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browInnerUp_shp_0": [
+        {
+            "L_browInner_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browOut_shp_0": [
+        {
+            "L_browMain_ctl_0.translateX": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browOuterDown_shp_0": [
+        {
+            "L_browOuter_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    1.7763568394002505e-15
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browOuterUp_shp_0": [
+        {
+            "L_browOuter_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_browUp_shp_0": [
+        {
+            "L_browMain_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_cheekInnerSquint_shp_0": [
+        {
+            "L_squint_ctl_0.translateX": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_cheekOuterSquint_shp_0": [
+        {
+            "L_squint_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    7.1054273576010019e-15, 
+                    0.99991351366043091
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3861489981021689
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_cheekPuff_shp_0": [
+        {
+            "L_cheek_ctl_0.translateX": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_cheekSuck_shp_0": [
+        {
+            "L_cheek_ctl_0.translateX": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_lipLowerInnerDown_shp_0": [
+        {
+            "L_lipLowerInner_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_lipLowerInnerUp_shp_0": [
+        {
+            "L_lipLowerInner_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_lipOuterDown_shp_0": [
+        {
+            "L_lipOuter_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -4.4408920985006262e-16
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_lipOuterOut_shp_0": [
+        {
+            "L_lipOuter_ctl_0.translateX": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_lipOuterUp_shp_0": [
+        {
+            "L_lipOuter_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_lipUpperInnerDown_shp_0": [
+        {
+            "L_lipUpperInner_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -4.4408920985006262e-16
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_lipUpperInnerUp_shp_0": [
+        {
+            "L_lipUpperInner_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.L_noseFlare_shp_0": [
+        {
+            "C_nose_ctl_0.L_noseFlare": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browCenterDown_shp_0": [
+        {
+            "R_browCenter_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -1.7763568394002505e-15
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browCenterUp_shp_0": [
+        {
+            "R_browCenter_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browDown_shp_0": [
+        {
+            "R_browMain_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -8.8817841970012523e-16
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browIn_shp_0": [
+        {
+            "R_browMain_ctl_0.translateX": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    8.8817841970012523e-16, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browInnerDown_shp_0": [
+        {
+            "R_browInner_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browInnerUp_shp_0": [
+        {
+            "R_browInner_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browOut_shp_0": [
+        {
+            "R_browMain_ctl_0.translateX": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browOuterDown_shp_0": [
+        {
+            "R_browOuter_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    1.7763568394002505e-15
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browOuterUp_shp_0": [
+        {
+            "R_browOuter_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_browUp_shp_0": [
+        {
+            "R_browMain_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_cheekInnerSquint_shp_0": [
+        {
+            "R_squint_ctl_0.translateX": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_cheekOuterSquint_shp_0": [
+        {
+            "R_squint_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_cheekPuff_shp_0": [
+        {
+            "R_cheek_ctl_0.translateX": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_cheekSuck_shp_0": [
+        {
+            "R_cheek_ctl_0.translateX": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_lipLowerInnerDown_shp_0": [
+        {
+            "R_lipLowerInner_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_lipLowerInnerUp_shp_0": [
+        {
+            "R_lipLowerInner_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_lipOuterDown_shp_0": [
+        {
+            "R_lipOuter_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -4.4408920985006262e-16
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_lipOuterOut_shp_0": [
+        {
+            "R_lipOuter_ctl_0.translateX": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_lipOuterUp_shp_0": [
+        {
+            "R_lipOuter_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_lipUpperInnerDown_shp_0": [
+        {
+            "R_lipUpperInner_ctl_0.translateY": {
+                "drivenValue": [
+                    1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -4.4408920985006262e-16
+                ], 
+                "inAngle": [
+                    0.0, 
+                    -2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_lipUpperInnerUp_shp_0": [
+        {
+            "R_lipUpperInner_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "C_face_bsp_0.R_noseFlare_shp_0": [
+        {
+            "C_nose_ctl_0.R_noseFlare": {
+                "drivenValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    0.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyeBias": [
+        {
+            "L_blinkBias_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyeBlink": [
+        {
+            "L_blink_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyeLowerLid": [
+        {
+            "L_lowerLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    8.8817841970012523e-16, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyeLowerLidShapeInner": [
+        {
+            "L_innerLowerLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyeLowerLidShapeOuter": [
+        {
+            "L_outerLowerLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyePrimaryFaceControlX": [
+        {
+            "L_eye_ctl_0.translateX": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyePrimaryFaceControlY": [
+        {
+            "L_eye_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "spline", 
+                    "spline", 
+                    "spline"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "outTangentType": [
+                    "spline", 
+                    "spline", 
+                    "spline"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyeUpperLid": [
+        {
+            "L_upperLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -1.7763568394002505e-15, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyeUpperLidShapeInner": [
+        {
+            "L_innerUpperLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.leftEyeUpperLidShapeOuter": [
+        {
+            "L_outerUpperLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.mouthJawLowerForwardBack": [
+        {
+            "C_jaw_ctl_0.translateY": {
+                "drivenValue": [
+                    -0.5, 
+                    0.0, 
+                    0.25
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    1.1934894330431627, 
+                    0.59680944323613772
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    1.1934894330431627, 
+                    0.59680944323613772, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.mouthJawLowerPitch": [
+        {
+            "C_jaw_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    0.25
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    0.59680944323613772
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    0.59680944323613772, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.mouthJawLowerUpDown": [
+        {
+            "C_jaw_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    0.0
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 2, 
+                "lock": [
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.mouthJawUpperForwardBack": [
+        {
+            "C_jaw_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    0.0, 
+                    0.25
+                ], 
+                "driverValue": [
+                    -0.99901497364044189, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    0.0, 
+                    0.59680944323613772
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.59680944323613772, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.mouthJawUpperPitch": [
+        {
+            "C_jaw_ctl_0.translateY": {
+                "drivenValue": [
+                    -0.025000000000000001, 
+                    0.0, 
+                    0.25
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    0.059683086761857337, 
+                    0.59680944323613772
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.059683086761857337, 
+                    0.59680944323613772, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.mouthMouthRoll": [
+        {
+            "C_jaw_ctl_0.translateX": {
+                "drivenValue": [
+                    -0.25, 
+                    0.0, 
+                    0.2235435960679375
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    0.56523267829037549, 
+                    0.53365559317949574
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.59680944323613772, 
+                    0.56523267829037549, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.mouthMouthYaw": [
+        {
+            "C_jaw_ctl_0.translateX": {
+                "drivenValue": [
+                    -0.10000000000000001, 
+                    0.0, 
+                    0.10000000000000001
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    0.23873103970653353, 
+                    0.23873103970653353
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.23873103970653353, 
+                    0.23873103970653353, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyeBias": [
+        {
+            "R_blinkBias_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyeBlink": [
+        {
+            "R_blink_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyeLowerLid": [
+        {
+            "R_lowerLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    8.8817841970012523e-16, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyeLowerLidShapeInner": [
+        {
+            "R_innerLowerLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyeLowerLidShapeOuter": [
+        {
+            "R_outerLowerLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyePrimaryFaceControlX": [
+        {
+            "R_eye_ctl_0.translateX": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyePrimaryFaceControlY": [
+        {
+            "R_eye_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyeUpperLid": [
+        {
+            "R_upperLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    -1.7763568394002505e-15, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyeUpperLidShapeInner": [
+        {
+            "R_innerUpperLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -0.99885910749435425, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3873043672889587, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3886661362547299, 
+                    2.3873043672889587, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.rightEyeUpperLidShapeOuter": [
+        {
+            "R_outerUpperLid_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    2.3859440924270681, 
+                    2.3859440924270681
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    2.3859440924270681, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.tongueTongueBasePitch": [
+        {
+            "C_jaw_ctl_0.translateY": {
+                "drivenValue": [
+                    -1.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    2.3859440924270681, 
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ], 
+    "interface_grp.tongueTongueBaseUpDown": [
+        {
+            "C_jaw_ctl_0.translateY": {
+                "drivenValue": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "driverValue": [
+                    -1.0, 
+                    0.0, 
+                    1.0
+                ], 
+                "inAngle": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "inTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "inWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "keyframeCount": 3, 
+                "lock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "outAngle": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "outTangentType": [
+                    "fixed", 
+                    "fixed", 
+                    "fixed"
+                ], 
+                "outWeight": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "postInfinity": "constant", 
+                "preInfinity": "constant", 
+                "weightLock": [
+                    true, 
+                    true, 
+                    true
+                ], 
+                "weightedTangents": false
+            }
+        }
+    ]
+}
