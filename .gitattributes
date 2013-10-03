@@ -20,3 +20,17 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+# Added by Evan J to test slow cloning due to large files
+*.sql -delta
+*.zip -delta
+*.jpg -delta
+*.gif -delta
+*.png -delta
+*.doc -delta
+*.docx -delta
+*.pdf -delta
+*.ma -delta
+*.mb -delta
+*.mp4 -delta
+*.mov -delta
