@@ -8,9 +8,10 @@ import inspect
 import os
 
 from rigBuilder.rigEnv import ROOT, ROOTCHAR, PROJECT, CONTROL_COLOR
+from rigBuilder import rigEnv
 
 # Resource Paths.
-FACE_RESOURCE_PATH = os.path.join(os.getenv('RIG_BUILDER_PATH'), 'resource', 'face')
+FACE_RESOURCE_PATH = os.path.join(rigEnv.getRigBuilderPath(), 'resource', 'face')
 
 FACE_GUI_TEMPLATES_PATH = os.path.join(FACE_RESOURCE_PATH, 'controlGUI',
     'templates')
