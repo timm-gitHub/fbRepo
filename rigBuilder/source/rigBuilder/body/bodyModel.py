@@ -13,10 +13,11 @@ import os
 
 class ComponentDelegate(QtGui.QItemDelegate):
     
-    def __init__(self, parent):
+    def __init__(self, parent, row):
         
         QtGui.QItemDelegate.__init__(self, parent)
         self.dropdown = None
+        self.row      = row
         
     def createEditor(self, parent, option, index):
         
@@ -29,9 +30,14 @@ class ComponentDelegate(QtGui.QItemDelegate):
         
         self.dropdown.addItems(components)
         
+        self.connect(self.dropdown,QtCore.SIGNAL('currentIndexChanged(int)'),self.changeNamespace)
+        
         return self.dropdown
     
-    
+    @QtCore.pyqtSlot(int)
+    def changeNamespace(self):
+        self.parent().componentChanged(self.dropdown.currentText(),self.row)
+        
 class CharModel(QtCore.QAbstractListModel):
     """
     Data Model for handling display of list data. For use in character list view.
