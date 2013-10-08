@@ -860,7 +860,7 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         
         for namespace,asset,mapping,symmetry,count in data:
             namespace         = QtCore.QVariant(namespace)
-            componentDelegate = bodyModel.ComponentDelegate(self)
+            componentDelegate = bodyModel.ComponentDelegate(self,self.modelComp.rowCount())
             symmetry          = int(symmetry)
             count             = int(count)
             
@@ -869,8 +869,16 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
             self.tableViewComponent.openPersistentEditor(self.modelComp.index(self.modelComp.rowCount()-1,1))
             
             componentDelegate.dropdown.setCurrentIndex(componentDelegate.dropdown.findText(asset))
-        
+            
+            # reset first entry
+            self.modelComp.components[self.modelComp.rowCount()-1][0] = namespace
+            
         self.tableViewComponent.setFocus()
+    
+    def componentChanged(self,namespace,row):
+        
+        self.modelComp.components[row][0] = namespace
+        self.tableViewComponent.update()
         
     def toggleStatePublishControls(self):
         
@@ -900,10 +908,13 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         if checked is None:
             return
         
-        componentDelegate = bodyModel.ComponentDelegate(self)
+        componentDelegate = bodyModel.ComponentDelegate(self,self.modelComp.rowCount())
         self.modelComp.insertRow(QtCore.QVariant(''),componentDelegate)
         self.tableViewComponent.setItemDelegateForColumn(1,componentDelegate)
         self.tableViewComponent.openPersistentEditor(self.modelComp.index(self.modelComp.rowCount()-1,1))
+        
+        componentDelegate.dropdown.setCurrentIndex(1)
+        componentDelegate.dropdown.setCurrentIndex(0)
         
         rigUtils.log('New component added.')
     
@@ -1292,7 +1303,7 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         
         for namespace,asset,mapping,symmetry,count in data:
             namespace         = QtCore.QVariant(namespace)
-            componentDelegate = bodyModel.ComponentDelegate(self)
+            componentDelegate = bodyModel.ComponentDelegate(self,self.modelComp.rowCount())
             symmetry          = int(symmetry)
             count             = int(count)
             
@@ -1301,7 +1312,10 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
             self.tableViewComponent.openPersistentEditor(self.modelComp.index(self.modelComp.rowCount()-1,1))
             
             componentDelegate.dropdown.setCurrentIndex(componentDelegate.dropdown.findText(asset))
-        
+            
+            # reset first entry
+            self.modelComp.components[self.modelComp.rowCount()-1][0] = namespace
+            
         self.tableViewComponent.setFocus()
         
     def on_actionPasteGuide_triggered(self,checked=None):
