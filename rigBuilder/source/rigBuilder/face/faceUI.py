@@ -681,7 +681,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         filters = ("Maya Files (*.ma *.mb);;Maya ASCII (*.ma);;"
             "Maya Binary (*.mb)")
 
-        filePath = maya.cmds.fileDialog2(cap='Browse...', fm=1, ff=filters)
+        filePath = maya.cmds.fileDialog2(cap='Browse...', dir=rigEnv.ROOTCHAR, fm=1, ff=filters)
 
         if filePath and os.path.exists(filePath[0]):
             # Set the field text.
