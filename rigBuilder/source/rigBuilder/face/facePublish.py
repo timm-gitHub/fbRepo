@@ -47,6 +47,9 @@ def getCharacterAssetList():
 
     characterAssets = list()
 
+    if not os.path.exists(ROOTCHAR):
+        return characterAssets
+
     for item in os.listdir(ROOTCHAR):
         if os.path.isfile(os.path.join(ROOTCHAR, item)):
             continue
