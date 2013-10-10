@@ -41,24 +41,6 @@ def getAllVersions(path, pattern):
     return versions
 
 
-def getCharacterAssetList():
-    ''' This looks at the directory structure of the rig builder project to find
-    character names. '''
-
-    characterAssets = list()
-
-    if not os.path.exists(ROOTCHAR):
-        return characterAssets
-
-    for item in os.listdir(ROOTCHAR):
-        if os.path.isfile(os.path.join(ROOTCHAR, item)):
-            continue
-
-        characterAssets.append(item)
-
-    return characterAssets
-
-
 def getPreferencesVersions(character):
 
     pathTokens = [

@@ -8,8 +8,8 @@ import maya.cmds
 import maya.mel
 
 import rigBuilder.rigUtils
+import rigBuilder.sysUtils
 from rigBuilder.body.bodyUI import *
-
 from rigBuilder.face.faceRigEnv import *
 import rigBuilder.face.faceCore as faceCore
 import rigBuilder.face.faceIO as faceIO
@@ -81,19 +81,29 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
     def _buildCharacterList(self):
 
+        self._characterListBuilt = False
+        
+        # Clear the list.
+        self.frbCharacterAssetListWidget.clear()
+
+        # Get the list of character assets.
+        charAssets = rigBuilder.sysUtils.getCharacterAssetList()
+
         # Look for a previous character in option vars.
         prevChar = self._getPreviousCharacterOptionVar()
 
         # Populate the list.
-        for i, character in enumerate(facePublish.getCharacterAssetList()):
+        for i, character in enumerate(charAssets):
             self.frbCharacterAssetListWidget.insertItem(i, character)
 
-        if prevChar:
-            if prevChar in facePublish.getCharacterAssetList():
-                index = facePublish.getCharacterAssetList().index(prevChar)
-                self.frbCharacterAssetListWidget.setCurrentRow(index)
+        # Set the index.
+        index = 0
+        if prevChar and (prevChar in charAssets):
+            index = charAssets.index(prevChar)
         else:
-            self.frbCharacterAssetListWidget.setCurrentRow(0)
+            self._removePreviousCharacterOptionVar()
+
+        self.frbCharacterAssetListWidget.setCurrentRow(index)
 
         # Update the character header.
         self._updateCharacterHeader(self._getSelectedCharacter())
@@ -167,6 +177,8 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
 
     def _updateCharacterHeader(self, character):
+        if not character:
+            character = str()
         self.frbCharacterHeaderLabel.setText(character)
         return True
 
@@ -265,8 +277,12 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def _getSelectedCharacter(self):
         ''' Returns the currently selected character as a string. '''
 
+        selectedCharacter = None
         ListWidget = self.frbCharacterAssetListWidget
-        selectedCharacter = str(ListWidget.currentItem().text())
+        CurrentItem = ListWidget.currentItem()
+        if not CurrentItem:
+            return selectedCharacter
+        selectedCharacter = str(CurrentItem.text())
         return selectedCharacter
 
 
@@ -283,6 +299,11 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             if not assetType in self.ASSET_TYPES:
                 continue
 
+            # Catch for situation where there are no characters yet.
+            if not character:
+                self._assetVersions[assetType] = dict()
+                continue
+            
             self._assetVersions[assetType] = getattr(facePublish,
                 'get%sVersions' % assetType)(character)
 
@@ -302,15 +323,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         if not maya.cmds.optionVar(exists=var):
             return result
 
-        previousCharacter = maya.cmds.optionVar(q=var)
-
-        # Double Check that the character still exists in the character list
-        # widget, otherwise we'll set it back to None and remove the option var.
-        if not self._getCharacterIndexFromListWidget(previousCharacter):
-            maya.cmds.optionVar(rm=var)
-            return result
-
-        result = previousCharacter
+        result = maya.cmds.optionVar(q=var)
         return result
 
 
@@ -339,6 +352,11 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
                 filePath = value[1]
 
         return filePath
+
+
+    def _removePreviousCharacterOptionVar(self):
+        var = OPTION_VARS['previousCharacter']
+        return maya.cmds.optionVar(rm=var)
 
 
     def _setPreviousCharacterOptionVar(self, character):
@@ -382,7 +400,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         # Set an option variable so that the same character is selected next
         # time we open the GUI.
-        maya.cmds.optionVar(sv=(OPTION_VARS['previousCharacter'], character))
+        self._setPreviousCharacterOptionVar(character)
 
         # Update the header.
         self._updateCharacterHeader(character)

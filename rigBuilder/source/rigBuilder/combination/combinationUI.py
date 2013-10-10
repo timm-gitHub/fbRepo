@@ -9,15 +9,16 @@ import maya.cmds
 import maya.OpenMayaUI
 
 from rigBuilder import rigUtils
+from rigBuilder import sysUtils
 from rigBuilder.body import bodyUI
 from rigBuilder.face import faceUI
-from rigBuilder.face import facePublish
 from rigBuilder.combination import combinationBuilder
 from rigBuilder.combination import combinationPublish
 
 
-
+OPTION_VARS = {'previousCharacter': 'rcbPreviousCharacter'}
 RIG_COMBINATION_BUILDER_UI = None
+
 
 def showRigCombinationBuilderUI():
     global RIG_COMBINATION_BUILDER_UI
@@ -47,6 +48,17 @@ class RigCombinationBuilderUI(QtGui.QWidget):
         self.setWindowFlags(QtCore.Qt.Window)
         self.loadUI()
 
+        #=======================================================================
+        # Add the Character List Context Menu.
+        #=======================================================================
+
+        self.CharacterAssetListWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+
+        self.PopupMenu = sysUtils.CreateCharacterPopUpMenu(
+            parent=self.CharacterAssetListWidget)
+
+        self.CharacterAssetListWidget.customContextMenuRequested.connect(self.PopupMenu._buildMenu)
+        self.PopupMenu._characterNamePromptDialogCallback = self.__refereshGUI
 
         #=======================================================================
         # Populate the GUI
@@ -100,20 +112,29 @@ class RigCombinationBuilderUI(QtGui.QWidget):
 
     def _buildCharacterList(self):
 
+        self._characterListBuilt = False
+        
+        # Clear the list.
+        self.CharacterAssetListWidget.clear()
+
+        # Get the list of character assets.
+        charAssets = sysUtils.getCharacterAssetList()
+
         # Look for a previous character in option vars.
-#         prevChar = self._getPreviousCharacterOptionVar()
-        prevChar = 'blinky'
+        prevChar = self._getPreviousCharacterOptionVar()
 
         # Populate the list.
-        for i, character in enumerate(facePublish.getCharacterAssetList()):
+        for i, character in enumerate(charAssets):
             self.CharacterAssetListWidget.insertItem(i, character)
 
-        if prevChar:
-            if prevChar in facePublish.getCharacterAssetList():
-                index = facePublish.getCharacterAssetList().index(prevChar)
-                self.CharacterAssetListWidget.setCurrentRow(index)
+        # Set the index.
+        index = 0
+        if prevChar and (prevChar in charAssets):
+            index = charAssets.index(prevChar)
         else:
-            self.CharacterAssetListWidget.setCurrentRow(0)
+            self._removePreviousCharacterOptionVar()
+
+        self.CharacterAssetListWidget.setCurrentRow(index)
 
         # Update the character header.
         self._updateCharacterHeader(self._getSelectedCharacter())
@@ -163,6 +184,8 @@ class RigCombinationBuilderUI(QtGui.QWidget):
 
 
     def _updateCharacterHeader(self, character):
+        if not character:
+            character = str()
         self.CharacterHeaderLabel.setText(character)
         return True
 
@@ -216,6 +239,34 @@ class RigCombinationBuilderUI(QtGui.QWidget):
 
 
     #===========================================================================
+    # Option Variable Getters / Setters
+    #===========================================================================
+
+    def _getPreviousCharacterOptionVar(self):
+        ''' Look for a previously selected character in option vars. '''
+
+        result = None
+        var = OPTION_VARS['previousCharacter']
+
+        if not maya.cmds.optionVar(exists=var):
+            return result
+
+        result = maya.cmds.optionVar(q=var)
+        return result
+
+
+    def _removePreviousCharacterOptionVar(self):
+        var = OPTION_VARS['previousCharacter']
+        return maya.cmds.optionVar(rm=var)
+
+
+    def _setPreviousCharacterOptionVar(self, character):
+        var = OPTION_VARS['previousCharacter']
+        maya.cmds.optionVar(sv=[var, character])
+        return True
+
+
+    #===========================================================================
     # Methods for harvesting GUI info
     #===========================================================================
 
@@ -235,8 +286,12 @@ class RigCombinationBuilderUI(QtGui.QWidget):
     def _getSelectedCharacter(self):
         ''' Returns the currently selected character as a string. '''
 
+        selectedCharacter = None
         ListWidget = self.CharacterAssetListWidget
-        selectedCharacter = str(ListWidget.currentItem().text())
+        CurrentItem = ListWidget.currentItem()
+        if not CurrentItem:
+            return selectedCharacter
+        selectedCharacter = str(CurrentItem.text())
         return selectedCharacter
 
 
@@ -252,7 +307,12 @@ class RigCombinationBuilderUI(QtGui.QWidget):
             # Catch just in case something stupid happens.
             if not assetType in self.ASSET_TYPES:
                 continue
-
+            
+            # Catch for situation where there are no characters yet.
+            if not character:
+                self.ASSET_VERSIONS[assetType] = dict()
+                continue
+            
             self.ASSET_VERSIONS[assetType] = getattr(combinationPublish,
                 'get%sVersions' % assetType)(character)
 
@@ -329,9 +389,9 @@ class RigCombinationBuilderUI(QtGui.QWidget):
         # Get the selected Character.
         character = str(self.CharacterAssetListWidget.currentItem().text())
 
-#         # Set an option variable so that the same character is selected next
-#         # time we open the GUI.
-#         maya.cmds.optionVar(sv=(OPTION_VARS['previousCharacter'], character))
+        # Set an option variable so that the same character is selected next
+        # time we open the GUI.
+        self._setPreviousCharacterOptionVar(character)
 
         # Update the header.
         self._updateCharacterHeader(character)
@@ -353,6 +413,7 @@ class RigCombinationBuilderUI(QtGui.QWidget):
 
 
     def __refereshGUI(self):
+        self._buildCharacterList()
         return self._refreshVersions()
 
 
