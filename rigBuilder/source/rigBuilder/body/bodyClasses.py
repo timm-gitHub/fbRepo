@@ -154,7 +154,7 @@ class Rig(object):
         
         return builds
     
-    def buildGuide(self,refgeo=False,verbose=True):
+    def buildGuide(self,refgeo=False,verbose=True,version=None):
         """Open the guide rig, check guide rig components, update guide with missing components."""
         
         # get the layout information
@@ -166,7 +166,10 @@ class Rig(object):
         
         cmds.file(new=True,f=True)
         
-        guidepath = bodyPublish.getRigGuide(self.name)
+        if version:
+            guidepath = bodyPublish.getRigGuideVersion(self.name,version)
+        else:
+            guidepath = bodyPublish.getRigGuide(self.name)
         
         if guidepath: 
             cmds.file(guidepath,f=True,pr=True,typ='mayaAscii',i=True,lrd='none',pmt=False)
@@ -840,23 +843,29 @@ class Rig(object):
         if cmds.objExists('bind_joints_set'):
             cmds.delete('bind_joints_set')
     
-    def importControlData(self):
+    def importControlData(self,version=None):
         
-        path = bodyPublish.getRigData(self.name)
+        if version:
+            path = bodyPublish.getRigDataVersion(self.name,version)
+        else:
+            path = bodyPublish.getRigData(self.name)
         if not path: return
         
         bodyIO.importControlData(path)
     
-    def importControlDataSelected(self):
+    def importControlDataSelected(self,version=None):
         
-        path = bodyPublish.getRigData(self.name)
+        if version:
+            path = bodyPublish.getRigDataVersion(self.name,version)
+        else:
+            path = bodyPublish.getRigData(self.name)
         if not path: return
         
         sel = cmds.ls(sl=True)
         
         bodyIO.importControlData(path,sel)
     
-    def importSkin(self,defaultmaps):
+    def importSkin(self,defaultmaps,version=None):
         """Import skin data and apply skinclusters."""
         
         skip = []
@@ -867,13 +876,16 @@ class Rig(object):
                 bodyIO.importDeformers(map)
                 skip    = skip + skinned
         
-        path = bodyPublish.getRigMapping(self.name)
+        if version:
+            path = bodyPublish.getRigMappingVersion(self.name,version)
+        else:
+            path = bodyPublish.getRigMapping(self.name)
         if not path: return
         
         bodyIO.importSkinByRef('GEO',path,skip)
         bodyIO.importDeformers(path,skip)
     
-    def importSkinSelected(self,defaultmaps):
+    def importSkinSelected(self,defaultmaps,version=None):
         """Import skin data and apply skinclusters."""
         
         skip = []
@@ -884,7 +896,10 @@ class Rig(object):
                 bodyIO.importDeformers(map)
                 skip    = skip + skinned
         
-        path = bodyPublish.getRigMapping(self.name)
+        if version:
+            path = bodyPublish.getRigMappingVersion(self.name,version)
+        else:
+            path = bodyPublish.getRigMapping(self.name)
         if not path: return
         
         bodyIO.importSkinBySel(path)
