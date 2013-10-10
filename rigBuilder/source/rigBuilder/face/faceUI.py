@@ -29,9 +29,6 @@ OPTION_VARS = {
     }
 
 
-
-
-
 class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
     ASSET_TYPES = [
@@ -130,12 +127,8 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         update. If no asset types are passed in the method defaults to all asset
         types in self.ASSET_TYPES. '''
 
-        print assetTypes
-
         if not assetTypes:
             assetTypes = self.ASSET_TYPES
-
-        print assetTypes
 
         # Reset the revision dictionaries.
         self._getAssetVersions(self._getSelectedCharacter(), assetTypes)
@@ -403,8 +396,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
     def on_actionGUIRefreshPushButtonClicked_triggered(self, *args):
         if not args: return None
-
-        return self._refreshVersions
+        return self._refreshVersions()
 
 
     #===========================================================================
