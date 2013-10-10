@@ -4,6 +4,7 @@ import string
 import sys
 
 import maya.mel
+import maya.OpenMaya
 import pymel.core
 
 import rigBuilder.face.utils.attribute as attributeUtils
@@ -316,9 +317,9 @@ class EyeModule(rigBuilder.face.modules.RigModule):
     def _setupIKHandles(self):
         sys.stdout.write('### SETUP IK HANDLES ###\n')
 
-        # Load closestPointOnCurve Plug-in.
-        if not pymel.core.system.pluginInfo("closestPointOnCurve", q=True, l=True):
-            pymel.core.system.loadPlugin("closestPointOnCurve")
+#         # Load closestPointOnCurve Plug-in.
+#         if not pymel.core.system.pluginInfo("closestPointOnCurve", q=True, l=True):
+#             pymel.core.system.loadPlugin("closestPointOnCurve")
 
         for vPos in ['upper', 'lower']:
             crv = dagUtils.TransformAndShapes(
@@ -334,12 +335,15 @@ class EyeModule(rigBuilder.face.modules.RigModule):
                 offset = joint.getParent()
                 end = joint.getChildren()[0]
 
-                # setup the curve based driving.
-                a = pymel.core.createNode('closestPointOnCurve')
-                crv.shapes[0].worldSpace[0] >> a.inCurve
-                a.inPosition.set(end.getTranslation(worldSpace=True))
-                uValue = a.paramU.get()
-                pymel.core.delete(a)
+                p = maya.OpenMaya.MPoint(*end.getTranslation(worldSpace=True))
+
+                u_util = maya.OpenMaya.MScriptUtil(0.0)
+                u_ptr = u_util.asDoublePtr()
+                
+                mfn = maya.OpenMaya.MFnNurbsCurve(crv.transform.__apiobject__()) 
+                mfn.closestPoint(p, u_ptr, 0.001, maya.OpenMaya.MSpace.kWorld)
+                
+                uValue = u_util.getDouble(u_ptr)
 
                 pci = pymel.core.createNode('pointOnCurveInfo',
                     name='%s_%s_pci_0' % (self.modulePosition,
