@@ -47,6 +47,18 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         super(FaceRigBuilderUI, self).__init__(parent)
         self.setupUi(self)
 
+        # Add the Character List Context Menu.
+        self.frbCharacterAssetListWidget.setContextMenuPolicy(
+            QtCore.Qt.CustomContextMenu)
+
+        self.PopupMenu = rigBuilder.sysUtils.CreateCharacterPopUpMenu(
+            parent=self.frbCharacterAssetListWidget)
+
+        self.frbCharacterAssetListWidget.customContextMenuRequested.connect(
+            self.PopupMenu._buildMenu)
+
+        self.PopupMenu._characterNamePromptDialogCallback = self._refreshGUI
+
         # Get all the asset versions.
         self._assetVersions = dict()
 
@@ -131,6 +143,12 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         return True
 
 
+    def _refreshGUI(self):
+        self._buildCharacterList()
+        self._refreshVersions()
+        self._updateModelFilePath(self._getSelectedCharacter())
+        
+
     def _refreshVersions(self, assetTypes=list()):
         ''' This method refreshes the version data stored in the class, then
         triggers the combo box update, which triggers the rest of the GUI to
@@ -184,6 +202,8 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
 
     def _updateModelFilePath(self, character):
+        if not character:
+            return False
 
         modelFilePath = self._getPreviousModelPathOptionVar(character)
 
@@ -414,7 +434,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
     def on_actionGUIRefreshPushButtonClicked_triggered(self, *args):
         if not args: return None
-        return self._refreshVersions()
+        return self._refreshGUI()
 
 
     #===========================================================================

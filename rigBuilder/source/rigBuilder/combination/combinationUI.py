@@ -58,7 +58,7 @@ class RigCombinationBuilderUI(QtGui.QWidget):
             parent=self.CharacterAssetListWidget)
 
         self.CharacterAssetListWidget.customContextMenuRequested.connect(self.PopupMenu._buildMenu)
-        self.PopupMenu._characterNamePromptDialogCallback = self.__refereshGUI
+        self.PopupMenu._characterNamePromptDialogCallback = self.__refreshGUI
 
         #=======================================================================
         # Populate the GUI
@@ -74,7 +74,7 @@ class RigCombinationBuilderUI(QtGui.QWidget):
         self.CharacterAssetListWidget.itemSelectionChanged.connect(
             self.__characterSelectionChange)
 
-        self.RefreshButton.clicked.connect(self.__refereshGUI)
+        self.RefreshButton.clicked.connect(self.__refreshGUI)
 
         self.BodyRigVersionComboBox.currentIndexChanged.connect(
             self.__bodyRigVersionComboBoxSelectionChange)
@@ -412,7 +412,7 @@ class RigCombinationBuilderUI(QtGui.QWidget):
         return self._updateVersionFields('FaceRig')
 
 
-    def __refereshGUI(self):
+    def __refreshGUI(self):
         self._buildCharacterList()
         return self._refreshVersions()
 
