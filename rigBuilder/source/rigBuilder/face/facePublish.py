@@ -158,6 +158,7 @@ def publishBlendShapes(character, source, description=str()):
 
     path = '%s/%s/rig/face/blendShapes' % (ROOTCHAR, character)
     pattern = '%s_face_rig_blendShapes_v[0-9]{3}.ma$' % character
+    fileUtils.cleanMayaAsciiFile(source)
     return publishToServer(source, path, pattern)
 
 
@@ -179,6 +180,7 @@ def publishGuide(character, source, guideType='gui', description=str()):
 
     path = '%s/%s/rig/face/%sGuide' % (ROOTCHAR, character, guideType)
     pattern = '%s_face_rig_%sGuide_v[0-9]{3}.ma$' % (character, guideType)
+    fileUtils.cleanMayaAsciiFile(source)
     return publishToServer(source, path, pattern)
 
 
@@ -216,6 +218,7 @@ def publishFaceRig(character, source, description=str()):
 
     path = '%s/%s/rig/face/anim' % (ROOTCHAR, character)
     pattern = '%s_face_rig_anim_v[0-9]{3}.ma$' % character
+    fileUtils.cleanMayaAsciiFile(source)
     return publishToServer(source, path, pattern)
 
 
