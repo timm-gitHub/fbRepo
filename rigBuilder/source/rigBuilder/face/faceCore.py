@@ -41,9 +41,6 @@ def faceRigBuilder(character, modelPath, skeletonGuidePath, guiGuidePath=None,
     rig = RigComponent()
     rig.buildRigHierarchy()
 
-#     assetCore.tagRigTopNode(rig.topNode, character=self.character,
-#         layers=self.BUILD_LAYERS, dependencies=self._filePaths)
-
     #===========================================================================
     # Skeleton Guide / Model / Blend Shapes / GUI Guide.
     #===========================================================================
@@ -128,7 +125,7 @@ def faceRigBuilder(character, modelPath, skeletonGuidePath, guiGuidePath=None,
     # Mouth.
     b = mouth.MouthModule()
     b.buildModule()
-
+    
     # Tongue.
     c = tongue.TongueModule()
     c.buildModule()
