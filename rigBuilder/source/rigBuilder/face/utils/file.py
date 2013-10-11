@@ -1,11 +1,32 @@
 import datetime
 import os
+import shutil
+import tempfile
 import types
 
 import maya.cmds
 
 TEMP_GROUP_NAME = 'tempGroup'
 TEMP_NAMESPACE = 'tempNamespace'
+
+
+def cleanMayaAsciiFile(filePath):
+
+    temp = tempfile.mkstemp('.ma')[1]
+    fin = open(filePath, 'r')
+    fout = open(temp, 'w')
+
+    # remove lockNode commands from ma file
+    for line in fin.readlines():
+        if 'lockNode' in line: continue
+        fout.write(line)
+
+    fin.close()
+    fout.close()
+
+    shutil.copyfile(temp, filePath)
+    
+    return True
 
 
 def confirmFilePath(filePath):
