@@ -26,6 +26,7 @@ BLEND_SHAPE_LAYOUT_JSON = os.path.join(FACE_RESOURCE_PATH, 'blendShapeLayout.jso
 FACE_RIG_ROOT = 'rig_face_anim'
 
 FACE_SKELETON_GUIDE_ROOT = 'faceSkeletonGuide_grp'
+FACE_SKELETON_GUIDE_NS = 'guide'
 
 FACE_GUI_GUIDE_ROOT = 'faceGUI_grp'
 FACE_GUI_LAYOUT_GROUP = 'faceGUILayout_grp'
