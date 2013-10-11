@@ -13,7 +13,7 @@ import maya.cmds as cmds
 import maya.mel as mel
 from PyQt4 import QtGui, QtCore, uic
 from xml.dom import minidom
-from rigBuilder import rigUtils, rigEnv
+from rigBuilder import rigUtils, rigEnv, sysUtils
 
 uic.properties.logger.setLevel(logging.WARNING)
 uic.uiparser.logger.setLevel(logging.WARNING)
@@ -813,6 +813,12 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         header.setMovable(False)
         header.setClickable(False)
         header.setResizeMode(QtGui.QHeaderView.Fixed)
+        
+        # add popup menu to character list
+        self.PopupMenu = sysUtils.CreateCharacterPopUpMenu(parent=self.listViewCharacter)
+
+        self.listViewCharacter.customContextMenuRequested.connect(self.PopupMenu._buildMenu)
+        self.PopupMenu._characterNamePromptDialogCallback = self.on_actionRefresh_triggered
             
     
     def charClicked(self):
