@@ -4,6 +4,7 @@ import pymel.core
 import rigBuilder.face.utils.attribute as attributeUtils
 import rigBuilder.face.utils.file as fileUtils
 import rigBuilder.face.utils.skeleton as skeletonUtils
+from rigBuilder.face.faceRigEnv import FACE_SKELETON_GUIDE_NS
 
 TOP_NODE_NAME = 'C_rig_grp_0'
 MODULE_NODE_NAME = '%s_%sModule_grp_0'
@@ -79,7 +80,7 @@ class RigComponent(object):
         return True
 
 
-    def referenceRigComponentGuide(self, filePath, namespace='guide_face'):
+    def referenceRigComponentGuide(self, filePath, namespace=FACE_SKELETON_GUIDE_NS):
 
         if not pymel.core.objExists(self.guideNode):
             self.buildRigHierarchy()
@@ -90,7 +91,7 @@ class RigComponent(object):
         return True
 
 
-    def removeRigComponentGuideReference(self, namespace='guide_face'):
+    def removeRigComponentGuideReference(self, namespace=FACE_SKELETON_GUIDE_NS):
 
         try:
             a = pymel.core.system.FileReference(namespace=namespace)
@@ -103,8 +104,10 @@ class RigComponent(object):
 
     def buildRigComponentSkeleton(self):
 
-        root = skeletonUtils.FaceSkeletonBuilder(guideNamespace='guide_face').buildSkeleton()
+        root = skeletonUtils.FaceSkeletonBuilder(
+            guideNamespace=FACE_SKELETON_GUIDE_NS).buildSkeleton()
         root.setParent(self.skeletonNode)
+
 
 
 class RigModule(RigComponent):
@@ -136,7 +139,6 @@ class RigModule(RigComponent):
         # Preferences / Interfaces
         self.interfaceNode = None
         self.preferencesNode = None
-        self.setupNode = None
 
         self.drivers = list()
         self.driven = list()
@@ -198,16 +200,6 @@ class RigModule(RigComponent):
             node.setParent(self.moduleTopNode)
             attributeUtils.lockAll(node)
             attributeUtils.addTag(node, name='module%sNode' % ident.title())
-#
-#         # Setup Node.
-#         self.setupNode = pymel.core.createNode('transform',
-#             name='%s_%sSetupNode_grp_0' % (self.modulePosition, self.moduleName))
-#         attributeUtils.lockAll(self.setupNode)
-#
-#         try:
-#             self.setupNode.setParent(self.setupGroup)
-#         except:
-#             self.setupNode.setParent(self.moduleNode)
 
         return True
 
