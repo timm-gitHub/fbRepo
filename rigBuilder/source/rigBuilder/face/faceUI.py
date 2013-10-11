@@ -20,13 +20,20 @@ import rigBuilder.face.utils.control as controlUtils
 import rigBuilder.face.utils.skeleton as skeletonUtils
 
 
+VAR_PREFIX              = 'faceRigBuilder'
+PREV_CHAR_VAR           = '%sPreviousCharacter' % VAR_PREFIX
+PREV_MODEL_PATH_VAR     = '%sPreviousModelPath' % VAR_PREFIX
+PREV_GUI_TEMPLATE_VAR   = '%sPreviousGUITemplate' % VAR_PREFIX
+PREV_GUI_CTL_TYPE_VAR   = '%sPreviousControlType' % VAR_PREFIX
+PREV_GUI_CTL_SHP_VAR    = '%sPreviousControlShape' % VAR_PREFIX
+PREV_GUI_CTL_POS_VAR    = '%sPreviousControlPosition' % VAR_PREFIX
+PREV_GUI_CTL_DESC_VAR   = '%sPreviousControlDescription' % VAR_PREFIX
+PREV_GUI_CTL_INDEX_VAR  = '%sPreviousControlIndex' % VAR_PREFIX
+PREV_GUI_CTL_MIRROR_VAR = '%sPreviousControlAddMirrored' % VAR_PREFIX
+
+
 uiFile = os.path.join(FACE_RESOURCE_PATH, 'faceRigBuilder.ui')
 uiFormClass, uiBaseClass = uic.loadUiType(uiFile)
-
-OPTION_VARS = {
-    'previousCharacter': 'frbPreviousCharacter',
-    'previousModelPath': 'frbPreviousModelPath'
-    }
 
 
 class FaceRigBuilderUI(uiFormClass, uiBaseClass):
@@ -128,17 +135,97 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
     def _buildFaceGUIGuideTools(self):
 
+        #=======================================================================
+        # Setup the Option Var setters.
+        #=======================================================================
+        
+        # GUI Template.
+        self.frbToolsFaceGUITemplateComboBox.currentIndexChanged['QString'].connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_TEMPLATE_VAR, str(x)]))
+        
+        # Control Type.
+        self.frbToolsFaceGUIControlTypeComboBox.currentIndexChanged['QString'].connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_TYPE_VAR, str(x)]))
+            
+        # Control Shape.
+        self.frbToolsFaceGUIControlShapeComboBox.currentIndexChanged['QString'].connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_SHP_VAR, str(x)]))
+            
+        # Control Position.
+        self.frbToolsFaceGUIControlPositionComboBox.currentIndexChanged['QString'].connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_POS_VAR, str(x)]))
+        
+        # Control Description.
+        self.frbToolsFaceGUIControlDescriptionLineEdit.textEdited.connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_DESC_VAR, str(x)]))
+        
+        # Control Index.
+        self.frbToolsFaceGUIControlIndexSpinBox.valueChanged['QString'].connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_INDEX_VAR, str(x)]))
+        
+        # Add Mirrored Control CB.
+        self.frbToolsFaceGUIAddMirroredControlCheckBox.stateChanged.connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_MIRROR_VAR, x]))
+        
+        
+        #=======================================================================
+        # Populate the combo boxes.
+        #=======================================================================
+
         # Templates.
-        for templateName in controlUtils.getFaceGUITemplateNames():
+        templateNames = controlUtils.getFaceGUITemplateNames()
+        prevTemplate = maya.cmds.optionVar(q=PREV_GUI_TEMPLATE_VAR)
+        
+        for templateName in templateNames:
             self.frbToolsFaceGUITemplateComboBox.addItem(templateName)
+        
+        if prevTemplate in templateNames:
+            self.frbToolsFaceGUITemplateComboBox.setCurrentIndex(
+                templateNames.index(prevTemplate))
+
 
         # Control Types.
-        for controlType in controlUtils.getFaceGUIControlNames():
-            self.frbToolsFaceGUIControlTypeComboBox.addItem(controlType)
+        ctlTypes = controlUtils.getFaceGUIControlNames()
+        prevCtlType = maya.cmds.optionVar(q=PREV_GUI_CTL_TYPE_VAR)
+        
+        for ctlType in ctlTypes:
+            self.frbToolsFaceGUIControlTypeComboBox.addItem(ctlType)
+
+        if prevCtlType in ctlTypes:
+            self.frbToolsFaceGUIControlTypeComboBox.setCurrentIndex(
+                ctlTypes.index(prevCtlType))
+
 
         # Control Shapes.
-        for controlShape in controlUtils.getFaceGUIControlShapeNames():
-            self.frbToolsFaceGUIControlShapeComboBox.addItem(controlShape)
+        ctlShapes = controlUtils.getFaceGUIControlShapeNames()
+        prevCtlShape = maya.cmds.optionVar(q=PREV_GUI_CTL_SHP_VAR)
+        
+        for ctlShape in ctlShapes:
+            self.frbToolsFaceGUIControlShapeComboBox.addItem(ctlShape)
+
+        if prevCtlShape in ctlShapes:
+            self.frbToolsFaceGUIControlTypeComboBox.setCurrentIndex(
+                ctlShapes.index(prevCtlShape))
+
+
+        # Control Position
+        prevCtlPos = maya.cmds.optionVar(q=PREV_GUI_CTL_POS_VAR)
+        if prevCtlPos:
+            self.frbToolsFaceGUIControlPositionComboBox.setCurrentIndex(
+                ['C', 'L', 'R'].index(prevCtlPos))
+        
+        # Control Description
+        prevCtlDesc = maya.cmds.optionVar(q=PREV_GUI_CTL_DESC_VAR)
+        if prevCtlDesc:
+            self.frbToolsFaceGUIControlDescriptionLineEdit.setText(prevCtlDesc)
+        
+        # Control Index
+        prevCtlIndex = maya.cmds.optionVar(q=PREV_GUI_CTL_INDEX_VAR)
+        self.frbToolsFaceGUIControlIndexSpinBox.setValue(int(prevCtlIndex))
+        
+        # Add Mirrored Control
+        prevMirror = maya.cmds.optionVar(q=PREV_GUI_CTL_MIRROR_VAR)
+        self.frbToolsFaceGUIAddMirroredControlCheckBox.setCheckState(int(prevMirror))
 
         return True
 
@@ -338,7 +425,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         ''' Look for a previously selected character in option vars. '''
 
         result = None
-        var = OPTION_VARS['previousCharacter']
+        var = PREV_CHAR_VAR
 
         if not maya.cmds.optionVar(exists=var):
             return result
@@ -348,7 +435,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
 
     def _getPreviousModelPathOptionVar(self, character):
-        var = OPTION_VARS['previousModelPath']
+        var = PREV_MODEL_PATH_VAR
 
         filePath = None
 
@@ -375,19 +462,19 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
 
     def _removePreviousCharacterOptionVar(self):
-        var = OPTION_VARS['previousCharacter']
+        var = PREV_CHAR_VAR
         return maya.cmds.optionVar(rm=var)
 
 
     def _setPreviousCharacterOptionVar(self, character):
 
-        var = OPTION_VARS['previousCharacter']
+        var = PREV_CHAR_VAR
         maya.cmds.optionVar(sv=[var, character])
         return True
 
 
     def _setPreviousModelPathOptionVar(self, character, filePath):
-        var = OPTION_VARS['previousModelPath']
+        var = PREV_MODEL_PATH_VAR
 
         # First check the file path is valid.
         if not os.path.exists(filePath):
@@ -688,7 +775,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         ctlShape = str(self.frbToolsFaceGUIControlShapeComboBox.currentText())
         ctlPos = str(self.frbToolsFaceGUIControlPositionComboBox.currentText())
         ctlDesc = str(self.frbToolsFaceGUIControlDescriptionLineEdit.text())
-        ctlIndex = str(self.frbToolsFaceGUIControlDescripitionSpinBox.value())
+        ctlIndex = str(self.frbToolsFaceGUIControlIndexSpinBox.value())
         addMirrored = self.frbToolsFaceGUIAddMirroredControlCheckBox.checkState()
 
         return controlUtils.addFaceGUIControl(

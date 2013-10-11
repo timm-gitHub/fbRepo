@@ -651,7 +651,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
+               <y>-45</y>
                <width>551</width>
                <height>381</height>
               </rect>
@@ -1113,7 +1113,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                                </widget>
                               </item>
                               <item>
-                               <widget class="QSpinBox" name="frbToolsFaceGUIControlDescripitionSpinBox"/>
+                               <widget class="QSpinBox" name="frbToolsFaceGUIControlIndexSpinBox"/>
                               </item>
                              </layout>
                             </item>
