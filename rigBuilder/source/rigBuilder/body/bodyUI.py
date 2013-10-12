@@ -1450,3 +1450,29 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
             self.statusBar().showMessage('Copied Control Data from: %s' % os.path.basename(self.copy))
         else:
             self.statusBar().showMessage('Error Copying Control Data from: %s' % os.path.basename(self.copy))
+
+
+
+def showBodyRigBuilderUI():
+    
+    qMainWindow = getMayaWindow()
+    
+    for child in qMainWindow.children():
+        if not hasattr(child, 'isWindow'):
+            continue
+        
+        if not child.isWindow():
+            continue
+        
+        if child.windowTitle() == 'Body Builder':
+            if not child.isVisible():
+                child.show()
+            child.activateWindow()
+            return True
+            
+    window = RigWindowUser(qMainWindow)
+    window.showWindow()
+    window.activateWindow()
+    
+    return True
+

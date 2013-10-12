@@ -8,6 +8,7 @@ import maya.mel
 import maya.cmds
 import maya.OpenMayaUI
 
+
 from rigBuilder import rigUtils
 from rigBuilder import sysUtils
 from rigBuilder.body import bodyUI
@@ -17,20 +18,31 @@ from rigBuilder.combination import combinationPublish
 
 
 OPTION_VARS = {'previousCharacter': 'rcbPreviousCharacter'}
-RIG_COMBINATION_BUILDER_UI = None
 
 
 def showRigCombinationBuilderUI():
-    global RIG_COMBINATION_BUILDER_UI
-    if RIG_COMBINATION_BUILDER_UI != None:
-        RIG_COMBINATION_BUILDER_UI.show()
-        return RIG_COMBINATION_BUILDER_UI
-
+    
     qMainWindow = QMainWindow()
-    RIG_COMBINATION_BUILDER_UI = RigCombinationBuilderUI(qMainWindow)
-    RIG_COMBINATION_BUILDER_UI.show()
-    return RIG_COMBINATION_BUILDER_UI
-
+    
+    for child in qMainWindow.children():
+        if not hasattr(child, 'isWindow'):
+            continue
+        
+        if not child.isWindow():
+            continue
+            
+        if child.windowTitle() == 'Rig Combination Builder':
+            if not child.isVisible():
+                child.show()
+            child.activateWindow()
+            return True
+            
+    window = RigCombinationBuilderUI(qMainWindow)
+    window.show()
+    window.activateWindow()
+    
+    return True
+    
 
 class RigCombinationBuilderUI(QtGui.QWidget):
     """Combination Builder UI.
@@ -44,6 +56,7 @@ class RigCombinationBuilderUI(QtGui.QWidget):
 
     def __init__(self, parent=None):
         super(RigCombinationBuilderUI, self).__init__(parent=parent)
+        
         self.setWindowTitle("Rig Combination Builder")
         self.setWindowFlags(QtCore.Qt.Window)
         self.loadUI()
@@ -430,13 +443,11 @@ class RigCombinationBuilderUI(QtGui.QWidget):
 
 
     def launchBodyRigBuilderUI(self):
-        window = bodyUI.RigWindowUser()
-        window.showWindow()
+        return bodyUI.showBodyRigBuilderUI()
 
 
     def launchFaceBuilderUI(self):
-        window = faceUI.FaceRigBuilderUI()
-        window.show()
+        return faceUI.showFaceRigBuilderUI()
 
 
     def loadUI(self):

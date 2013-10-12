@@ -32,6 +32,29 @@ PREV_GUI_CTL_INDEX_VAR  = '%sPreviousControlIndex' % VAR_PREFIX
 PREV_GUI_CTL_MIRROR_VAR = '%sPreviousControlAddMirrored' % VAR_PREFIX
 
 
+def showFaceRigBuilderUI():
+    qMainWindow = getMayaWindow()
+    
+    for child in qMainWindow.children():
+        if not hasattr(child, 'isWindow'):
+            continue
+        
+        if not child.isWindow():
+            continue
+        
+        if child.windowTitle() == 'Face Rig Builder':
+            if not child.isVisible():
+                child.show()
+            child.activateWindow()
+            return True
+            
+    window = FaceRigBuilderUI()
+    window.show()
+    window.activateWindow()
+    
+    return True
+
+
 uiFile = os.path.join(FACE_RESOURCE_PATH, 'faceRigBuilder.ui')
 uiFormClass, uiBaseClass = uic.loadUiType(uiFile)
 
