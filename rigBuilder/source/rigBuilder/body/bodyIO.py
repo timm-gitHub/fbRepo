@@ -2,11 +2,11 @@
 
     Methods for importing/exporting assets/data
     -------------------------------------------
-    
+
     Author: Evan Jacobson
-    
-    Exporting/Importing of json skin files assumes the following dict structure: 
-        
+
+    Exporting/Importing of json skin files assumes the following dict structure:
+
     {
      <object1>:
      {
@@ -18,13 +18,13 @@
        {
          "position":[<array of vertex world space position>],
          "skinweights":[<array of weight value per influence>]
-         "blendweight":<dual quot - linear blend weight value> 
+         "blendweight":<dual quot - linear blend weight value>
        }
       }
      }
      ...
     }
-    
+
 """
 
 import json, os, string, bodyPublish
@@ -34,9 +34,9 @@ from rigBuilder import rigUtils
 
 
 def exportControlData(file):
-    
+
     # store control shape info
-    buffer    = {}
+    buffer = {}
     ctlbuffer = {}
     shapes = cmds.ls('*_ctl_*', type='nurbsCurve')
     for shp in shapes:
@@ -59,9 +59,9 @@ def exportControlData(file):
         ctlbuffer[shp] = shpbuffer
 
     if not ctlbuffer:
-        rigUtils.log('Nothing to write','w')
+        rigUtils.log('Nothing to write', 'w')
         return
-         
+
     buffer['**CONTROL_DATA**'] = ctlbuffer
 
     # dump
@@ -72,7 +72,7 @@ def exportControlData(file):
     f = open(file, 'w')
     f.write(j)
     f.close()
-    
+
 
 def exportSkinByObject(dagnode, file):
     """Export skin data for single object."""
@@ -88,13 +88,13 @@ def exportSkinByRef(ref, file):
     """Export skin data for all transforms nodes in reference."""
 
     buffer = {}
-    
+
     if cmds.namespace(ex=ref):
-        
+
         cmds.namespace(set=ref)
         dagnodes = cmds.namespaceInfo(lod=True)
         cmds.namespace(set=':')
-    
+
         for dagnode in dagnodes:
             if not cmds.objectType(dagnode, isType='mesh'): continue
             dagnode = cmds.listRelatives(dagnode, p=True)[0]
@@ -120,7 +120,7 @@ def exportSkinByTag(file, tag='skinImportExport'):
 
     buffer = {}
     for dagnode in cmds.ls(dag=True, recursive=True):
-        # bit of a hack. try/fail faster than attributeQuery 
+        # bit of a hack. try/fail faster than attributeQuery
         try:
             cmds.getAttr('%s.%s' % (dagnode, tag))
         except:
@@ -176,9 +176,9 @@ def importControlData(file, selected=None, worldSpace=False):
             continue
 
         if selected:
-            parent = cmds.listRelatives(shp,p=True)[0]
+            parent = cmds.listRelatives(shp, p=True)[0]
             if parent not in selected: continue
-        
+
         pointData = None
         if not ('objectSpace' in controlData[shp].keys() and 'worldSpace' in controlData[shp].keys()):
             worldSpace = True
@@ -208,7 +208,7 @@ def importDeformersBySel(file):
 
     for dagnode in cmds.ls(sl=True):
         importDeformer(dagnode, j)
-            
+
 
 def importDeformersByObject(dagnode, file):
 
@@ -221,9 +221,9 @@ def importDeformersByObject(dagnode, file):
     f = open(file, 'r')
     j = json.loads(f.read())
     f.close()
-    
+
     importDeformer(dagnode, j)
-    
+
 
 def importDeformersByMirroredObject(dagnode, file):
 
@@ -240,18 +240,18 @@ def importDeformersByMirroredObject(dagnode, file):
 
     # get the mirrored object
     buffer = dagnode.split('_')
-    locus  = buffer[0][-1]
-    
+    locus = buffer[0][-1]
+
     if locus == 'R':
         buffer[0] = '%sL' % buffer[0][:-1]
-        mirror = string.join(buffer,'_')
+        mirror = string.join(buffer, '_')
     elif locus == 'L':
         buffer[0] = '%sR' % buffer[0][:-1]
-        mirror = string.join(buffer,'_')
+        mirror = string.join(buffer, '_')
     else:
         rigUtils.log('Select a valid mesh')
         return
-    
+
     if mirror not in j:
         rigUtils.log('Mirror object not found in json file: %s' % mirror)
         return
@@ -265,33 +265,33 @@ def importDeformersByMirroredObject(dagnode, file):
 
         if mirrorDeformer == 'skinCluster': continue
         if not cmds.objExists(mirrorDeformer): continue
-        
+
         # get the corresponding deformer on the target object
         buffer = mirrorDeformer.split('_')
-        locus  = buffer[0][-1]
-        
+        locus = buffer[0][-1]
+
         if locus == 'R':
             buffer[0] = '%sL' % buffer[0][:-1]
-            deformer = string.join(buffer,'_')
+            deformer = string.join(buffer, '_')
         elif locus == 'L':
             buffer[0] = '%sR' % buffer[0][:-1]
-            deformer = string.join(buffer,'_')
+            deformer = string.join(buffer, '_')
         else:
-            deformer = mirrorDeformer 
-        
+            deformer = mirrorDeformer
+
         pointdata = dict[mirrorDeformer]
-        set       = '%sSet' % deformer
-        
+        set = '%sSet' % deformer
+
         # ffd
         if cmds.objectType(deformer, isType='ffd'):
             i = 0
             while(True):
                 if i == len(pointdata): break
                 if pointdata[i] == '1' and cmds.objExists(set):
-                    cmds.sets('%s.vtx[%s]' % (dagnode,i), add=set)
+                    cmds.sets('%s.vtx[%s]' % (dagnode, i), add=set)
                 i = i + 1
             continue
-        
+
         # if the corresponding deformer isn't influencing the target object, make it so
         existingdeformers = mel.eval('findRelatedDeformer "%s"' % dagnode)
         if not deformer in existingdeformers:
@@ -309,7 +309,7 @@ def importDeformersByMirroredObject(dagnode, file):
         if skincluster: cmds.reorderDeformers(skincluster, deformer, dagnode)
 
         rigUtils.log('Deformer weighting updated: %s' % deformer)
-        
+
 
 def importDeformers(file, skip=[]):
 
@@ -325,54 +325,54 @@ def importDeformers(file, skip=[]):
 
     for dagnode in j:
 
-        if dagnode == '**CONTROL_DATA**': 
+        if dagnode == '**CONTROL_DATA**':
             continue
-        if not cmds.objExists(dagnode): 
+        if not cmds.objExists(dagnode):
             continue
-        if dagnode in skip: 
+        if dagnode in skip:
             continue
         importDeformer(dagnode, j)
-        
-        
+
+
 def importDeformer(dagnode, j):
-    
+
     if dagnode not in j:
         rigUtils.log('Dagnode not found in json file: %s' % dagnode)
         return
-    
+
     # temporarily disable deleteComponent nodes
     for delComp in cmds.ls('deleteComponent*'):
-        cmds.setAttr('%s.nodeState' % delComp,1)
-    
+        cmds.setAttr('%s.nodeState' % delComp, 1)
+
     skincluster = rigUtils.findSkinClusterOnNode(dagnode)
-    dict        = j[dagnode]
-    
+    dict = j[dagnode]
+
     for deformer in dict:
 
         if deformer == 'skinCluster': continue
         if not cmds.objExists(deformer): continue
 
-        pointdata         = dict[deformer]
-        set               = '%sSet' % deformer
+        pointdata = dict[deformer]
+        set = '%sSet' % deformer
         existingdeformers = mel.eval('findRelatedDeformer "%s"' % dagnode)
-        
+
         # ffd
         if cmds.objectType(deformer, isType='ffd'):
             i = 0
             while(True):
                 if i == len(pointdata): break
                 if pointdata[i] == '1' and cmds.objExists(set):
-                    cmds.sets('%s.vtx[%s]' % (dagnode,i), add=set)
+                    cmds.sets('%s.vtx[%s]' % (dagnode, i), add=set)
                 i = i + 1
-            
+                
             cmds.reorderDeformers(skincluster,deformer,dagnode)
-            
+                
             continue
-        
+
         # all other deformers
         if not deformer in existingdeformers:
             if cmds.objExists(set): cmds.sets(dagnode, add=set)
-        
+
         i = 0
         while(True):
             if i == len(pointdata): break
@@ -383,11 +383,11 @@ def importDeformer(dagnode, j):
         if skincluster: cmds.reorderDeformers(skincluster, deformer, dagnode)
 
         rigUtils.log('Deformer weighting updated: %s' % deformer)
-    
+
     # turn deleteComponent nodes back on
     for delComp in cmds.ls('deleteComponent*'):
-        cmds.setAttr('%s.nodeState' % delComp,0)
-    
+        cmds.setAttr('%s.nodeState' % delComp, 0)
+
 
 def importSkinByObject(dagnode, file):
     """Import skin for specific dagnode."""
@@ -426,15 +426,15 @@ def importSkinByMirroredObject(dagnode, file):
     f.close()
 
     skinned = []
-    buffer  = dagnode.split('_')
-    locus   = buffer[0][-1]
-    
+    buffer = dagnode.split('_')
+    locus = buffer[0][-1]
+
     if locus == 'R':
         buffer[0] = '%sL' % buffer[0][:-1]
-        mirror = string.join(buffer,'_')
+        mirror = string.join(buffer, '_')
     elif locus == 'L':
         buffer[0] = '%sR' % buffer[0][:-1]
-        mirror = string.join(buffer,'_')
+        mirror = string.join(buffer, '_')
     else:
         rigUtils.log('Select a valid mesh')
         return
@@ -447,7 +447,7 @@ def importSkinByMirroredObject(dagnode, file):
 
     return skinned
 
-def importSkinByRef(ref, file, skip=[]):
+def importSkinByRef(ref, file, skip=[], **kwargs):
     """Import skin for every dag node in reference."""
 
     if not os.path.exists(file):
@@ -474,7 +474,7 @@ def importSkinByRef(ref, file, skip=[]):
             dict = j[dagnode]
             try: skindict = dict['skinCluster']
             except: continue
-            importSkin(skindict, dagnode)
+            importSkin(skindict, dagnode, **kwargs)
             skinned.append(dagnode)
 
     return skinned
@@ -496,9 +496,9 @@ def importSkinBySel(file):
     skinned = []
 
     for dagnode in cmds.ls(sl=True):
-        #if ('%s0' % dagnode[:-1]) in j:
+        # if ('%s0' % dagnode[:-1]) in j:
         if dagnode in j:
-            #dict = j[('%s0' % dagnode[:-1])]
+            # dict = j[('%s0' % dagnode[:-1])]
             dict = j[dagnode]
             skindict = dict['skinCluster']
             importSkin(skindict, dagnode)
@@ -509,7 +509,7 @@ def importSkinBySel(file):
     return skinned
 
 
-def importSkinBySkin(file):
+def importSkinBySkin(file, **kwargs):
     """Import skin and apply to all geometry in skin file."""
 
     if not os.path.exists(file):
@@ -534,7 +534,7 @@ def importSkinBySkin(file):
 
         dict = j[dagnode]
         skindict = dict['skinCluster']
-        importSkin(skindict, dagnode)
+        importSkin(skindict, dagnode, **kwargs)
         skinned.append(dagnode)
 
     return skinned
@@ -566,26 +566,26 @@ def importSkinByTag(tag, file):
     return skinned
 
 
-def importSkin(skindict, geo, count=0, mirrored=False):
+def importSkin(skindict, geo, count=0, mirrored=False, **kwargs):
     """Import and apply skin weighting from json file."""
 
     influences = skindict['influences']
-    pointdata  = skindict['pointdata']
+    pointdata = skindict['pointdata']
 
     notfound = []
-    tmp      = []
+    tmp = []
     for inf in influences:
-        
+
         if mirrored:
             if inf[0] == 'R':
                 inf = 'L%s' % inf[1:]
             elif inf[0] == 'L':
                 inf = 'R%s' % inf[1:]
-                
+
             tmp.append(inf)
-        
+
         if not cmds.objExists(inf): notfound.append(inf)
-        
+
     # switch around the influences
     if mirrored: influences = tmp
 
@@ -603,9 +603,9 @@ def importSkin(skindict, geo, count=0, mirrored=False):
     if not skincluster:
 
         # ensure geo is visible
-        shps   = cmds.listRelatives(geo, s=True)
+        shps = cmds.listRelatives(geo, s=True)
         geosrc = cmds.listConnections('%s.v' % geo, s=True, d=False, p=True)
-        
+
         if geosrc:
             cmds.disconnectAttr(geosrc[0], '%s.v' % geo)
             cmds.setAttr('%s.v' % geo, 1)
@@ -618,27 +618,49 @@ def importSkin(skindict, geo, count=0, mirrored=False):
         ###################################################################
         # hack - need to replace with storing of skin position in JSON file
         ###################################################################
-        
+
         bShapes = None
         shape = cmds.listRelatives(geo, ad=True, s=True)
         if shape:
             bShapes = cmds.listConnections(shape[0], s=True, d=False, p=False, type='blendShape')
 
-        if 'jacket' in geo:
-            skincluster = cmds.skinCluster(influences, geo, sm=2, foc=False, tsb=True, nw=1)[0]
-        elif bShapes and cmds.objExists('%s.frontOfChain' % bShapes[0]): # frontOfChain tag for corrective blendShapes
-            skincluster = cmds.skinCluster(influences, geo, sm=2, foc=False, tsb=True, nw=1)[0]
+#         if 'jacket' in geo:
+#             skincluster = cmds.skinCluster(influences, geo, sm=2, foc=False, tsb=True, nw=2)[0]
+#         elif bShapes and cmds.objExists('%s.frontOfChain' % bShapes[0]): # frontOfChain tag for corrective blendShapes
+#             skincluster = cmds.skinCluster(influences, geo, sm=2, foc=False, tsb=True, nw=2)[0]
+#         else:
+#             skincluster = cmds.skinCluster(influences, geo, sm=2, foc=True, tsb=True, nw=2)[0]
+
+        VALID_ARGS = [
+            ('af', 'after'),
+            ('ar', 'afterReference'),
+            ('bf', 'before'),
+            ('ex', 'exclusive'),
+            ('foc', 'frontOfChain'),
+            ('par', 'parallel')
+            ]
+
+        skinArgs = dict()
+
+        if not kwargs:
+            skinArgs['foc'] = True
         else:
-            skincluster = cmds.skinCluster(influences, geo, sm=2, foc=True, tsb=True, nw=1)[0]
-        
+            for item in VALID_ARGS:
+                for i in item:
+                    if i in kwargs:
+                        skinArgs[i] = kwargs[i]
+                        break
+
+        skincluster = cmds.skinCluster(influences, geo, sm=2, tsb=True, nw=2, **skinArgs)[0]
+
         # reconnect
         if geosrc: cmds.connectAttr(geosrc[0], '%s.v' % geo)
         if shpsrc: cmds.connectAttr(shpsrc[0], '%s.v' % shp)
 
     # Check to see that the influences are actually attached to the skinCluster.
-    invalidInfs    = list()
+    invalidInfs = list()
     skinInfluences = cmds.skinCluster(skincluster, q=True, inf=True)
-    
+
     for influence in influences:
         if not influence in skinInfluences: invalidInfs.append(influence)
 
@@ -681,7 +703,7 @@ def importSkin(skindict, geo, count=0, mirrored=False):
             rigUtils.log('Mismatching number of verts for %s' % geo, 'w')
             break
 
-        weights     = point['skinweights']
+        weights = point['skinweights']
         blendweight = point['blendweight']
 
         for j, value in enumerate(weights):
