@@ -569,3 +569,79 @@ def printShape(nurbsCurve):
         sys.stdout.write(cmdString)
 
     return None
+
+
+def mirrorGUIControls(src, dst, flipXAxis=True):
+    assert maya.cmds.objExists(src) and maya.cmds.objExists(dst), ('Check the '
+        'Source and destination objects...')
+    
+    # Get pymel objects for src and dest.
+    src, dst = (pymel.core.PyNode(src), pymel.core.PyNode(dst))
+    
+    # Mirror Translation.
+    srcT = src.getTranslation(worldSpace=True)
+    srcT[0] *= -1.0
+    
+    dst.setTranslation(srcT, worldSpace=True)
+
+    # Match orientation.
+    pymel.core.delete(pymel.core.animation.orientConstraint(src, dst))
+    
+    # Match scale.
+    pymel.core.delete(pymel.core.animation.scaleConstraint(src, dst))
+
+    if not flipXAxis:
+        return True
+    
+    # Create a temporary transform to use as an aim target.    
+    temp = pymel.core.createNode('transform')
+    temp.setParent(dst)
+    temp.setMatrix(pymel.core.datatypes.Matrix(), objectSpace=True)
+    temp.setTranslation([1.0, 0.0, 0.0])
+    temp.setParent(None)
+    
+    # Aim while flipping the x-axis.
+    pymel.core.delete(pymel.core.animation.aimConstraint(temp, dst,
+        aim=[-1.0, 0.0, 0.0], u=[0.0, 1.0, 0.0], wut='objectRotation', wuo=temp))
+    
+    # Clean up.
+    pymel.core.delete(temp)
+    
+    return True
+
+
+def mirrorSelectedGUIControls(flipXAxis=True):
+    sel = maya.cmds.ls(sl=1)
+    
+    assert len(sel) == 2, ('You must select a source control, and a destination'
+        ' control to mirror to...')
+    
+    return mirrorGUIControls(sel[0], sel[1], flipXAxis)
+
+
+def mirrorAllGUIControls(mode=0, flipXAxis=True):
+    '''
+    Mode 0 -> Left to Right
+    Mode 1 -> Right to Left
+    '''
+    
+    assert maya.cmds.objExists(FACE_GUI_CONTROLS_GROUP), ('Cannot find Face GUI'
+        ' controls group...')
+    
+    srcPos = ['L', 'R'][mode]
+    
+    for current in maya.cmds.listRelatives(FACE_GUI_CONTROLS_GROUP, typ='transform'):
+        if not re.match('^%s_.*_ctl_[0-9]' % srcPos, str(current)):
+            continue
+
+        ctl     = current
+        oppCtl  = nameUtils.subPosition(current, OPPOSITE_CONTROL_MAPPING[srcPos])
+
+        if not maya.cmds.objExists(oppCtl):
+            continue
+            
+        mirrorGUIControls(ctl, oppCtl, flipXAxis)
+
+    return True
+    
+    

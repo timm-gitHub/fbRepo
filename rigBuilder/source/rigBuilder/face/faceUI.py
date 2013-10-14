@@ -20,16 +20,18 @@ import rigBuilder.face.utils.control as controlUtils
 import rigBuilder.face.utils.skeleton as skeletonUtils
 
 
-VAR_PREFIX              = 'faceRigBuilder'
-PREV_CHAR_VAR           = '%sPreviousCharacter' % VAR_PREFIX
-PREV_MODEL_PATH_VAR     = '%sPreviousModelPath' % VAR_PREFIX
-PREV_GUI_TEMPLATE_VAR   = '%sPreviousGUITemplate' % VAR_PREFIX
-PREV_GUI_CTL_TYPE_VAR   = '%sPreviousControlType' % VAR_PREFIX
-PREV_GUI_CTL_SHP_VAR    = '%sPreviousControlShape' % VAR_PREFIX
-PREV_GUI_CTL_POS_VAR    = '%sPreviousControlPosition' % VAR_PREFIX
-PREV_GUI_CTL_DESC_VAR   = '%sPreviousControlDescription' % VAR_PREFIX
-PREV_GUI_CTL_INDEX_VAR  = '%sPreviousControlIndex' % VAR_PREFIX
-PREV_GUI_CTL_MIRROR_VAR = '%sPreviousControlAddMirrored' % VAR_PREFIX
+VAR_PREFIX                      = 'faceRigBuilder'
+PREV_CHAR_VAR                   = '%sPreviousCharacter' % VAR_PREFIX
+PREV_MODEL_PATH_VAR             = '%sPreviousModelPath' % VAR_PREFIX
+PREV_GUI_TEMPLATE_VAR           = '%sPreviousGUITemplate' % VAR_PREFIX
+PREV_GUI_CTL_TYPE_VAR           = '%sPreviousControlType' % VAR_PREFIX
+PREV_GUI_CTL_SHP_VAR            = '%sPreviousControlShape' % VAR_PREFIX
+PREV_GUI_CTL_POS_VAR            = '%sPreviousControlPosition' % VAR_PREFIX
+PREV_GUI_CTL_DESC_VAR           = '%sPreviousControlDescription' % VAR_PREFIX
+PREV_GUI_CTL_INDEX_VAR          = '%sPreviousControlIndex' % VAR_PREFIX
+PREV_GUI_CTL_MIRROR_VAR         = '%sPreviousControlAddMirrored' % VAR_PREFIX
+PREV_GUI_CTL_MIRROR_MODE_VAR    = '%sPreviousControlMirrorMode' % VAR_PREFIX
+PREV_GUI_CTL_FLIP_X_AXIS_VAR    = '%sPreviousControlFlipXAxis' % VAR_PREFIX
 
 
 def showFaceRigBuilderUI():
@@ -190,6 +192,16 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         self.frbToolsFaceGUIAddMirroredControlCheckBox.stateChanged.connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_MIRROR_VAR, x]))
         
+        # Mirror Mode Radio.
+        self.frbToolsFaceGUIControlMirrorDirectionRadio0.clicked.connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_MIRROR_MODE_VAR, 0]))
+        self.frbToolsFaceGUIControlMirrorDirectionRadio1.clicked.connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_MIRROR_MODE_VAR, 1]))
+        
+        # Flip X Axis CB.
+        self.frbToolsFaceGUIControlMirrorFlipXAxisCheckBox.stateChanged.connect(
+            lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_FLIP_X_AXIS_VAR, x]))
+        
         
         #=======================================================================
         # Populate the combo boxes.
@@ -247,8 +259,17 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         self.frbToolsFaceGUIControlIndexSpinBox.setValue(int(prevCtlIndex))
         
         # Add Mirrored Control
-        prevMirror = maya.cmds.optionVar(q=PREV_GUI_CTL_MIRROR_VAR)
-        self.frbToolsFaceGUIAddMirroredControlCheckBox.setCheckState(int(prevMirror))
+        prevAddMirrored = maya.cmds.optionVar(q=PREV_GUI_CTL_MIRROR_VAR)
+        self.frbToolsFaceGUIAddMirroredControlCheckBox.setCheckState(int(prevAddMirrored))
+
+        # Mirror Mode
+        prevMirrorMode = maya.cmds.optionVar(q=PREV_GUI_CTL_MIRROR_MODE_VAR)
+        getattr(self, '%sToolsFaceGUIControlMirrorDirectionRadio%s' %(
+            self.FIELD_PREFIX, str(prevMirrorMode))).setChecked(True)
+
+        # Flip X Axis
+        prevFlipX = maya.cmds.optionVar(q=PREV_GUI_CTL_FLIP_X_AXIS_VAR)
+        self.frbToolsFaceGUIControlMirrorFlipXAxisCheckBox.setCheckState(int(prevFlipX))
 
         return True
 
@@ -804,6 +825,21 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         return controlUtils.addFaceGUIControl(
             ctlType, ctlShape, ctlPos, ctlDesc, ctlIndex, addMirrored
             )
+
+
+    def on_actionToolsFaceGUIControlMirrorSelectedButtonClicked_triggered(self, *args):
+        if not args: return None
+        return controlUtils.mirrorSelectedGUIControls(flipXAxis=
+            self.frbToolsFaceGUIControlMirrorFlipXAxisCheckBox.checkState())
+        
+        
+    def on_actionToolsFaceGUIControlMirrorAllButtonClicked_triggered(self, *args):
+        if not args: return None
+        return controlUtils.mirrorAllGUIControls(
+            mode=abs(1 - self.frbToolsFaceGUIControlMirrorDirectionRadio0.isChecked()),
+            flipXAxis=self.frbToolsFaceGUIControlMirrorFlipXAxisCheckBox.checkState()
+            )
+
 
     def on_actionToolsSkeletonGuideBuildSkeletonPushButtonClicked_triggered(self, *args):
         if not args: return None

@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>750</width>
-    <height>700</height>
+    <height>750</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +22,13 @@
   <property name="minimumSize">
    <size>
     <width>750</width>
-    <height>700</height>
+    <height>750</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>750</width>
-    <height>700</height>
+    <height>750</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -35,6 +38,18 @@
    <string notr="true">background-color: rgb(68, 68, 68);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>750</width>
+     <height>750</height>
+    </size>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout_34">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_14">
@@ -282,7 +297,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                <x>0</x>
                <y>0</y>
                <width>568</width>
-               <height>336</height>
+               <height>427</height>
               </rect>
              </property>
              <attribute name="label">
@@ -613,7 +628,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                      <item>
                       <widget class="Line" name="line_2">
                        <property name="lineWidth">
-                        <number>2</number>
+                        <number>1</number>
                        </property>
                        <property name="orientation">
                         <enum>Qt::Vertical</enum>
@@ -652,8 +667,8 @@ alternate-background-color: rgb(121, 121, 121);</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>551</width>
-               <height>381</height>
+               <width>568</width>
+               <height>427</height>
               </rect>
              </property>
              <attribute name="label">
@@ -867,23 +882,11 @@ alternate-background-color: rgb(121, 121, 121);</string>
                 <property name="checkable">
                  <bool>false</bool>
                 </property>
-                <layout class="QVBoxLayout" name="verticalLayout_45">
-                 <property name="spacing">
-                  <number>6</number>
-                 </property>
-                 <property name="margin">
-                  <number>6</number>
-                 </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_39">
                  <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_21">
-                   <property name="spacing">
-                    <number>0</number>
-                   </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_36">
                    <item>
-                    <layout class="QVBoxLayout" name="verticalLayout_43">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_50">
                      <item>
                       <widget class="QFrame" name="frame_4">
                        <layout class="QVBoxLayout" name="verticalLayout_42">
@@ -916,6 +919,12 @@ alternate-background-color: rgb(121, 121, 121);</string>
                             </item>
                             <item>
                              <widget class="QPushButton" name="frbToolsFaceGUITemplateOpenPushButton">
+                              <property name="minimumSize">
+                               <size>
+                                <width>50</width>
+                                <height>0</height>
+                               </size>
+                              </property>
                               <property name="text">
                                <string>Open</string>
                               </property>
@@ -1168,29 +1177,126 @@ alternate-background-color: rgb(121, 121, 121);</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QFrame" name="frame">
-                     <property name="frameShape">
-                      <enum>QFrame::NoFrame</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
-                     </property>
-                     <layout class="QHBoxLayout" name="horizontalLayout_20">
-                      <item>
-                       <spacer name="horizontalSpacer_3">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>237</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
-                    </widget>
+                    <layout class="QVBoxLayout" name="verticalLayout_45">
+                     <item>
+                      <widget class="QFrame" name="frame">
+                       <property name="frameShape">
+                        <enum>QFrame::NoFrame</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_21">
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_43">
+                          <item>
+                           <widget class="QLabel" name="label_38">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>GUI Control Mirroring</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_41">
+                            <item>
+                             <widget class="QPushButton" name="frbToolsFaceGUIControlMirrorSelectedPushButton">
+                              <property name="text">
+                               <string>Mirror Selected</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="frbToolsFaceGUIControlMirrorAllPushButton">
+                              <property name="text">
+                               <string>Mirror All</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_20">
+                            <item>
+                             <widget class="QLabel" name="label_36">
+                              <property name="text">
+                               <string>Direction:</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QRadioButton" name="frbToolsFaceGUIControlMirrorDirectionRadio0">
+                              <property name="text">
+                               <string>Left to Right</string>
+                              </property>
+                              <property name="checked">
+                               <bool>true</bool>
+                              </property>
+                              <property name="autoExclusive">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QRadioButton" name="frbToolsFaceGUIControlMirrorDirectionRadio1">
+                              <property name="text">
+                               <string>Right to Left</string>
+                              </property>
+                              <property name="autoExclusive">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_42">
+                            <item>
+                             <spacer name="horizontalSpacer_5">
+                              <property name="orientation">
+                               <enum>Qt::Horizontal</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>40</width>
+                                <height>20</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item>
+                             <widget class="QCheckBox" name="frbToolsFaceGUIControlMirrorFlipXAxisCheckBox">
+                              <property name="text">
+                               <string>Flip Control X Axis</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="verticalSpacer_9">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
                    </item>
                   </layout>
                  </item>
@@ -1204,8 +1310,8 @@ alternate-background-color: rgb(121, 121, 121);</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>551</width>
-               <height>350</height>
+               <width>568</width>
+               <height>427</height>
               </rect>
              </property>
              <attribute name="label">
@@ -1421,7 +1527,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                   <property name="checkable">
                    <bool>false</bool>
                   </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout_36">
+                  <layout class="QVBoxLayout" name="verticalLayout_70">
                    <property name="margin">
                     <number>6</number>
                    </property>
@@ -1654,7 +1760,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                           <property name="sizeHint" stdset="0">
                            <size>
                             <width>20</width>
-                            <height>79</height>
+                            <height>115</height>
                            </size>
                           </property>
                          </spacer>
@@ -1677,7 +1783,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                <x>0</x>
                <y>0</y>
                <width>568</width>
-               <height>336</height>
+               <height>427</height>
               </rect>
              </property>
              <attribute name="label">
@@ -1954,7 +2060,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                      <item>
                       <widget class="Line" name="line_4">
                        <property name="lineWidth">
-                        <number>2</number>
+                        <number>1</number>
                        </property>
                        <property name="orientation">
                         <enum>Qt::Vertical</enum>
@@ -1993,7 +2099,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                <x>0</x>
                <y>0</y>
                <width>568</width>
-               <height>336</height>
+               <height>427</height>
               </rect>
              </property>
              <attribute name="label">
@@ -2270,7 +2376,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                      <item>
                       <widget class="Line" name="line_5">
                        <property name="lineWidth">
-                        <number>2</number>
+                        <number>1</number>
                        </property>
                        <property name="orientation">
                         <enum>Qt::Vertical</enum>
@@ -2309,7 +2415,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                <x>0</x>
                <y>0</y>
                <width>568</width>
-               <height>336</height>
+               <height>427</height>
               </rect>
              </property>
              <attribute name="label">
@@ -2551,8 +2657,8 @@ alternate-background-color: rgb(121, 121, 121);</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>551</width>
-               <height>369</height>
+               <width>568</width>
+               <height>427</height>
               </rect>
              </property>
              <attribute name="label">
@@ -3344,17 +3450,6 @@ alternate-background-color: rgb(121, 121, 121);</string>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>750</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionCharacterSelectionChange">
    <property name="text">
     <string>characterSelectionChange</string>
@@ -3563,6 +3658,27 @@ alternate-background-color: rgb(121, 121, 121);</string>
    </property>
    <property name="toolTip">
     <string>toolsPreferenceNodeChannelBoxPushButtonClicked</string>
+   </property>
+  </action>
+  <action name="actionToolsFaceGUIControlMirrorSelectedButtonClicked">
+   <property name="text">
+    <string>toolsFaceGUIControlMirrorSelectedButtonClicked</string>
+   </property>
+   <property name="toolTip">
+    <string>toolsFaceGUIControlMirrorSelectedButtonClicked</string>
+   </property>
+  </action>
+  <action name="actionToolsFaceGUIControlMirrorAllButtonClicked">
+   <property name="text">
+    <string>toolsFaceGUIControlMirrorAllButtonClicked</string>
+   </property>
+   <property name="toolTip">
+    <string>toolsFaceGUIControlMirrorAllButtonClicked</string>
+   </property>
+  </action>
+  <action name="actionToolsFaceGUIControlMirrorModeRadioChange">
+   <property name="text">
+    <string>toolsFaceGUIControlMirrorModeRadioChange</string>
    </property>
   </action>
  </widget>
@@ -4329,6 +4445,70 @@ alternate-background-color: rgb(121, 121, 121);</string>
     <hint type="sourcelabel">
      <x>317</x>
      <y>444</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsFaceGUIControlMirrorSelectedPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsFaceGUIControlMirrorSelectedButtonClicked</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>526</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsFaceGUIControlMirrorAllPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsFaceGUIControlMirrorAllButtonClicked</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>636</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsFaceGUIControlMirrorDirectionRadio0</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsFaceGUIControlMirrorModeRadioChange</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>575</x>
+     <y>365</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsFaceGUIControlMirrorDirectionRadio1</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsFaceGUIControlMirrorModeRadioChange</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>664</x>
+     <y>365</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>
