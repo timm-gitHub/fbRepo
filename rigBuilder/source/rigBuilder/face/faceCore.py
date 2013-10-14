@@ -2,6 +2,11 @@
 Created on 11/09/2013
 
 @author: caleb.bell
+
+faceCore.py is where everything comes together to build a face rig. The model,
+skeleton guide, GUI guide, blend shapes, and driven key, preference and
+weighting data come together and a rig is built and published if necessary.
+
 '''
 
 import maya.cmds
@@ -98,7 +103,8 @@ def faceRigBuilder(character, modelPath, skeletonGuidePath, guiGuidePath=None,
                     for shape in shapes:
                         transforms.extend(maya.cmds.listRelatives(shape, p=True) or list())
 
-                    blendShapeUtils.connectBlendShapeTargets(target, transforms)
+                    blendShapeUtils.connectBlendShapeTargets(target, transforms,
+                        autoInBetween=True)
 
 
         # Face Control GUI Layer.

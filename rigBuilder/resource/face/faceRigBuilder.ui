@@ -651,7 +651,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-45</y>
+               <y>0</y>
                <width>551</width>
                <height>381</height>
               </rect>
@@ -1204,8 +1204,8 @@ alternate-background-color: rgb(121, 121, 121);</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>568</width>
-               <height>336</height>
+               <width>551</width>
+               <height>350</height>
               </rect>
              </property>
              <attribute name="label">
@@ -1428,7 +1428,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_24">
                      <property name="spacing">
-                      <number>6</number>
+                      <number>0</number>
                      </property>
                      <item>
                       <widget class="QFrame" name="frame_15">
@@ -1444,14 +1444,17 @@ alternate-background-color: rgb(121, 121, 121);</string>
                          <height>0</height>
                         </size>
                        </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_33">
-                        <property name="margin">
-                         <number>9</number>
+                       <layout class="QVBoxLayout" name="verticalLayout_37">
+                        <property name="spacing">
+                         <number>0</number>
                         </property>
                         <item>
-                         <layout class="QVBoxLayout" name="verticalLayout_48">
+                         <layout class="QVBoxLayout" name="verticalLayout_33">
+                          <property name="spacing">
+                           <number>6</number>
+                          </property>
                           <item>
-                           <widget class="QLabel" name="label_9">
+                           <widget class="QLabel" name="label_32">
                             <property name="font">
                              <font>
                               <weight>75</weight>
@@ -1459,23 +1462,28 @@ alternate-background-color: rgb(121, 121, 121);</string>
                              </font>
                             </property>
                             <property name="text">
-                             <string>Blend Shape Layout</string>
+                             <string>Blend Shape Naming Convention</string>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="frbToolsBlendShapeLayoutPushButton">
+                           <widget class="QLabel" name="label_35">
+                            <property name="font">
+                             <font>
+                              <italic>false</italic>
+                              <underline>false</underline>
+                             </font>
+                            </property>
                             <property name="text">
-                             <string>Create Standard Blend Shape Layout</string>
+                             <string>[Position]_[Description]{Percentage}_shp_0</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
                             </property>
                            </widget>
                           </item>
-                         </layout>
-                        </item>
-                        <item>
-                         <layout class="QVBoxLayout" name="verticalLayout_51">
                           <item>
-                           <widget class="QLabel" name="label_31">
+                           <widget class="QLabel" name="label_39">
                             <property name="font">
                              <font>
                               <weight>75</weight>
@@ -1483,31 +1491,72 @@ alternate-background-color: rgb(121, 121, 121);</string>
                              </font>
                             </property>
                             <property name="text">
-                             <string>Blend Shape Channel Box</string>
+                             <string>Position Options:</string>
+                            </property>
+                            <property name="indent">
+                             <number>20</number>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="frbToolsBlendShapeChannelBoxPushButton">
+                           <widget class="QLabel" name="label_40">
                             <property name="text">
-                             <string>Pop Channel Box For Selected Mesh</string>
+                             <string>'C' (Centre), 'L' (Left), 'R', (Right)</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
                             </property>
                            </widget>
                           </item>
+                          <item>
+                           <widget class="QLabel" name="label_41">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Description Options:</string>
+                            </property>
+                            <property name="indent">
+                             <number>20</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_42">
+                            <property name="maximumSize">
+                             <size>
+                              <width>210</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>'camelCaseString' with option of 3-digit suffix for auto connection of additive in-between shapes ie. 'camelCaseString050'</string>
+                            </property>
+                            <property name="wordWrap">
+                             <bool>true</bool>
+                            </property>
+                            <property name="indent">
+                             <number>30</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <spacer name="verticalSpacer_6">
+                            <property name="orientation">
+                             <enum>Qt::Vertical</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>20</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
                          </layout>
-                        </item>
-                        <item>
-                         <spacer name="verticalSpacer_6">
-                          <property name="orientation">
-                           <enum>Qt::Vertical</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>13</width>
-                            <height>134</height>
-                           </size>
-                          </property>
-                         </spacer>
                         </item>
                        </layout>
                       </widget>
@@ -1521,7 +1570,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                         </sizepolicy>
                        </property>
                        <property name="lineWidth">
-                        <number>2</number>
+                        <number>1</number>
                        </property>
                        <property name="orientation">
                         <enum>Qt::Vertical</enum>
@@ -1548,7 +1597,69 @@ alternate-background-color: rgb(121, 121, 121);</string>
                        <property name="frameShadow">
                         <enum>QFrame::Plain</enum>
                        </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_49"/>
+                       <layout class="QVBoxLayout" name="verticalLayout_49">
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_51">
+                          <item>
+                           <widget class="QLabel" name="label_31">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Blend Shape Channel Box</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="frbToolsBlendShapeChannelBoxPushButton">
+                            <property name="text">
+                             <string>Pop Channel Box For Selected Mesh</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_48">
+                          <item>
+                           <widget class="QLabel" name="label_9">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Blend Shape Layout</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="frbToolsBlendShapeLayoutPushButton">
+                            <property name="text">
+                             <string>Create Standard Blend Shape Layout</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <spacer name="verticalSpacer_3">
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>20</width>
+                            <height>79</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                       </layout>
                       </widget>
                      </item>
                     </layout>

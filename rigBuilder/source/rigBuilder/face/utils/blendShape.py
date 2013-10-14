@@ -9,10 +9,10 @@ import rigBuilder.face.utils.dag as dagUtils
 import rigBuilder.face.utils.name as nameUtils
 
 
-BLENDSHAPE_SUFFIX = 'bsp'
+BLENDSHAPE_NODE_SUFFIX = 'bsp'
+BLENDSHAPE_TARGET_SUFFIX = 'shp'
 
-
-def connectBlendShapeTargets(mesh, shapes, blendShape=None, versbose=True):
+def connectBlendShapeTargets(mesh, shapes, blendShape=None, autoInBetween=False, verbose=True):
 
     # If there's an existing blendShape node:
     if not blendShape:
@@ -20,7 +20,7 @@ def connectBlendShapeTargets(mesh, shapes, blendShape=None, versbose=True):
         blendShape = pymel.core.animation.blendShape(shapes, mesh,
             frontOfChain=True, topologyCheck=False,
             name=nameUtils.subNodeType(str(mesh).split(':')[-1],
-            BLENDSHAPE_SUFFIX))[0]
+            BLENDSHAPE_NODE_SUFFIX))[0]
 
     # Otherwise a new setup.
     else:
@@ -38,6 +38,31 @@ def connectBlendShapeTargets(mesh, shapes, blendShape=None, versbose=True):
             pymel.core.animation.blendShape(blendShape, edit=True,
                 target=[mesh, nextIndex, shape, 1.0])
 
+    if autoInBetween:
+        for shape in shapes:
+            # See if it has the in-between naming convention.
+            description = nameUtils.getDescription(str(shape))
+            a = re.match('^(.*)([0-9]{3})$', description)
+            if not a:
+                continue
+
+            # If it is an in-between then we need to make sure there is a main
+            # shape to drive it.
+            mainShape = nameUtils.subDescription(shape, a.groups()[0])
+            if not ((mainShape in shapes) or (pymel.core.PyNode(mainShape) in shapes)):
+                continue
+
+            # Go ahead and hook up the auto driving.            
+            src = blendShape.attr(mainShape.split(':')[-1])
+            dst = blendShape.attr(shape.split(':')[-1])
+            
+            pymel.core.animation.setDrivenKeyframe(dst, cd=src, dv=0.0, v=0.0)
+            
+            pymel.core.animation.setDrivenKeyframe(dst, cd=src,
+                dv=int(a.groups()[-1]) / 100.0, v=1.0)
+            
+            pymel.core.animation.setDrivenKeyframe(dst, cd=src, dv=1.0, v=0.0)
+            
     return blendShape
 
 
@@ -139,34 +164,6 @@ def createStandardShapeLayout(annotate=False):
         rowCount += 1
 
     return True
-
-
-def getBlendShapesRecursively(group, searchString='^.*_shp_0$'):
-
-    def recurse(node):
-        for child in maya.cmds.listRelatives(node, c=True, f=True) or list():
-
-            if not maya.cmds.objectType(child, isType='mesh'):
-                recurse(child)
-
-            else:
-                parent = maya.cmds.listRelatives(child, f=True, p=True)
-
-                if not re.match(searchString, parent[0]):
-                    continue
-
-                result.extend(parent)
-
-        return True
-
-    result = list()
-
-    if not maya.cmds.objExists(group):
-        return result
-
-    recurse(group)
-
-    return result
 
 
 def getRelatedBlendShapeForSelection():
