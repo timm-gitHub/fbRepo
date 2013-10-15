@@ -159,6 +159,7 @@ def publishBlendShapes(character, source, description=str()):
     path = '%s/%s/rig/face/blendShapes' % (ROOTCHAR, character)
     pattern = '%s_face_rig_blendShapes_v[0-9]{3}.ma$' % character
     fileUtils.cleanMayaAsciiFile(source)
+    fileUtils.cleanMayaAsciiBlendShapeScene(source)
     return publishToServer(source, path, pattern)
 
 
