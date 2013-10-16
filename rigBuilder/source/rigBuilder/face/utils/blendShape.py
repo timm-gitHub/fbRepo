@@ -7,12 +7,16 @@ from rigBuilder.face.faceRigEnv import *
 import rigBuilder.face.faceIO as faceIO
 import rigBuilder.face.utils.dag as dagUtils
 import rigBuilder.face.utils.name as nameUtils
-
+import rigBuilder.face.utils as faceUtils
 
 BLENDSHAPE_NODE_SUFFIX = 'bsp'
 BLENDSHAPE_TARGET_SUFFIX = 'shp'
 
-def connectBlendShapeTargets(mesh, shapes, blendShape=None, autoInBetween=False, verbose=True):
+@faceUtils.functionDebugDecorator
+def connectBlendShapeTargets(mesh, shapes, blendShape=None, autoInBetween=False,
+        verbose=True):
+    ''' '''
+    assert maya.cmds.objExists(mesh), 'Mesh object %s does not exist...' % str(mesh)
 
     # If there's an existing blendShape node:
     if not blendShape:
@@ -24,9 +28,6 @@ def connectBlendShapeTargets(mesh, shapes, blendShape=None, autoInBetween=False,
 
     # Otherwise a new setup.
     else:
-        if not pymel.core.objExists(blendShape):
-            return None
-
         blendShape = pymel.core.PyNode(blendShape)
 
         for shape in shapes:
@@ -41,20 +42,23 @@ def connectBlendShapeTargets(mesh, shapes, blendShape=None, autoInBetween=False,
     if autoInBetween:
         for shape in shapes:
             # See if it has the in-between naming convention.
-            description = nameUtils.getDescription(str(shape))
+            path, shapeShortName = str(shape).rsplit('|', 1)           
+            description = nameUtils.getDescription(shapeShortName)
+            print '*'*5, description, type(description), '*'*5
             a = re.match('^(.*)([0-9]{3})$', description)
             if not a:
                 continue
 
             # If it is an in-between then we need to make sure there is a main
             # shape to drive it.
-            mainShape = nameUtils.subDescription(shape, a.groups()[0])
-            if not ((mainShape in shapes) or (pymel.core.PyNode(mainShape) in shapes)):
+            driverShortName = nameUtils.subDescription(shapeShortName, a.groups()[0])
+            driverShape     = '%s|%s' %(path,  driverShortName)
+            if not ((driverShape in shapes) or (pymel.core.PyNode(driverShape) in shapes)):
                 continue
 
             # Go ahead and hook up the auto driving.            
-            src = blendShape.attr(mainShape.split(':')[-1])
-            dst = blendShape.attr(shape.split(':')[-1])
+            src = blendShape.attr(driverShortName.split(':')[-1])
+            dst = blendShape.attr(shapeShortName.split(':')[-1])
             
             pymel.core.animation.setDrivenKeyframe(dst, cd=src, dv=0.0, v=0.0)
             
@@ -66,6 +70,57 @@ def connectBlendShapeTargets(mesh, shapes, blendShape=None, autoInBetween=False,
     return blendShape
 
 
+def connectAllBlendShapeTargets(modelNamespace=FACE_MODEL_COMPONENT_BASE_NS,
+        shapeGroup=FACE_MODEL_COMPONENT_SHAPE_ROOT, useExistingBlendShapeNodes=True,
+        autoInBetween=False, verbose=True):
+    ''' '''
+
+    assert maya.cmds.objExists(shapeGroup), "Cannot shape group '%s'..." % str(shapeGroup)
+    
+    result = list()
+    
+    # Collate the shapes to connect.
+    shapes = list()
+    for child in maya.cmds.listRelatives(shapeGroup, c=True) or list():
+
+        ''' From the hierarchy of the shape group, figure out what the target
+        mesh name is; ie. If there is a group named C_face_grp_0 parented to
+        the shape group, then the child meshes would be connected to
+        'C_face_geo_0' in the model namespace. ''' 
+
+        target = '%s:%s' % (modelNamespace, nameUtils.subNodeType(
+            child.rsplit(':')[-1], 'geo'))
+
+        if not maya.cmds.objExists(target):
+            continue
+
+        ''' Get a list of shapes to connect. To be safe we use full paths, and
+        we look for meshes and then get the parent of each mesh. '''
+         
+        shapes = maya.cmds.listRelatives(child, ad=True, f=True,
+            ni=True, typ='mesh')
+
+        if not shapes:
+            continue
+
+        transforms = list()
+        for shape in shapes:
+            transforms.extend(maya.cmds.listRelatives(shape, p=True,
+                f=True) or list())
+
+        exisitingBlendShapeNode = None
+        if useExistingBlendShapeNodes:
+            temp = getRelatedBlendShapeForNode(target)
+            if temp:
+                exisitingBlendShapeNode=temp[0]
+
+        # Connect Shapes.
+        result.append(connectBlendShapeTargets(target, transforms,
+            blendShape=exisitingBlendShapeNode, autoInBetween=autoInBetween))
+
+    return result
+
+
 def createStandardShapeLayout(annotate=False):
 
     MAX_LAYOUT_HEIGHT = 6
@@ -73,8 +128,8 @@ def createStandardShapeLayout(annotate=False):
     createdShapes = dict()
 
     # Check for the model root in the scene.
-    if not maya.cmds.objExists(FACE_MODEL_COMPONENT_BASE_ROOT):
-        raise ValueError('KNOB!')
+    assert maya.cmds.objExists(FACE_MODEL_COMPONENT_BASE_ROOT), ('You need the '
+        'face model in the scene to create the standard shape layout...')
 
     # Gather a list of the base meshes.
     temp = maya.cmds.listRelatives(FACE_MODEL_COMPONENT_BASE_ROOT,
@@ -121,9 +176,11 @@ def createStandardShapeLayout(annotate=False):
                 maya.cmds.createNode('transform', n=shapeParent, p=shapeRoot)
 
             # Create the shape, parent it and rename it.
-            newShape = maya.cmds.duplicate(mesh, rr=True)[0]
-            maya.cmds.parent(newShape, '|%s|%s' % (shapeRoot, shapeParent))
-            newShape = maya.cmds.rename(newShape, shapeName)
+            newShape = '|%s|%s|%s' % (shapeRoot, shapeParent, shapeName)
+            if not maya.cmds.objExists(newShape):
+                newShape = maya.cmds.duplicate(mesh, rr=True)[0]
+                maya.cmds.parent(newShape, '|%s|%s' % (shapeRoot, shapeParent))
+                newShape = maya.cmds.rename(newShape, shapeName)
 
             # Move it.
             xValue = bbWidth * columnCount
@@ -167,22 +224,34 @@ def createStandardShapeLayout(annotate=False):
 
 
 def getRelatedBlendShapeForSelection():
-    sel = maya.cmds.ls(sl=True)
-    if not sel:
-        return
 
     blendShapeNodeList = list()
-    for obj in sel:
-        if maya.cmds.objectType(obj) == "blendShape":
-            if obj not in blendShapeNodeList:
-                blendShapeNodeList.append(obj)
-
-        else:
-            history = maya.cmds.listHistory(obj)
-            if history:
-                for h in history:
-                    if maya.cmds.objectType(h) == "blendShape":
-                        if h not in blendShapeNodeList:
-                            blendShapeNodeList.append(h)
+    
+    for obj in maya.cmds.ls(sl=True):
+        blendShapeNodeList.extend(getRelatedBlendShapeForNode(obj))
 
     return blendShapeNodeList
+
+
+def getRelatedBlendShapeForNode(node):
+    
+    assert maya.cmds.objExists(str(node)), 'Node %s does not exist...' % node
+    
+    blendShapeNodeList = list()
+
+    if maya.cmds.objectType(node, isType='blendShape'):
+        if node not in blendShapeNodeList:
+            blendShapeNodeList.append(node)
+
+    else:
+        for h in (maya.cmds.listHistory(node) or list()):
+            if not maya.cmds.objectType(h, isType='blendShape'):
+                continue
+                
+            if h in blendShapeNodeList:
+                continue
+                
+            blendShapeNodeList.append(h)
+
+    return blendShapeNodeList
+    
