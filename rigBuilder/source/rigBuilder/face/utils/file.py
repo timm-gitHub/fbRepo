@@ -42,26 +42,42 @@ def cleanMayaAsciiBlendShapeScene(filePath):
     fout = open(temp, 'w')
 
     filterLine = True
+    path = str()
 
     for line in fin:
         if filterLine:
             # Look for the shape root node.
             if FACE_MODEL_COMPONENT_SHAPE_ROOT in line:
+                # We can stop filtering when we find the shape root node.
                 filterLine = False
                 
-                # See if it's being parented to another node. if it is we need
-                # to modify it to prevent errors.
+                ''' See if the shape root node is being parented to another node.
+                if it is we need to modify the line to prevent errors. '''
+                
                 if '-p' in line:
                     line = '%s;\n' % line[:string.find(line, '-p')]
             
-            # Skip any createNodes ore setAttrs until we find the node we're
-            # looking for.
-            elif ('createNode' in line) or ('setAttr' in line): continue         
+            # Skip any createNodes or setAttrs until we find the shape root node.
+            elif 'createNode' in line:
+                ''' If we find a line with createNode in it, that ISN'T the shape
+                root node, we need to keep a record of its name so that we can
+                prune it from any long path names later. '''
+                
+                startIndex  = string.find(line, '-n "') + 4
+                endIndex    = string.find(line, '"', startIndex)
+                path        += '|%s' % line[startIndex:endIndex]
+                continue
+                
+            elif 'setAttr' in line:
+                continue
+        
+        if path and (path in line):
+            line = line.replace(path, '')
         
         # Make sure that everything that should be visible/selectable is.
         if 'setAttr ".v" no;' in line: continue
         if 'setAttr ".ov' in line: continue
-            
+        
         fout.write(line)
 
     fin.close(), fout.close()
