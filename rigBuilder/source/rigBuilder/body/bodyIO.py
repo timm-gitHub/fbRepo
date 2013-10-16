@@ -364,6 +364,9 @@ def importDeformer(dagnode, j):
                 if pointdata[i] == '1' and cmds.objExists(set):
                     cmds.sets('%s.vtx[%s]' % (dagnode, i), add=set)
                 i = i + 1
+                
+            cmds.reorderDeformers(skincluster,deformer,dagnode)
+                
             continue
 
         # all other deformers

@@ -1,11 +1,75 @@
 import datetime
-import os
+import shutil
+import string
+import tempfile
 import types
 
 import maya.cmds
 
+from rigBuilder.face.faceRigEnv import *
+
 TEMP_GROUP_NAME = 'tempGroup'
 TEMP_NAMESPACE = 'tempNamespace'
+
+
+def cleanMayaAsciiFile(filePath):
+    ''' Removes locked nodes from a maya ascii scene to stop warnings on
+    reference into another scene. '''
+
+    temp = tempfile.mkstemp('.ma')[1]
+    fin = open(filePath, 'r')
+    fout = open(temp, 'w')
+
+    # remove lockNode commands from ma file
+    for line in fin.readlines():
+        if 'lockNode' in line: continue
+        fout.write(line)
+
+    fin.close(), fout.close()
+
+    shutil.copyfile(temp, filePath)
+    
+    return True
+
+
+def cleanMayaAsciiBlendShapeScene(filePath):
+    ''' This function takes a published maya ascii scene and checks to see if the
+    "model_face_100_shape" node is a root node. If it isn't it will edit the file
+    to fix it. This is allowing publish of blendShapes from a WIP face rig. '''
+    
+    temp = tempfile.mkstemp('.ma')[1]
+    fin = open(filePath, 'r')
+    fout = open(temp, 'w')
+
+    filterLine = True
+
+    for line in fin:
+        if filterLine:
+            # Look for the shape root node.
+            if FACE_MODEL_COMPONENT_SHAPE_ROOT in line:
+                filterLine = False
+                
+                # See if it's being parented to another node. if it is we need
+                # to modify it to prevent errors.
+                if '-p' in line:
+                    line = '%s;\n' % line[:string.find(line, '-p')]
+            
+            # Skip any createNodes ore setAttrs until we find the node we're
+            # looking for.
+            elif ('createNode' in line) or ('setAttr' in line): continue         
+        
+        # Make sure that everything that should be visible/selectable is.
+        if 'setAttr ".v" no;' in line: continue
+        if 'setAttr ".ov' in line: continue
+            
+        fout.write(line)
+
+    fin.close(), fout.close()
+
+    shutil.copyfile(temp, filePath)
+    
+    return True
+
 
 
 def confirmFilePath(filePath):

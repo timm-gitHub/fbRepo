@@ -36,7 +36,7 @@ class ComponentDelegate(QtGui.QItemDelegate):
     
     @QtCore.pyqtSlot(int)
     def changeNamespace(self):
-        self.parent().componentChanged(self.dropdown.currentText(),self.row)
+        self.parent().componentChanged(QtCore.QVariant(self.dropdown.currentText()),self.row)
         
 class CharModel(QtCore.QAbstractListModel):
     """

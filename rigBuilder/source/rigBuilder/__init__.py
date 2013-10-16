@@ -10,3 +10,10 @@ for m in contents:
     modules.append(m[:-3])
 
 __all__ = modules
+
+# Set the builder path environment variable.
+builderPath = initdir
+for i in range(2):
+    builderPath = os.path.dirname(builderPath)
+    
+os.environ['RIG_BUILDER_PATH'] = builderPath

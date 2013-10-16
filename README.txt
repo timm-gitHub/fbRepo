@@ -1,4 +1,0 @@
-I have just commited this
-Tims commit from Beijing
-Caleb testing Beijing Commit.
-And again.

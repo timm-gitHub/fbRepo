@@ -41,24 +41,6 @@ def getAllVersions(path, pattern):
     return versions
 
 
-def getCharacterAssetList():
-    ''' This looks at the directory structure of the rig builder project to find
-    character names. '''
-
-    characterAssets = list()
-
-    if not os.path.exists(ROOTCHAR):
-        return characterAssets
-
-    for item in os.listdir(ROOTCHAR):
-        if os.path.isfile(os.path.join(ROOTCHAR, item)):
-            continue
-
-        characterAssets.append(item)
-
-    return characterAssets
-
-
 def getPreferencesVersions(character):
 
     pathTokens = [
@@ -176,6 +158,8 @@ def publishBlendShapes(character, source, description=str()):
 
     path = '%s/%s/rig/face/blendShapes' % (ROOTCHAR, character)
     pattern = '%s_face_rig_blendShapes_v[0-9]{3}.ma$' % character
+    fileUtils.cleanMayaAsciiFile(source)
+    fileUtils.cleanMayaAsciiBlendShapeScene(source)
     return publishToServer(source, path, pattern)
 
 
@@ -197,6 +181,7 @@ def publishGuide(character, source, guideType='gui', description=str()):
 
     path = '%s/%s/rig/face/%sGuide' % (ROOTCHAR, character, guideType)
     pattern = '%s_face_rig_%sGuide_v[0-9]{3}.ma$' % (character, guideType)
+    fileUtils.cleanMayaAsciiFile(source)
     return publishToServer(source, path, pattern)
 
 
@@ -234,6 +219,7 @@ def publishFaceRig(character, source, description=str()):
 
     path = '%s/%s/rig/face/anim' % (ROOTCHAR, character)
     pattern = '%s_face_rig_anim_v[0-9]{3}.ma$' % character
+    fileUtils.cleanMayaAsciiFile(source)
     return publishToServer(source, path, pattern)
 
 

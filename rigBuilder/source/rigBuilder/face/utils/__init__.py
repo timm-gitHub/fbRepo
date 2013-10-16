@@ -1,16 +1,22 @@
 import sys
+import types
 
 import maya.mel
 import pymel.core
 
 
 def createFourByFourFromMatrix(matrix):
-    if not isinstance(matrix, pymel.core.datatypes.Matrix):
+    if not isinstance(matrix, (pymel.core.datatypes.Matrix, types.ListType)):
         return False
     a = pymel.core.createNode('fourByFourMatrix')
+    count = 0
     for i in range(4):
         for j in range(4):
-            a.attr('in%d%d' % (i, j)).set(matrix[i][j])
+            if isinstance(matrix, pymel.core.datatypes.Matrix):
+                a.attr('in%d%d' % (i, j)).set(matrix[i][j])
+            elif isinstance(matrix, types.ListType):
+                a.attr('in%d%d' % (i, j)).set(matrix[count])
+            count += 1
     return a
 
 
@@ -32,8 +38,26 @@ def functionDebugDecorator(fn):
     return wrapped
 
 
-def layoutGuidesOnCurve(curve, namePrefix='C_tongue', num=6):
+def restoreSelectionDecorator(fn):
 
+    def wrapped(*args, **kwargs):
+
+        sel = None
+
+        try:
+            sel = maya.cmds.ls(sl=True)
+            return fn(*args, **kwargs)
+
+        finally:
+            maya.cmds.select(sel)
+
+    wrapped.__name__ = fn.__name__
+    wrapped.__doc__ = fn.__doc__
+
+    return wrapped
+
+
+def layoutGuidesOnCurve(curve, namePrefix='C_tongue', num=6):
     curve = pymel.core.PyNode(curve)
     guides = list()
 

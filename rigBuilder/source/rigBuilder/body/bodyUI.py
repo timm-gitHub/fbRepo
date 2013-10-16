@@ -13,7 +13,7 @@ import maya.cmds as cmds
 import maya.mel as mel
 from PyQt4 import QtGui, QtCore, uic
 from xml.dom import minidom
-from rigBuilder import rigUtils, rigEnv
+from rigBuilder import rigUtils, rigEnv, sysUtils
 
 uic.properties.logger.setLevel(logging.WARNING)
 uic.uiparser.logger.setLevel(logging.WARNING)
@@ -813,10 +813,18 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         header.setMovable(False)
         header.setClickable(False)
         header.setResizeMode(QtGui.QHeaderView.Fixed)
+        
+        # add popup menu to character list
+        self.PopupMenu = sysUtils.CreateCharacterPopUpMenu(parent=self.listViewCharacter)
+
+        self.listViewCharacter.customContextMenuRequested.connect(self.PopupMenu._buildMenu)
+        self.PopupMenu._characterNamePromptDialogCallback = self.on_actionRefresh_triggered
             
     
     def charClicked(self):
-        """Update component table view currently selected characters component info."""
+        """Update the component table view with the currently selected character's component info.
+           Update the contents of the guide, mapping, control data and rig drop downs.
+        """
         
         char = self.currentCharacter()
         data = char.getLayoutData()
@@ -855,6 +863,34 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         self.labelChar.setText(char.name)
         
         self.statusBar().showMessage('Flying Bark Rigging Tool')
+        
+        self.comboBoxGuide.clear()
+        versions = bodyPublish.getRigGuideVersions(char.name)
+        if versions:
+            for version in versions:
+                self.comboBoxGuide.addItem(version)
+            self.comboBoxGuide.setCurrentIndex(self.comboBoxGuide.count()-1)
+        
+        self.comboBoxMapping.clear()
+        versions = bodyPublish.getRigMappingVersions(char.name)
+        if versions:
+            for version in versions:
+                self.comboBoxMapping.addItem(version)
+            self.comboBoxMapping.setCurrentIndex(self.comboBoxMapping.count()-1)
+        
+        self.comboBoxControls.clear()
+        versions = bodyPublish.getRigDataVersions(char.name)
+        if versions:
+            for version in versions:
+                self.comboBoxControls.addItem(version)
+            self.comboBoxControls.setCurrentIndex(self.comboBoxControls.count()-1)
+        
+        self.comboBoxRig.clear()
+        versions = bodyPublish.getRigVersions(char.name)
+        if versions:
+            for version in versions:
+                self.comboBoxRig.addItem(version)
+            self.comboBoxRig.setCurrentIndex(self.comboBoxRig.count()-1)
         
         if not data: return
         
@@ -957,6 +993,18 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         
         char.finalise()
     
+    def on_actionGuideBuild_triggered(self,checked=None):
+        """Open selected characters' guide rig. Check and replace components."""
+        
+        if checked is None: return
+        
+        if not confirmDialog('Creating new scene. Continue?'): return
+        
+        refgeo  = self.checkBoxReferenceGeo.isChecked()
+        char    = self.currentCharacter()
+        version = self.comboBoxGuide.currentText()
+        char.buildGuide(refgeo,version=version)
+        
     def on_actionRefresh_triggered(self,checked=None):
         """Refresh contents of character list, component table and build/publish buttons in UI."""
         
@@ -998,6 +1046,10 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         self.labelChar.setText('')
         self.listViewCharacter.setFocus()
         self.statusBar().showMessage('Flying Bark Rigging Tool')
+        self.comboBoxGuide.clear()
+        self.comboBoxMapping.clear()
+        self.comboBoxControls.clear()
+        self.comboBoxRig.clear()
         self.copy = None
     
     
@@ -1190,8 +1242,9 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         
         if not confirmDialog('Importing Control Data. Continue?'): return
         
-        char = self.currentCharacter()
-        char.importControlData()
+        char    = self.currentCharacter()
+        version = self.comboBoxControls.currentText()
+        char.importControlData(version)
     
         
     def on_actionImportSelectedControls_triggered(self,checked=None):
@@ -1200,8 +1253,9 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         
         if not confirmDialog('Importing Control Data. Continue?'): return
         
-        char = self.currentCharacter()
-        char.importControlDataSelected()
+        char    = self.currentCharacter()
+        version = self.comboBoxControls.currentText()
+        char.importControlDataSelected(version)
         
         
     def on_actionImportMapping_triggered(self,checked=None):
@@ -1210,8 +1264,9 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         
         if not confirmDialog('Importing Mapping. Continue?'): return
         
-        char = self.currentCharacter()
-        char.importSkin(None)
+        char    = self.currentCharacter()
+        version = self.comboBoxMapping.currentText()
+        char.importSkin(None,version)
         
         
     def on_actionImportSelectedMapping_triggered(self,checked=None):
@@ -1220,8 +1275,9 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         
         if not confirmDialog('Importing Mapping for Selected. Continue?'): return
         
-        char = self.currentCharacter()
-        char.importSkinSelected(None)
+        char    = self.currentCharacter()
+        version = self.comboBoxMapping.currentText()
+        char.importSkinSelected(None,version)
         
     def on_actionCopyLayout_triggered(self,checked=None):
         
@@ -1275,7 +1331,22 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
             self.copy = path
             self.statusBar().showMessage('Copied Control Data: %s' % os.path.basename(path))
         
-    
+    def on_actionOpenLatest_triggered(self,checked=None):
+        
+        if checked is None: return
+        
+        if not confirmDialog('Any unsaved work will be lost.\n\nProceed?'): return
+        
+        char    = self.currentCharacter()
+        version = self.comboBoxRig.currentText()
+        path    = bodyPublish.getRigVersion(char.name,version)
+        
+        if not path:
+            rigUtils.log('Error getting path to: %s' % char.name) 
+            return
+        
+        cmds.file(path,o=True,f=True)
+        
     def on_actionPasteLayout_triggered(self,checked=None):
         
         if checked is None: return
@@ -1379,3 +1450,29 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
             self.statusBar().showMessage('Copied Control Data from: %s' % os.path.basename(self.copy))
         else:
             self.statusBar().showMessage('Error Copying Control Data from: %s' % os.path.basename(self.copy))
+
+
+
+def showBodyRigBuilderUI():
+    
+    qMainWindow = getMayaWindow()
+    
+    for child in qMainWindow.children():
+        if not hasattr(child, 'isWindow'):
+            continue
+        
+        if not child.isWindow():
+            continue
+        
+        if child.windowTitle() == 'Body Builder':
+            if not child.isVisible():
+                child.show()
+            child.activateWindow()
+            return True
+            
+    window = RigWindowUser(qMainWindow)
+    window.showWindow()
+    window.activateWindow()
+    
+    return True
+

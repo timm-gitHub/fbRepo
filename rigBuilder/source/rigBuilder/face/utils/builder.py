@@ -57,6 +57,9 @@ class SetupVisibilitySwitches(object):
 
     switchNodeName = 'visibility_grp'
 
+    guideNamespace = FACE_SKELETON_GUIDE_NS
+    guideTopGroup = guideNamespace + ':' + FACE_SKELETON_GUIDE_ROOT
+
     modelNamespace = FACE_MODEL_COMPONENT_BASE_NS
     modelTopGroup = modelNamespace + ':' + FACE_MODEL_COMPONENT_BASE_ROOT
 
@@ -76,13 +79,12 @@ class SetupVisibilitySwitches(object):
         switchNode.addAttr('guideDisplayMode', at='long', min=0, max=2, dv=2, k=False)
         switchNode.guideDisplayMode.set(cb=True)
 
-
         # Connect the meshes to the switches.
         for child in pymel.core.PyNode('guide_grp').getChildren(ad=True):
-            if not maya.cmds.nodeType(child) in ['locator', 'lattice']:
+            
+            if not child.type() in ['locator', 'nurbsCurve']:
                 continue
 
-            child = pymel.core.PyNode(child)
             switchNode.displayGuides >> child.overrideVisibility
             try:
                 child.overrideVisibility.lock()

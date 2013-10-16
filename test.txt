@@ -1,3 +1,4 @@
-Evans cool 2 3 4 minus reality...
-Evan is a poo poo head.
-A Biiiiiiig poo poo head.
+<<<<<<< HEAD
+=======
+Testing WING.
+>>>>>>> branch 'master' of https://github.com/timm-gitHub/fbRepo.git

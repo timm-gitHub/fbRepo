@@ -606,6 +606,22 @@ alternate-background-color: rgb(89, 89, 89);</string>
                </widget>
               </item>
               <item>
+               <widget class="QComboBox" name="comboBoxGuide">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>25</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="btnGuideBuild">
                 <property name="enabled">
                  <bool>false</bool>
@@ -926,11 +942,39 @@ alternate-background-color: rgb(89, 89, 89);</string>
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
-                 <string>Import Mapping For:</string>
+                 <string>Import Mapping:</string>
                 </property>
                 <property name="indent">
                  <number>4</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxMapping">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>25</height>
+                 </size>
                 </property>
                </widget>
               </item>
@@ -1064,8 +1108,20 @@ alternate-background-color: rgb(89, 89, 89);</string>
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
-                 <string>Import Shape Data</string>
+                 <string>Import Shape Data:</string>
                 </property>
                 <property name="indent">
                  <number>4</number>
@@ -1073,15 +1129,18 @@ alternate-background-color: rgb(89, 89, 89);</string>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_4">
-                <property name="enabled">
-                 <bool>false</bool>
+               <widget class="QComboBox" name="comboBoxControls">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
                 </property>
-                <property name="text">
-                 <string>For:</string>
-                </property>
-                <property name="indent">
-                 <number>4</number>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>25</height>
+                 </size>
                 </property>
                </widget>
               </item>
@@ -1308,6 +1367,47 @@ alternate-background-color: rgb(89, 89, 89);</string>
                </widget>
               </item>
               <item>
+               <widget class="Line" name="line">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxRig">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="frame">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="btnOpenLatest">
                 <property name="enabled">
                  <bool>false</bool>
@@ -1331,7 +1431,7 @@ alternate-background-color: rgb(89, 89, 89);</string>
                  </size>
                 </property>
                 <property name="text">
-                 <string>Open Latest Rig</string>
+                 <string>Open Rig</string>
                 </property>
                </widget>
               </item>

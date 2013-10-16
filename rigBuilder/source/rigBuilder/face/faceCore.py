@@ -2,6 +2,11 @@
 Created on 11/09/2013
 
 @author: caleb.bell
+
+faceCore.py is where everything comes together to build a face rig. The model,
+skeleton guide, GUI guide, blend shapes, and driven key, preference and
+weighting data come together and a rig is built and published if necessary.
+
 '''
 
 import maya.cmds
@@ -41,9 +46,6 @@ def faceRigBuilder(character, modelPath, skeletonGuidePath, guiGuidePath=None,
     rig = RigComponent()
     rig.buildRigHierarchy()
 
-#     assetCore.tagRigTopNode(rig.topNode, character=self.character,
-#         layers=self.BUILD_LAYERS, dependencies=self._filePaths)
-
     #===========================================================================
     # Skeleton Guide / Model / Blend Shapes / GUI Guide.
     #===========================================================================
@@ -74,34 +76,47 @@ def faceRigBuilder(character, modelPath, skeletonGuidePath, guiGuidePath=None,
 
             # Setup blendShapes.
             elif layer == FACE_MODEL_COMPONENT_SHAPE_NS:
-                # Import the shapes.
-                rig.importModelComponent(filePath=filePath, namespace=None)
+                
+#                 import pprint
+#                 
+#                 # Import the shapes.
+#                 rig.importModelComponent(filePath=filePath, namespace=None)
+# 
+#                 # Do the magic.
+#                 shapeRoot = FACE_MODEL_COMPONENT_SHAPE_ROOT
+# 
+#                 if not maya.cmds.objExists(shapeRoot):
+#                     continue
+# 
+#                 for child in maya.cmds.listRelatives(shapeRoot, c=True) or list():
+# 
+#                     target = '%s:%s' % (FACE_MODEL_COMPONENT_BASE_NS,
+#                         nameUtils.subNodeType(child.rsplit(':')[-1], 'geo'))
+# 
+#                     if not maya.cmds.objExists(target):
+#                         continue
+# 
+#                     shapes = maya.cmds.listRelatives(child, ad=True, f=True,
+#                         ni=True, typ='mesh')
+# 
+#                     print 'shapes'
+#                     pprint.pprint(shapes)
+# 
+#                     if not shapes:
+#                         continue
+# 
+#                     transforms = list()
+#                     for shape in shapes:
+#                         transforms.extend(maya.cmds.listRelatives(shape, p=True,
+#                             f=True) or list())
+# 
+#                     print 'transforms'
+#                     pprint.pprint(transforms)
+# 
+#                     blendShapeUtils.connectBlendShapeTargets(target, transforms,
+#                         autoInBetween=True)
 
-                # Do the magic.
-                shapeRoot = FACE_MODEL_COMPONENT_SHAPE_ROOT
-
-                if not maya.cmds.objExists(shapeRoot):
-                    continue
-
-                for child in maya.cmds.listRelatives(shapeRoot, c=True) or list():
-
-                    target = '%s:%s' % (FACE_MODEL_COMPONENT_BASE_NS,
-                        nameUtils.subNodeType(child.rsplit(':')[-1], 'geo'))
-
-                    if not maya.cmds.objExists(target):
-                        continue
-
-                    shapes = maya.cmds.listRelatives(child, ad=True, f=True,
-                        ni=True, typ='mesh')
-
-                    if not shapes:
-                        continue
-
-                    transforms = list()
-                    for shape in shapes:
-                        transforms.extend(maya.cmds.listRelatives(shape, p=True) or list())
-
-                    blendShapeUtils.connectBlendShapeTargets(target, transforms)
+                blendShapeUtils.connectAllBlendShapeTargets(autoInBetween=True)
 
 
         # Face Control GUI Layer.
@@ -128,7 +143,7 @@ def faceRigBuilder(character, modelPath, skeletonGuidePath, guiGuidePath=None,
     # Mouth.
     b = mouth.MouthModule()
     b.buildModule()
-
+    
     # Tongue.
     c = tongue.TongueModule()
     c.buildModule()
