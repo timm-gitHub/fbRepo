@@ -49,7 +49,8 @@ def restoreSelectionDecorator(fn):
             return fn(*args, **kwargs)
 
         finally:
-            maya.cmds.select(sel)
+            if sel:
+                maya.cmds.select(sel)
 
     wrapped.__name__ = fn.__name__
     wrapped.__doc__ = fn.__doc__
