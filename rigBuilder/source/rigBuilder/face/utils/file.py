@@ -71,7 +71,6 @@ def cleanMayaAsciiBlendShapeScene(filePath):
     return True
 
 
-
 def confirmFilePath(filePath):
     if isinstance(filePath, basestring):
         if not os.path.exists(os.path.expandvars(filePath).replace('\\', '/')):
