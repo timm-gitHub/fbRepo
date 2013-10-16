@@ -53,7 +53,7 @@ def exportJSON(data, filePath, verbose=True):
 
 
 #===============================================================================
-# Attribute import/export wrappers.
+# Attribute import/export wrappers (Preference Data).
 #===============================================================================
 
 def importAttributeData(node, filePath, verbose=True):
