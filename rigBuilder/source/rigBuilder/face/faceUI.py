@@ -57,6 +57,24 @@ def showFaceRigBuilderUI():
     return True
 
 
+def deleteAllFaceRigBuilderUIInstances():
+    qMainWindow = getMayaWindow()
+    
+    for child in qMainWindow.children():
+        if not hasattr(child, 'isWindow'):
+            continue
+        
+        if not child.isWindow():
+            continue
+        
+        if child.windowTitle() == 'Face Rig Builder':
+            child.hide()
+            child.setParent(None)
+            del(child)
+
+    return True
+
+
 uiFile = os.path.join(FACE_RESOURCE_PATH, 'faceRigBuilder.ui')
 uiFormClass, uiBaseClass = uic.loadUiType(uiFile)
 
