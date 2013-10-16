@@ -8,13 +8,8 @@ import maya.cmds
 import maya.mel
 
 import rigBuilder.rigUtils
-<<<<<<< HEAD
-from rigBuilder.body.bodyUI import *
-
-=======
 import rigBuilder.sysUtils
 from rigBuilder.body.bodyUI import *
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 from rigBuilder.face.faceRigEnv import *
 import rigBuilder.face.faceCore as faceCore
 import rigBuilder.face.faceIO as faceIO
@@ -25,18 +20,6 @@ import rigBuilder.face.utils.control as controlUtils
 import rigBuilder.face.utils.skeleton as skeletonUtils
 
 
-<<<<<<< HEAD
-uiFile = os.path.join(FACE_RESOURCE_PATH, 'faceRigBuilder.ui')
-uiFormClass, uiBaseClass = uic.loadUiType(uiFile)
-
-OPTION_VARS = {
-    'previousCharacter': 'frbPreviousCharacter',
-    'previousModelPath': 'frbPreviousModelPath'
-    }
-
-
-
-=======
 VAR_PREFIX                      = 'faceRigBuilder'
 PREV_CHAR_VAR                   = '%sPreviousCharacter' % VAR_PREFIX
 PREV_MODEL_PATH_VAR             = '%sPreviousModelPath' % VAR_PREFIX
@@ -76,7 +59,6 @@ def showFaceRigBuilderUI():
 
 uiFile = os.path.join(FACE_RESOURCE_PATH, 'faceRigBuilder.ui')
 uiFormClass, uiBaseClass = uic.loadUiType(uiFile)
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 
 
 class FaceRigBuilderUI(uiFormClass, uiBaseClass):
@@ -97,8 +79,6 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         super(FaceRigBuilderUI, self).__init__(parent)
         self.setupUi(self)
 
-<<<<<<< HEAD
-=======
         # Add the Character List Context Menu.
         self.frbCharacterAssetListWidget.setContextMenuPolicy(
             QtCore.Qt.CustomContextMenu)
@@ -111,7 +91,6 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         self.PopupMenu._characterNamePromptDialogCallback = self._refreshGUI
 
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
         # Get all the asset versions.
         self._assetVersions = dict()
 
@@ -146,8 +125,6 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
     def _buildCharacterList(self):
 
-<<<<<<< HEAD
-=======
         self._characterListBuilt = False
         
         # Clear the list.
@@ -156,22 +133,10 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         # Get the list of character assets.
         charAssets = rigBuilder.sysUtils.getCharacterAssetList()
 
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
         # Look for a previous character in option vars.
         prevChar = self._getPreviousCharacterOptionVar()
 
         # Populate the list.
-<<<<<<< HEAD
-        for i, character in enumerate(facePublish.getCharacterAssetList()):
-            self.frbCharacterAssetListWidget.insertItem(i, character)
-
-        if prevChar:
-            if prevChar in facePublish.getCharacterAssetList():
-                index = facePublish.getCharacterAssetList().index(prevChar)
-                self.frbCharacterAssetListWidget.setCurrentRow(index)
-        else:
-            self.frbCharacterAssetListWidget.setCurrentRow(0)
-=======
         for i, character in enumerate(charAssets):
             self.frbCharacterAssetListWidget.insertItem(i, character)
 
@@ -183,7 +148,6 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             self._removePreviousCharacterOptionVar()
 
         self.frbCharacterAssetListWidget.setCurrentRow(index)
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 
         # Update the character header.
         self._updateCharacterHeader(self._getSelectedCharacter())
@@ -196,19 +160,6 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
     def _buildFaceGUIGuideTools(self):
 
-<<<<<<< HEAD
-        # Templates.
-        for templateName in controlUtils.getFaceGUITemplateNames():
-            self.frbToolsFaceGUITemplateComboBox.addItem(templateName)
-
-        # Control Types.
-        for controlType in controlUtils.getFaceGUIControlNames():
-            self.frbToolsFaceGUIControlTypeComboBox.addItem(controlType)
-
-        # Control Shapes.
-        for controlShape in controlUtils.getFaceGUIControlShapeNames():
-            self.frbToolsFaceGUIControlShapeComboBox.addItem(controlShape)
-=======
         #=======================================================================
         # Setup the Option Var setters.
         #=======================================================================
@@ -319,39 +270,25 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         # Flip X Axis
         prevFlipX = maya.cmds.optionVar(q=PREV_GUI_CTL_FLIP_X_AXIS_VAR)
         self.frbToolsFaceGUIControlMirrorFlipXAxisCheckBox.setCheckState(int(prevFlipX))
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 
         return True
 
 
-<<<<<<< HEAD
-=======
     def _refreshGUI(self):
         self._buildCharacterList()
         self._refreshVersions()
         self._updateModelFilePath(self._getSelectedCharacter())
         
 
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
     def _refreshVersions(self, assetTypes=list()):
         ''' This method refreshes the version data stored in the class, then
         triggers the combo box update, which triggers the rest of the GUI to
         update. If no asset types are passed in the method defaults to all asset
         types in self.ASSET_TYPES. '''
 
-<<<<<<< HEAD
-        print assetTypes
-
         if not assetTypes:
             assetTypes = self.ASSET_TYPES
 
-        print assetTypes
-
-=======
-        if not assetTypes:
-            assetTypes = self.ASSET_TYPES
-
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
         # Reset the revision dictionaries.
         self._getAssetVersions(self._getSelectedCharacter(), assetTypes)
 
@@ -389,21 +326,15 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
 
     def _updateCharacterHeader(self, character):
-<<<<<<< HEAD
-=======
         if not character:
             character = str()
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
         self.frbCharacterHeaderLabel.setText(character)
         return True
 
 
     def _updateModelFilePath(self, character):
-<<<<<<< HEAD
-=======
         if not character:
             return False
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 
         modelFilePath = self._getPreviousModelPathOptionVar(character)
 
@@ -497,17 +428,12 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def _getSelectedCharacter(self):
         ''' Returns the currently selected character as a string. '''
 
-<<<<<<< HEAD
-        ListWidget = self.frbCharacterAssetListWidget
-        selectedCharacter = str(ListWidget.currentItem().text())
-=======
         selectedCharacter = None
         ListWidget = self.frbCharacterAssetListWidget
         CurrentItem = ListWidget.currentItem()
         if not CurrentItem:
             return selectedCharacter
         selectedCharacter = str(CurrentItem.text())
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
         return selectedCharacter
 
 
@@ -524,14 +450,11 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             if not assetType in self.ASSET_TYPES:
                 continue
 
-<<<<<<< HEAD
-=======
             # Catch for situation where there are no characters yet.
             if not character:
                 self._assetVersions[assetType] = dict()
                 continue
             
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
             self._assetVersions[assetType] = getattr(facePublish,
                 'get%sVersions' % assetType)(character)
 
@@ -546,37 +469,17 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         ''' Look for a previously selected character in option vars. '''
 
         result = None
-<<<<<<< HEAD
-        var = OPTION_VARS['previousCharacter']
-=======
         var = PREV_CHAR_VAR
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 
         if not maya.cmds.optionVar(exists=var):
             return result
 
-<<<<<<< HEAD
-        previousCharacter = maya.cmds.optionVar(q=var)
-
-        # Double Check that the character still exists in the character list
-        # widget, otherwise we'll set it back to None and remove the option var.
-        if not self._getCharacterIndexFromListWidget(previousCharacter):
-            maya.cmds.optionVar(rm=var)
-            return result
-
-        result = previousCharacter
-=======
         result = maya.cmds.optionVar(q=var)
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
         return result
 
 
     def _getPreviousModelPathOptionVar(self, character):
-<<<<<<< HEAD
-        var = OPTION_VARS['previousModelPath']
-=======
         var = PREV_MODEL_PATH_VAR
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 
         filePath = None
 
@@ -602,11 +505,6 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         return filePath
 
 
-<<<<<<< HEAD
-    def _setPreviousCharacterOptionVar(self, character):
-
-        var = OPTION_VARS['previousCharacter']
-=======
     def _removePreviousCharacterOptionVar(self):
         var = PREV_CHAR_VAR
         return maya.cmds.optionVar(rm=var)
@@ -615,17 +513,12 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def _setPreviousCharacterOptionVar(self, character):
 
         var = PREV_CHAR_VAR
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
         maya.cmds.optionVar(sv=[var, character])
         return True
 
 
     def _setPreviousModelPathOptionVar(self, character, filePath):
-<<<<<<< HEAD
-        var = OPTION_VARS['previousModelPath']
-=======
         var = PREV_MODEL_PATH_VAR
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 
         # First check the file path is valid.
         if not os.path.exists(filePath):
@@ -658,11 +551,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         # Set an option variable so that the same character is selected next
         # time we open the GUI.
-<<<<<<< HEAD
-        maya.cmds.optionVar(sv=(OPTION_VARS['previousCharacter'], character))
-=======
         self._setPreviousCharacterOptionVar(character)
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 
         # Update the header.
         self._updateCharacterHeader(character)
@@ -676,12 +565,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
     def on_actionGUIRefreshPushButtonClicked_triggered(self, *args):
         if not args: return None
-<<<<<<< HEAD
-
-        return self._refreshVersions
-=======
         return self._refreshGUI()
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
 
 
     #===========================================================================
@@ -935,19 +819,13 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         ctlShape = str(self.frbToolsFaceGUIControlShapeComboBox.currentText())
         ctlPos = str(self.frbToolsFaceGUIControlPositionComboBox.currentText())
         ctlDesc = str(self.frbToolsFaceGUIControlDescriptionLineEdit.text())
-<<<<<<< HEAD
-        ctlIndex = str(self.frbToolsFaceGUIControlDescripitionSpinBox.value())
-=======
         ctlIndex = str(self.frbToolsFaceGUIControlIndexSpinBox.value())
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
         addMirrored = self.frbToolsFaceGUIAddMirroredControlCheckBox.checkState()
 
         return controlUtils.addFaceGUIControl(
             ctlType, ctlShape, ctlPos, ctlDesc, ctlIndex, addMirrored
             )
 
-<<<<<<< HEAD
-=======
 
     def on_actionToolsFaceGUIControlMirrorSelectedButtonClicked_triggered(self, *args):
         if not args: return None
@@ -963,7 +841,6 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             )
 
 
->>>>>>> d331054e9488deee64da518c129b04ec82b4105a
     def on_actionToolsSkeletonGuideBuildSkeletonPushButtonClicked_triggered(self, *args):
         if not args: return None
         return skeletonUtils.FaceSkeletonBuilder().buildSkeleton()
