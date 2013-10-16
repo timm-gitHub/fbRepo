@@ -43,4 +43,3 @@ FACE_PREFERENCE_GRP = 'preference_grp'
 
 # ROOT_VAR = '${PROJECT_ROOT}'
 # PROJECT_VAR = '${PROJECT}'
-
