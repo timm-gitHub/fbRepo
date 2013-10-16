@@ -75,7 +75,7 @@ def connectAllBlendShapeTargets(modelNamespace=FACE_MODEL_COMPONENT_BASE_NS,
         autoInBetween=False, verbose=True):
     ''' '''
 
-    assert maya.cmds.objExists(shapeGroup), "Cannot shape group '%s'..." % str(shapeGroup)
+    assert maya.cmds.objExists(shapeGroup), "Cannot find shape group '%s'..." % str(shapeGroup)
     
     result = list()
     
