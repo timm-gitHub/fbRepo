@@ -13,6 +13,7 @@ import rigBuilder.body.bodyIO as bodyIO
 
 from rigBuilder.face.faceRigEnv import *
 import rigBuilder.face.faceIO as faceIO
+import rigBuilder.face.utils as faceUtils
 import rigBuilder.face.utils.file as fileUtils
 
 
@@ -163,6 +164,7 @@ def publishBlendShapes(character, source, description=str()):
     return publishToServer(source, path, pattern)
 
 
+@faceUtils.restoreSelectionDecorator
 def publishBlendShapesFromScene(character, description=str()):
 
     rootNode = FACE_MODEL_COMPONENT_SHAPE_ROOT
@@ -185,6 +187,7 @@ def publishGuide(character, source, guideType='gui', description=str()):
     return publishToServer(source, path, pattern)
 
 
+@faceUtils.restoreSelectionDecorator
 def publishGuideFromScene(character, guideType='gui', description=str()):
 
     rootNode = globals()['FACE_%s_GUIDE_ROOT' % guideType.upper()]
@@ -223,6 +226,7 @@ def publishFaceRig(character, source, description=str()):
     return publishToServer(source, path, pattern)
 
 
+@faceUtils.restoreSelectionDecorator
 def publishFaceRigFromScene(character, description=str()):
 
     rootNode = FACE_RIG_ROOT
@@ -245,8 +249,6 @@ def publishPreferenceData(character, source, description=str()):
 
 
 def publishPreferenceDataFromScene(character, description=str()):
-
-    maya.cmds.select(FACE_PREFERENCE_GRP)
 
     tempPath = fileUtils.getTempFilePath([character, 'preferences'], 'json')
     faceIO.exportAttributeData(FACE_PREFERENCE_GRP, tempPath, verbose=True,
