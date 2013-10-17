@@ -20,7 +20,18 @@ import rigBuilder.face.utils.control as controlUtils
 import rigBuilder.face.utils.skeleton as skeletonUtils
 
 
+ASSET_TYPES = [
+    'SkeletonGuide',
+    'GUIGuide',
+    'BlendShapes',
+    'DrivenKeys',
+    'Preferences',
+    'Weighting'
+    ]
+
+
 VAR_PREFIX                      = 'faceRigBuilder'
+ASSET_COPY_PASTE_VAR            = '%sAssetCopyPaste' % VAR_PREFIX
 PREV_CHAR_VAR                   = '%sPreviousCharacter' % VAR_PREFIX
 PREV_MODEL_PATH_VAR             = '%sPreviousModelPath' % VAR_PREFIX
 PREV_GUI_TEMPLATE_VAR           = '%sPreviousGUITemplate' % VAR_PREFIX
@@ -32,6 +43,29 @@ PREV_GUI_CTL_INDEX_VAR          = '%sPreviousControlIndex' % VAR_PREFIX
 PREV_GUI_CTL_MIRROR_VAR         = '%sPreviousControlAddMirrored' % VAR_PREFIX
 PREV_GUI_CTL_MIRROR_MODE_VAR    = '%sPreviousControlMirrorMode' % VAR_PREFIX
 PREV_GUI_CTL_FLIP_X_AXIS_VAR    = '%sPreviousControlFlipXAxis' % VAR_PREFIX
+
+
+
+def assetPublishConfirmDialog(assetType):
+    ''' Creates a standardized Maya confirmation dialog, confirming that the user
+    wants to publish the asset type passed in as an argument. '''
+    
+    niceString = nameUtils.camelCaseToNiceString(assetType)
+
+    result = maya.cmds.confirmDialog(
+        title='%s Publish' % niceString,
+        message='Are you sure you want to publish Face Rig %s?' % niceString,
+        button=['Yes', 'No'],
+        defaultButton='Yes',
+        cancelButton='No',
+        dismissString='No'
+        )
+
+    if not result == 'Yes':
+        rigBuilder.rigUtils.log(msg='Face Rig %s publish cancelled.' % niceString)
+        return False
+
+    return True
 
 
 def showFaceRigBuilderUI():
@@ -81,18 +115,11 @@ uiFormClass, uiBaseClass = uic.loadUiType(uiFile)
 
 class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
-    ASSET_TYPES = [
-        'SkeletonGuide',
-        'GUIGuide',
-        'BlendShapes',
-        'DrivenKeys',
-        'Preferences',
-        'Weighting'
-        ]
 
     FIELD_PREFIX = 'frb'
 
     def __init__(self, parent=getMayaWindow()):
+        
         ''' Builds the GUI '''
         super(FaceRigBuilderUI, self).__init__(parent)
         self.setupUi(self)
@@ -108,6 +135,27 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             self.PopupMenu._buildMenu)
 
         self.PopupMenu._characterNamePromptDialogCallback = self._refreshGUI
+
+
+        # Add the Version Combo Box Context Menus
+        for assetType in ASSET_TYPES:
+            
+            comboBox = getattr(self, '%s%sVersionComboBox' %(self.FIELD_PREFIX,
+                assetType))
+            pathField = getattr(self, '%s%sVersionPathLineEdit' %(self.FIELD_PREFIX,
+                assetType))
+
+            comboBox.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+
+            contextMenu = CreateVersionCopyPastePopUpMenu(assetType,
+                character = self._getSelectedCharacter, parent=comboBox,
+                pathField=pathField)
+            contextMenu._guiRefreshCallback = self._refreshGUI
+            comboBox.customContextMenuRequested.connect(contextMenu._buildMenu)
+
+            setattr(self, '%s%sVersionComboContextMenu' %(self.FIELD_PREFIX,
+                assetType), contextMenu)
+                
 
         # Get all the asset versions.
         self._assetVersions = dict()
@@ -130,7 +178,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         self._updateModelFilePath(self._getSelectedCharacter())
 
-        for assetType in self.ASSET_TYPES:
+        for assetType in ASSET_TYPES:
             self._updateVersionComboBoxes(assetType)
 
         # Tools:
@@ -302,17 +350,17 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         ''' This method refreshes the version data stored in the class, then
         triggers the combo box update, which triggers the rest of the GUI to
         update. If no asset types are passed in the method defaults to all asset
-        types in self.ASSET_TYPES. '''
+        types in ASSET_TYPES. '''
 
         if not assetTypes:
-            assetTypes = self.ASSET_TYPES
+            assetTypes = ASSET_TYPES
 
         # Reset the revision dictionaries.
         self._getAssetVersions(self._getSelectedCharacter(), assetTypes)
 
         for assetType in assetTypes:
             # Catch in case something stupid happens.
-            if not assetType in self.ASSET_TYPES:
+            if not assetType in ASSET_TYPES:
                 continue
             # Update the Combo Boxes.
             self._updateVersionComboBoxes(assetType)
@@ -458,14 +506,14 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def _getAssetVersions(self, character, assetTypes=list()):
         ''' Iterates over the supplied asset types, and gets the publish version
         data which is used to populate the GUI. If no asset types are passed in
-        the method defaults to all asset types in self.ASSET_TYPES. '''
+        the method defaults to all asset types in ASSET_TYPES. '''
 
         if not assetTypes:
-            assetTypes = self.ASSET_TYPES
+            assetTypes = ASSET_TYPES
 
         for assetType in assetTypes:
             # Catch just in case something stupid happens.
-            if not assetType in self.ASSET_TYPES:
+            if not assetType in ASSET_TYPES:
                 continue
 
             # Catch for situation where there are no characters yet.
@@ -576,7 +624,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         self._updateModelFilePath(character)
         self._getAssetVersions(character)
 
-        [self._updateVersionComboBoxes(assetType) for assetType in self.ASSET_TYPES]
+        [self._updateVersionComboBoxes(assetType) for assetType in ASSET_TYPES]
 
         return True
 
@@ -606,26 +654,6 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             filePath).replace('\\', '\\' * 4) + '\\"");')
 
 
-    def _assetPublishConfirm(self, assetType):
-
-        niceString = nameUtils.camelCaseToNiceString(assetType)
-
-        result = maya.cmds.confirmDialog(
-            title='%s Publish' % niceString,
-            message='Are you sure you want to publish Face Rig %s?' % niceString,
-            button=['Yes', 'No'],
-            defaultButton='Yes',
-            cancelButton='No',
-            dismissString='No'
-            )
-
-        if not result == 'Yes':
-            rigBuilder.rigUtils.log(msg='Face Rig %s publish cancelled.' % niceString)
-            return False
-
-        return True
-
-
     #===========================================================================
     # BlendShapes Field GUI Actions
     #===========================================================================
@@ -643,7 +671,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def on_actionBlendShapesPublishPushButtonClicked_triggered(self, *args):
         if not args: return None
 
-        if not self._assetPublishConfirm('BlendShapes'):
+        if not assetPublishConfirmDialog('BlendShapes'):
             return False
 
         facePublish.publishBlendShapesFromScene(
@@ -677,7 +705,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def on_actionDrivenKeysPublishPushButtonClicked_triggered(self, *args):
         if not args: return None
 
-        if not self._assetPublishConfirm('DrivenKeys'):
+        if not assetPublishConfirmDialog('DrivenKeys'):
             return False
 
         facePublish.publishDrivenKeysDataFromScene(
@@ -706,7 +734,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def on_actionGUIGuidePublishPushButtonClicked_triggered(self, *args):
         if not args: return None
 
-        if not self._assetPublishConfirm('GUIGuide'):
+        if not assetPublishConfirmDialog('GUIGuide'):
             return False
 
         facePublish.publishGuideFromScene(
@@ -741,7 +769,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def on_actionPreferencesPublishPushButtonClicked_triggered(self, *args):
         if not args: return None
 
-        if not self._assetPublishConfirm('Preferences'):
+        if not assetPublishConfirmDialog('Preferences'):
             return False
 
         facePublish.publishPreferenceDataFromScene(
@@ -771,7 +799,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def on_actionSkeletonGuidePublishPushButtonClicked_triggered(self, *args):
         if not args: return None
 
-        if not self._assetPublishConfirm('SkeletonGuide'):
+        if not assetPublishConfirmDialog('SkeletonGuide'):
             return False
 
         facePublish.publishGuideFromScene(
@@ -806,7 +834,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def on_actionWeightingPublishPushButtonClicked_triggered(self, *args):
         if not args: return None
 
-        if not self._assetPublishConfirm('Weighting'):
+        if not assetPublishConfirmDialog('Weighting'):
             return False
 
         facePublish.publishWeightingDataFromScene(
@@ -972,6 +1000,114 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         return maya.mel.eval('saveChanges("file -f -o \\"' + os.path.expandvars(
             filePath).replace('\\', '\\' * 4) + '\\"");')
+
+
+class CreateVersionCopyPastePopUpMenu(QtGui.QMenu):
+    ''' This is a generic pop-up menu that will be used across all rigging guis
+    character lists to allow for adding a new character easily. '''
+    
+    PUBLISH_FUNCTIONS = {
+        'SkeletonGuide' : facePublish.publishGuide,
+        'GUIGuide'      : facePublish.publishGuide,
+        'BlendShapes'   : facePublish.publishBlendShapes,
+        'DrivenKeys'    : facePublish.publishDrivenKeysData,
+        'Preferences'   : facePublish.publishPreferenceData,
+        'Weighting'     : facePublish.publishWeightingData
+    }
+    
+    def __init__(self, assetType, character=None, parent=None, pathField=None):
+        super(CreateVersionCopyPastePopUpMenu, self).__init__(parent)
+        
+        self._character = character
+        self._assetType = assetType
+        self._pathField = pathField
+
+        # Make a nice name for the menu text.        
+        if not assetType is 'GUIGuide':
+            self._assetTypeNice = nameUtils.camelCaseToNiceString(assetType)
+        else: # Mundge
+            self._assetTypeNice = 'GUI Guide'
+
+        copyAction  = self.addAction('Copy %s Version' % self._assetTypeNice)
+        pasteAction = self.addAction('Paste %s Version' % self._assetTypeNice)
+        
+        copyAction.triggered.connect(self._copyAssetVersion)
+        pasteAction.triggered.connect(self._pasteAssetVersion)
+        
+
+    def _buildMenu(self):
+         
+        posX  = QtGui.QCursor().pos().x() - self.pos().x()
+        posY  = QtGui.QCursor().pos().y() - self.pos().y() - 20
+ 
+        self.exec_(self.mapToGlobal(QtCore.QPoint(posX, posY)))
+
+        return True
+
+
+    def _createDefaultBuffer(self):
+        ''' Create a default buffer '''
+        cpBuffer = dict()
+        for assetType in ASSET_TYPES:
+            cpBuffer[assetType] = None
+        return cpBuffer
+
+    def _copyAssetVersion(self):
+        ''' Copies the path (if valid) into an option variable that can be called
+        upon to paste into another character. '''
+        
+        # Create a default buffer.
+        cpBuffer = self._createDefaultBuffer()
+        
+        # Overwrite it with anything that might already be stored in option vars.
+        if maya.cmds.optionVar(ex=ASSET_COPY_PASTE_VAR):
+            cpBuffer = eval(maya.cmds.optionVar(q=ASSET_COPY_PASTE_VAR))
+        
+        # Query the path field.
+        path = self._pathField.text()
+        if os.path.exists(path):
+            cpBuffer[self._assetType] = str(path)
+        
+        return maya.cmds.optionVar(sv=[ASSET_COPY_PASTE_VAR, str(cpBuffer)])
+        
+
+    def _pasteAssetVersion(self):
+        ''' Does lookup on option variable and "pastes" a publish to the new
+        destination. '''
+        
+        # Create a default buffer.
+        cpBuffer = self._createDefaultBuffer()
+                
+        # Overwrite it with anything that might already be stored in option vars.
+        if maya.cmds.optionVar(ex=ASSET_COPY_PASTE_VAR):
+            cpBuffer = eval(maya.cmds.optionVar(q=ASSET_COPY_PASTE_VAR))
+
+        # Confirm that there is something in the buffer for that asset type.
+        if not cpBuffer[self._assetType]: return False
+        
+        # Confirm that the path exists.
+        if not os.path.exists(cpBuffer[self._assetType]): return False
+
+        # Confirm that the user wants to publish.
+        if not assetPublishConfirmDialog(self._assetType) : return False
+
+        # Construct Keyword Arguments.
+        kwargs = {
+            'character' : self._character(),
+            'source'    : cpBuffer[self._assetType]
+        }
+        if 'Guide' in self._assetType:
+            kwargs['guideType'] = self._assetType[:-5].lower()
+        
+        # Publish.
+        self.PUBLISH_FUNCTIONS[self._assetType](**kwargs)
+
+        # Refresh Callback.
+        return self._guiRefreshCallback()
+
+
+    def _guiRefreshCallback(self):
+        return True
 
 
 def createChannelBoxForNode(node):
