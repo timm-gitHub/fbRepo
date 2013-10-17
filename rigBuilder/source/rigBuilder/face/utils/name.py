@@ -197,8 +197,30 @@ def checkValidIndex(index):
 
 # String Conversion
 
-def camelCaseToList(inputString):
-    return re.findall('^[a-z]+|[A-Z][a-z]+|[A-Z]|[0-9]+', inputString)
+def camelCaseToList(inputString, titleCase=True):
+    initList = re.findall('^[a-z]+|[A-Z][a-z]+|[A-Z]|[0-9]+', inputString)
+    cleanList = list()
+
+    for i, item in enumerate(initList):
+
+        if not i:
+            if titleCase:
+                cleanList.append(item.title())
+            else:
+                cleanList.append(item)
+
+        else:
+            if len(item) > 1:
+                cleanList.append(item)
+    
+            else:
+                if cleanList[-1].isupper() and item.isupper():
+                    cleanList[-1] += item
+                    
+                else:
+                    cleanList.append(item)
+            
+    return cleanList
 
 
 def camelCaseToNiceString(inputString):   
@@ -209,7 +231,12 @@ def listToNiceString(inputList):
     result = str()
     
     for i, token in enumerate(inputList):
-        result += token.title()
+        
+        # Keep upper case blocks
+        if token.isupper(): result += token
+        
+        # Otherwise make them title case.
+        else: result += token.title()
         
         if i < (len(inputList) - 1):
             result += ' '

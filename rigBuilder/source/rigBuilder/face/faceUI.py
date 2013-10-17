@@ -125,37 +125,10 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         self.setupUi(self)
 
         # Add the Character List Context Menu.
-        self.frbCharacterAssetListWidget.setContextMenuPolicy(
-            QtCore.Qt.CustomContextMenu)
+        self._buildCharacterListContextMenu()
 
-        self.PopupMenu = rigBuilder.sysUtils.CreateCharacterPopUpMenu(
-            parent=self.frbCharacterAssetListWidget)
-
-        self.frbCharacterAssetListWidget.customContextMenuRequested.connect(
-            self.PopupMenu._buildMenu)
-
-        self.PopupMenu._characterNamePromptDialogCallback = self._refreshGUI
-
-
-        # Add the Version Combo Box Context Menus
-        for assetType in ASSET_TYPES:
-            
-            comboBox = getattr(self, '%s%sVersionComboBox' %(self.FIELD_PREFIX,
-                assetType))
-            pathField = getattr(self, '%s%sVersionPathLineEdit' %(self.FIELD_PREFIX,
-                assetType))
-
-            comboBox.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-
-            contextMenu = CreateVersionCopyPastePopUpMenu(assetType,
-                character = self._getSelectedCharacter, parent=comboBox,
-                pathField=pathField)
-            contextMenu._guiRefreshCallback = self._refreshGUI
-            comboBox.customContextMenuRequested.connect(contextMenu._buildMenu)
-
-            setattr(self, '%s%sVersionComboContextMenu' %(self.FIELD_PREFIX,
-                assetType), contextMenu)
-                
+        # Add the Version Combo Box Context Menus.
+        self._buildVersionComboBoxContextMenus()
 
         # Get all the asset versions.
         self._assetVersions = dict()
@@ -339,6 +312,49 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         return True
 
+    
+    def _buildCharacterListContextMenu(self):
+        ''' Adds the right click context menu to the character list. '''
+        
+        self.frbCharacterAssetListWidget.setContextMenuPolicy(
+            QtCore.Qt.CustomContextMenu)
+
+        self.PopupMenu = rigBuilder.sysUtils.CreateCharacterPopUpMenu(
+            parent=self.frbCharacterAssetListWidget)
+        self.PopupMenu._characterNamePromptDialogCallback = self._refreshGUI
+
+
+        self.frbCharacterAssetListWidget.customContextMenuRequested.connect(
+            self.PopupMenu._buildMenu)
+
+        return True
+        
+
+    def _buildVersionComboBoxContextMenus(self):
+        ''' Adds the right click context menus to the version and build version
+        combo boxes. '''
+        
+        for assetType in ASSET_TYPES:
+            for suffix in ['', 'Build']:
+
+                comboBox = getattr(self, '%s%s%sVersionComboBox' %(
+                    self.FIELD_PREFIX, suffix, assetType))
+                pathField = getattr(self, '%s%s%sVersionPathLineEdit' %(
+                    self.FIELD_PREFIX, suffix, assetType))
+    
+                comboBox.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+    
+                contextMenu = VersionComboBoxContextMenu(assetType,
+                    character = self._getSelectedCharacter, parent=comboBox,
+                    pathField=pathField)
+                contextMenu._guiRefreshCallback = self._refreshGUI
+                comboBox.customContextMenuRequested.connect(contextMenu._buildMenu)
+    
+                setattr(self, '%s%sVersionComboContextMenu' %(self.FIELD_PREFIX,
+                    assetType), contextMenu)
+                
+        return True
+        
 
     def _refreshGUI(self):
         self._buildCharacterList()
@@ -1002,7 +1018,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             filePath).replace('\\', '\\' * 4) + '\\"");')
 
 
-class CreateVersionCopyPastePopUpMenu(QtGui.QMenu):
+class VersionComboBoxContextMenu(QtGui.QMenu):
     ''' This is a generic pop-up menu that will be used across all rigging guis
     character lists to allow for adding a new character easily. '''
     
@@ -1016,20 +1032,17 @@ class CreateVersionCopyPastePopUpMenu(QtGui.QMenu):
     }
     
     def __init__(self, assetType, character=None, parent=None, pathField=None):
-        super(CreateVersionCopyPastePopUpMenu, self).__init__(parent)
+        super(VersionComboBoxContextMenu, self).__init__(parent)
         
         self._character = character
         self._assetType = assetType
         self._pathField = pathField
 
         # Make a nice name for the menu text.        
-        if not assetType is 'GUIGuide':
-            self._assetTypeNice = nameUtils.camelCaseToNiceString(assetType)
-        else: # Mundge
-            self._assetTypeNice = 'GUI Guide'
+        assetTypeNice = nameUtils.camelCaseToNiceString(assetType)
 
-        copyAction  = self.addAction('Copy %s Version' % self._assetTypeNice)
-        pasteAction = self.addAction('Paste %s Version' % self._assetTypeNice)
+        copyAction  = self.addAction('Copy %s Version' % assetTypeNice)
+        pasteAction = self.addAction('Paste %s Version' % assetTypeNice)
         
         copyAction.triggered.connect(self._copyAssetVersion)
         pasteAction.triggered.connect(self._pasteAssetVersion)
@@ -1051,6 +1064,7 @@ class CreateVersionCopyPastePopUpMenu(QtGui.QMenu):
         for assetType in ASSET_TYPES:
             cpBuffer[assetType] = None
         return cpBuffer
+
 
     def _copyAssetVersion(self):
         ''' Copies the path (if valid) into an option variable that can be called
