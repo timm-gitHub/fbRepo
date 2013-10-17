@@ -838,8 +838,6 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         self.btnImportMappingSelected.setDisabled(False)
         self.btnImportControlsAll.setDisabled(False)
         self.btnImportControlsSelected.setDisabled(False)
-        self.btnImportGeoBuild.setDisabled(False)
-        self.btnImportGeoGuide.setDisabled(False)
         self.btnFinalise.setDisabled(False)
         self.checkBoxDebug.setDisabled(False)
         self.checkBoxDebug.setChecked(False)
@@ -1019,8 +1017,6 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         self.btnImportMappingSelected.setDisabled(True)
         self.btnImportControlsAll.setDisabled(True)
         self.btnImportControlsSelected.setDisabled(True)
-        self.btnImportGeoBuild.setDisabled(True)
-        self.btnImportGeoGuide.setDisabled(True)
         self.btnOpenLatest.setDisabled(True)
         self.btnComponentAdd.setDisabled(True)
         self.btnComponentRemove.setDisabled(True)
@@ -1212,30 +1208,39 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
             
         self.checkBoxPublishEnableBuild.setChecked(False)
     
+    def on_actionFindGeo_triggered(self,checked=None):
+        
+        if checked is None: return
+        
+        path = cmds.fileDialog2(ff='Maya Files (*.ma *.mb);;Maya ASCII (*.ma);;Maya Binary (*.mb)',fm=1,dir=rigEnv.ROOTCHAR)
+        
+        if path: self.lineEditGeo.setText(path[0])
+    
     def on_actionImportGeo_triggered(self,checked=None):
         
         if checked is None: return
         
+        path = self.lineEditGeo.text()
+        
+        if not path or not os.path.isfile(path):
+            rigUtils.log('Invalid path: %s' % path,'e')
+        
         if cmds.namespace(ex='GEO'):
             if not confirmDialog('Namespace exists: GEO\n\n** Importing will DELETE the existing GEO namespace and its contents!**\n\nProceed?'): return
             
-        path = cmds.fileDialog2(ff='*.mb',fm=1,dir=rigEnv.ROOTCHAR)
-        if path:
-            
-            if cmds.namespace(ex='GEO'):
-                cmds.namespace(set='GEO')
-                for node in cmds.namespaceInfo(ls=True):
-                    if cmds.objExists(node): cmds.delete(node)
-                cmds.namespace(set=':')
-                cmds.namespace(rm='GEO',f=True)
-            
-            rigUtils.log('Importing Geo: %s' % path[0])
-            try: 
-                cmds.file(path[0],ns='GEO',i=True,f=True)
-            except:
-                rigUtils.log('Error importing file: %s' % path[0],'e')
+        if cmds.namespace(ex='GEO'):
+            cmds.namespace(set='GEO')
+            for node in cmds.namespaceInfo(ls=True):
+                if cmds.objExists(node): cmds.delete(node)
+            cmds.namespace(set=':')
+            cmds.namespace(rm='GEO',f=True)
         
-    
+        rigUtils.log('Importing Geo: %s' % path)
+        try:
+            cmds.file(str(path),ns='GEO',i=True,f=True)
+        except:
+            rigUtils.log('Error importing file: %s' % path,'e')
+        
     def on_actionImportControls_triggered(self,checked=None):
         
         if checked is None: return

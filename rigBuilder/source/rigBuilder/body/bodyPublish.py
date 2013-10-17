@@ -292,7 +292,7 @@ def publishRig(character, source, typ, description=''):
     """Save a character rig on the server."""
 
     path    = '%s/%s/rig/body/%s' % (rigEnv.ROOTCHAR, character, typ)
-    pattern = '%s_rig_%s_v[0-9]{3}.ma$' % (character,typ)
+    pattern = '%s_body_rig_%s_v[0-9]{3}.ma$' % (character,typ)
     return publishToServer(source,path,pattern)
 
 def publishRigData(character, source, description=''):

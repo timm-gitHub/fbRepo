@@ -199,9 +199,10 @@ class Rig(object):
                     references.remove(RN)
                     
             x = x + 1
-                    
+        
         for reference in references:
-            cmds.file(rr=True,rfn=reference,f=True)
+            try: cmds.file(rr=True,rfn=reference,f=True)
+            except: cmds.delete(reference)
         
         # remove unknown reference node
         if cmds.objExists('_UNKNOWN_REF_NODE_'): cmds.delete('_UNKNOWN_REF_NODE_')
@@ -681,6 +682,12 @@ class Rig(object):
            ** reason the tree maintains the AS naming convention.                             **
         
         """
+        
+        # do nothing if the node is not enabled
+        if cmds.attributeQuery('enable',n=locator,ex=True):
+            if not cmds.getAttr('%s.enable' % locator): 
+                return None
+        
         posX = cmds.xform(locator,t=True,ws=True,q=True)[0]
         posY = cmds.xform(locator,t=True,ws=True,q=True)[1]
         posZ = cmds.xform(locator,t=True,ws=True,q=True)[2]
@@ -702,7 +709,7 @@ class Rig(object):
             if not cmds.objectType(child) == 'transform': continue # workaround - cmds.listRelatives type bug
             child     = string.split(child,'|')[-1]
             childnode = self.getRootNode(child,node,namespace,asset,count,symmetrical)
-            children.append(childnode)
+            if childnode: children.append(childnode)
         
         order        = cmds.getAttr('%s.order' % locator)
         secaxis      = cmds.getAttr('%s.secondaryAxis' % locator)
@@ -1282,6 +1289,10 @@ class Rig(object):
         for set in cmds.sets('guide_loc_set',q=True):
             locus = None
             for locator in cmds.sets(set,q=True):
+                
+                if cmds.attributeQuery('enable',n=locator,ex=True):
+                    if not cmds.getAttr('%s.enable' % locator): continue
+                
                 pos = cmds.xform(locator,q=True,ws=True,t=True)
                 
                 if round(pos[0],3) < 0:
