@@ -399,8 +399,10 @@ class Rig(object):
             count       = rootnode.count
             locus       = rootnode.locus
             symmetrical = rootnode.symmetrical
+            label       = rootnode.label
             
-            if root != 'root':
+            #if root != 'root':
+            if label != 1: # 1 == 'Root'
                 cmds.select(cl=True)
                 tmp = cmds.joint(n='tmpRoot')
                 cmds.setAttr('%s.type' % tmp,1)
@@ -488,9 +490,11 @@ class Rig(object):
                 children = cmds.listRelatives('FKSystem',c=True)
                 if children:
                     for x in children:
-                        if 'Center' in x and root == 'root':
+                        #if 'Center' in x and root == 'root':
+                        if 'Center' in x and label == 1:
                             x = cmds.rename(x,string.replace(x,'_org_','_ctg_'))
-                        elif 'Center' in x and root != 'root': continue
+                        #elif 'Center' in x and root != 'root': continue
+                        elif 'Center' in x and label != 1: continue
                          
                         if '_%s' % oldlocus in x: cmds.parent(x,grp)
                 
@@ -1308,12 +1312,43 @@ class Rig(object):
                         return False
                 else:
                     locus = tmp
-                    
+        
         return True
                            
     
     def updateASComponents(self):
         """Run the advanced skeleton mel script."""
+        
+        # add extra cogs
+        c = 'C_center_ctl_0'
+        a = cmds.duplicate(c,n='C_centerA_ctl_0',rc=True)[0]
+        b = cmds.duplicate(c,n='C_centerB_ctl_0',rc=True)[0]
+        c = cmds.rename(c,'C_centerC_ctl_0')
+        
+        for x in cmds.listRelatives(a,c=True):
+            if cmds.objectType(x,isType='nurbsCurve'): continue 
+            cmds.delete(x)
+        for x in cmds.listRelatives(b,c=True):
+            if cmds.objectType(x,isType='nurbsCurve'): continue
+            cmds.delete(x)
+        
+        cmds.scale(1.25,1.25,1.25,'%s.cv[0:7]' % b,r=True,ocp=True)
+        cmds.scale(1.5,1.5,1.5,'%s.cv[0:7]' % a,r=True,ocp=True)
+        cmds.parent(c,b)
+        cmds.parent(b,a)
+        a = cmds.listRelatives(a,s=True)[0]
+        b = cmds.listRelatives(b,s=True)[0]
+        c = cmds.listRelatives(c,s=True)[0]
+        cmds.setAttr('%s.overrideEnabled' % a,1)
+        cmds.setAttr('%s.overrideColor' % a,15)
+        cmds.setAttr('%s.overrideEnabled' % b,1)
+        cmds.setAttr('%s.overrideColor' % b,29)
+        cmds.setAttr('%s.overrideEnabled' % c,1)
+        cmds.setAttr('%s.overrideColor' % c,18)
+        cmds.addAttr('C_centerA_ctl_0',ln='secondaryCOGs',at='double',min=0,max=1,dv=0)
+        cmds.setAttr('C_centerA_ctl_0.secondaryCOGs',e=True,k=True)
+        cmds.connectAttr('C_centerA_ctl_0.secondaryCOGs','%s.v' % b)
+        cmds.connectAttr('C_centerA_ctl_0.secondaryCOGs','%s.v' % c)
         
         # add head cross
         crv = cmds.curve(n='C_headFkIk_ctl_0',d=1,p=[[6.47624,4.63246e-009,0.0529893],
@@ -1336,7 +1371,7 @@ class Rig(object):
         if cmds.objExists('C_headFk_ctl_0'):
             cmds.parent(crv,'C_headFk_ctl_0',r=True)
         else:
-            cmds.parent(crv,'C_center_ctl_0',r=True)
+            cmds.parent(crv,'C_centerC_ctl_0',r=True)
         cmds.setAttr('%s.tx' % crv,l=True,k=False)
         cmds.setAttr('%s.ty' % crv,l=True,k=False)
         cmds.setAttr('%s.tz' % crv,l=True,k=False)
@@ -1505,7 +1540,6 @@ class Rig(object):
                 if attr == 'Global':
                     cmds.setAttr('%s.%s' % (ctl,attr),0)
                     rigUtils.log('Set global to zero: %s' % ctl)
-                    
         
         # set blendColor node color 2 attributes to 1
         for bc in cmds.ls(type='blendColors'):
