@@ -1,15 +1,22 @@
 '''
+
 Created on 05/09/2013
 
 @author: caleb.bell
+
+facePublish.py is home to functions which handle the saving of face rig assets,
+and the dependencies which they are created from. It is a direct extension of
+rigBuilder.body.bodyPublish, and borrows a lot of it's core functionality.
+
 '''
 
 import os
+import re
 
 import maya.cmds
 
-from rigBuilder.body.bodyPublish import *
 import rigBuilder.body.bodyIO as bodyIO
+import rigBuilder.body.bodyPublish as bodyPublish
 
 from rigBuilder.face.faceRigEnv import *
 import rigBuilder.face.faceIO as faceIO
@@ -161,7 +168,7 @@ def publishBlendShapes(character, source, description=str()):
     pattern = '%s_face_rig_blendShapes_v[0-9]{3}.ma$' % character
     fileUtils.cleanMayaAsciiFile(source)
     fileUtils.cleanMayaAsciiBlendShapeScene(source)
-    return publishToServer(source, path, pattern)
+    return bodyPublish.publishToServer(source, path, pattern)
 
 
 @faceUtils.restoreSelectionDecorator
@@ -184,7 +191,7 @@ def publishGuide(character, source, guideType='gui', description=str()):
     path = '%s/%s/rig/face/%sGuide' % (ROOTCHAR, character, guideType)
     pattern = '%s_face_rig_%sGuide_v[0-9]{3}.ma$' % (character, guideType)
     fileUtils.cleanMayaAsciiFile(source)
-    return publishToServer(source, path, pattern)
+    return bodyPublish.publishToServer(source, path, pattern)
 
 
 @faceUtils.restoreSelectionDecorator
@@ -206,7 +213,7 @@ def publishDrivenKeysData(character, source, description=str()):
 
     path = '%s/%s/rig/face/drivenKeys' % (ROOTCHAR, character)
     pattern = '%s_face_rig_drivenKeys_v[0-9]{3}.json$' % character
-    return publishToServer(source, path, pattern)
+    return bodyPublish.publishToServer(source, path, pattern)
 
 
 def publishDrivenKeysDataFromScene(character, description=str()):
@@ -223,7 +230,7 @@ def publishFaceRig(character, source, description=str()):
     path = '%s/%s/rig/face/anim' % (ROOTCHAR, character)
     pattern = '%s_face_rig_anim_v[0-9]{3}.ma$' % character
     fileUtils.cleanMayaAsciiFile(source)
-    return publishToServer(source, path, pattern)
+    return bodyPublish.publishToServer(source, path, pattern)
 
 
 @faceUtils.restoreSelectionDecorator
@@ -245,7 +252,7 @@ def publishPreferenceData(character, source, description=str()):
 
     path = '%s/%s/rig/face/preferences' % (ROOTCHAR, character)
     pattern = '%s_face_rig_preferences_v[0-9]{3}.json$' % (character)
-    return publishToServer(source, path, pattern)
+    return bodyPublish.publishToServer(source, path, pattern)
 
 
 def publishPreferenceDataFromScene(character, description=str()):
@@ -262,7 +269,7 @@ def publishWeightingData(character, source, description=str()):
 
     path = '%s/%s/rig/face/weighting' % (ROOTCHAR, character)
     pattern = '%s_face_rig_weighting_v[0-9]{3}.json$' % (character)
-    return publishToServer(source, path, pattern)
+    return bodyPublish.publishToServer(source, path, pattern)
 
 
 def publishWeightingDataFromScene(character, description=str()):

@@ -1,7 +1,13 @@
 '''
+
 Created on 02/09/2013
 
 @author: caleb.bell
+
+faceRigEnv.py is home to static variables the face rig builder is dependent on.
+By housing them here it should make the process of changing certain things a bit
+easier.
+
 '''
 
 import inspect
@@ -41,5 +47,3 @@ FACE_MODEL_COMPONENT_SHAPE_NS = 'shape'
 FACE_INTERFACE_GRP = 'interface_grp'
 FACE_PREFERENCE_GRP = 'preference_grp'
 
-# ROOT_VAR = '${PROJECT_ROOT}'
-# PROJECT_VAR = '${PROJECT}'

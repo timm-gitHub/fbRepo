@@ -1,7 +1,14 @@
 '''
+
 Created on 18/09/2013
 
 @author: caleb.bell
+
+faceIO.py is home to the Data Input and Output functions used by the face rig
+builder. Thes include functions for importing Preference and Set Driven Keyframe
+data. Both of these data types are exported in a JSON file format, so there are
+generic JSON import and export functions in here too.
+
 '''
 
 import json

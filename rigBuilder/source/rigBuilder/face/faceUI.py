@@ -1,7 +1,13 @@
 '''
+
 Created on 06/09/2013
 
 @author: caleb.bell
+
+faceGUI.py is the home to the Face Rig Builder GUI, which is built from a QT
+designer file located in the rigBuilder/resource/face folder, found at the root
+of the fbRepo repository.
+
 '''
 
 import maya.cmds
@@ -92,6 +98,9 @@ def showFaceRigBuilderUI():
 
 
 def deleteAllFaceRigBuilderUIInstances():
+    ''' This function hunts down all children of Maya's main window, and kills
+    them if they have the title 'Face Rig Builder'. '''
+    
     qMainWindow = getMayaWindow()
     
     for child in qMainWindow.children():
@@ -115,6 +124,7 @@ uiFormClass, uiBaseClass = uic.loadUiType(uiFile)
 
 class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
+    ''' Face Rig Builder GUI Class. '''
 
     FIELD_PREFIX = 'frb'
 
@@ -995,14 +1005,14 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
     def on_actionToolsInterfaceNodeChannelBoxPushButtonClicked_triggered(self, *args):
         if not args: return None
-        node = 'interface_grp'
+        node = FACE_INTERFACE_GRP
         assert maya.cmds.objExists(node), "Can't find node '%s'..." % node
         return createChannelBoxForNode(node)
 
 
     def on_actionToolsPreferenceNodeChannelBoxPushButtonClicked_triggered(self, *args):
         if not args: return None
-        node = 'preference_grp'
+        node = FACE_PREFERENCE_GRP
         assert maya.cmds.objExists(node), "Can't find node '%s'..." % node
         return createChannelBoxForNode(node)
 
@@ -1125,6 +1135,9 @@ class VersionComboBoxContextMenu(QtGui.QMenu):
 
 
 def createChannelBoxForNode(node):
+    ''' This function pops open an independent channel box window in maya, for
+    the node supplied in the arguments. '''
+    
     assert cmds.objExists(node), "Node %s does not exist!!!" % node
 
     selectionConnectionName = ("%s_rigBuilderSelectionConnection" % node)
