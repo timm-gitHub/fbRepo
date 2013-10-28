@@ -4,7 +4,9 @@ import pymel.core
 import rigBuilder.face.utils.attribute as attributeUtils
 import rigBuilder.face.utils.file as fileUtils
 import rigBuilder.face.utils.skeleton as skeletonUtils
-from rigBuilder.face.faceRigEnv import FACE_SKELETON_GUIDE_NS
+from rigBuilder.face.faceRigEnv import FACE_SKELETON_GUIDE_NS,\
+    FACE_MODEL_COMPONENT_BASE_ROOT, FACE_MODEL_COMPONENT_BASE_NS,\
+    FACE_MODEL_COMPONENT_SHAPE_NS
 
 TOP_NODE_NAME = 'C_rig_grp_0'
 MODULE_NODE_NAME = '%s_%sModule_grp_0'
@@ -69,14 +71,35 @@ class RigComponent(object):
                 self.__setattr__('%sNode' % value[0], rigNode)
 
 
-    def importModelComponent(self, filePath, namespace):
+
+    def importModelComponent(self, filePath, namespace=FACE_MODEL_COMPONENT_BASE_NS):
 
         if not pymel.core.objExists(self.geometryNode):
             self.buildRigHierarchy()
 
-        fileUtils.importUnderGroup(filePath, self.geometryNode.name(),
+        return fileUtils.importUnderGroup(filePath, self.geometryNode.name(),
             namespace=namespace)
 
+
+    def referenceShapeComponent(self, filePath, namespace=FACE_MODEL_COMPONENT_SHAPE_NS):
+
+        if not pymel.core.objExists(self.geometryNode):
+            self.buildRigHierarchy()
+
+        return fileUtils.referenceUnderGroup(filePath, group=self.geometryNode.name(),
+            namespace=namespace)
+
+        return True
+
+
+    def removeShapeComponentReference(self, namespace=FACE_MODEL_COMPONENT_SHAPE_NS):
+        
+        a = pymel.core.system.FileReference(namespace=namespace)
+        a.importContents()
+        
+        maya.cmds.namespace(set=':%s' % namespace)
+        maya.cmds.delete(maya.cmds.namespaceInfo(ls=True, dp=True))
+        maya.cmds.namespace(set=':')
         return True
 
 

@@ -1,8 +1,18 @@
+'''
+Created on  11/09/2013
+
+@author: caleb.bell
+'''
+
 import sys
 import types
 
 import maya.mel
 import pymel.core
+
+
+def clampValue(value, minValue=0.0, maxValue=1.0):
+    return min([maxValue, max(value, minValue)])
 
 
 def createFourByFourFromMatrix(matrix):
@@ -31,26 +41,6 @@ def functionDebugDecorator(fn):
                 'Debug Decorator:\nFucntion:%s\n*args:%s\n**kwargs:%s\n' % (
                     fn, args, kwargs)
             )
-
-    wrapped.__name__ = fn.__name__
-    wrapped.__doc__ = fn.__doc__
-
-    return wrapped
-
-
-def restoreSelectionDecorator(fn):
-
-    def wrapped(*args, **kwargs):
-
-        sel = None
-
-        try:
-            sel = maya.cmds.ls(sl=True)
-            return fn(*args, **kwargs)
-
-        finally:
-            if sel:
-                maya.cmds.select(sel)
 
     wrapped.__name__ = fn.__name__
     wrapped.__doc__ = fn.__doc__
@@ -107,4 +97,36 @@ def layoutGuidesOnSelectedCurve(namePrefix='C_tongue', num=6):
         return False
 
     return layoutGuidesOnCurve(curve[0], namePrefix, num)
+
+
+def listHistoryByType(node, nodeType, **kwargs):
+    ''' A wrapper for Maya's listHistory Command that lets me easily filter
+    particular node types. '''
+    
+    result = list()
+    
+    for item in pymel.core.listHistory(node, **kwargs):
+        if not item.type() == nodeType:
+            continue
+            
+        result.append(item)
+        
+    return result
+
+
+def restoreSelectionDecorator(fn):
+
+    def wrapped(*args, **kwargs):
+
+        try:
+            sel = maya.cmds.ls(sl=True) or None
+            return fn(*args, **kwargs)
+
+        finally:
+            maya.cmds.select(sel)
+
+    wrapped.__name__ = fn.__name__
+    wrapped.__doc__ = fn.__doc__
+
+    return wrapped
 

@@ -1310,8 +1310,8 @@ alternate-background-color: rgb(121, 121, 121);</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>568</width>
-               <height>427</height>
+               <width>551</width>
+               <height>452</height>
               </rect>
              </property>
              <attribute name="label">
@@ -1550,119 +1550,112 @@ alternate-background-color: rgb(121, 121, 121);</string>
                          <height>0</height>
                         </size>
                        </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_37">
-                        <property name="spacing">
-                         <number>0</number>
-                        </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_33">
                         <item>
-                         <layout class="QVBoxLayout" name="verticalLayout_33">
-                          <property name="spacing">
-                           <number>6</number>
+                         <widget class="QLabel" name="label_32">
+                          <property name="font">
+                           <font>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
                           </property>
-                          <item>
-                           <widget class="QLabel" name="label_32">
-                            <property name="font">
-                             <font>
-                              <weight>75</weight>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>Blend Shape Naming Convention</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QLabel" name="label_35">
-                            <property name="font">
-                             <font>
-                              <italic>false</italic>
-                              <underline>false</underline>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>[Position]_[Description]{Percentage}_shp_0</string>
-                            </property>
-                            <property name="alignment">
-                             <set>Qt::AlignCenter</set>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QLabel" name="label_39">
-                            <property name="font">
-                             <font>
-                              <weight>75</weight>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>Position Options:</string>
-                            </property>
-                            <property name="indent">
-                             <number>20</number>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QLabel" name="label_40">
-                            <property name="text">
-                             <string>'C' (Centre), 'L' (Left), 'R', (Right)</string>
-                            </property>
-                            <property name="alignment">
-                             <set>Qt::AlignCenter</set>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QLabel" name="label_41">
-                            <property name="font">
-                             <font>
-                              <weight>75</weight>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>Description Options:</string>
-                            </property>
-                            <property name="indent">
-                             <number>20</number>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QLabel" name="label_42">
-                            <property name="maximumSize">
-                             <size>
-                              <width>210</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
-                            <property name="text">
-                             <string>'camelCaseString' with option of 3-digit suffix for auto connection of additive in-between shapes ie. 'camelCaseString050'</string>
-                            </property>
-                            <property name="wordWrap">
-                             <bool>true</bool>
-                            </property>
-                            <property name="indent">
-                             <number>30</number>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <spacer name="verticalSpacer_6">
-                            <property name="orientation">
-                             <enum>Qt::Vertical</enum>
-                            </property>
-                            <property name="sizeHint" stdset="0">
-                             <size>
-                              <width>20</width>
-                              <height>40</height>
-                             </size>
-                            </property>
-                           </spacer>
-                          </item>
-                         </layout>
+                          <property name="text">
+                           <string>Blend Shape Naming Convention</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_35">
+                          <property name="font">
+                           <font>
+                            <italic>false</italic>
+                            <underline>false</underline>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>[Position]_[Description]{Percentage}_shp_0</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_39">
+                          <property name="font">
+                           <font>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Position Options:</string>
+                          </property>
+                          <property name="indent">
+                           <number>20</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_40">
+                          <property name="text">
+                           <string>'C' (Centre), 'L' (Left), 'R', (Right)</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_41">
+                          <property name="font">
+                           <font>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Description Options:</string>
+                          </property>
+                          <property name="indent">
+                           <number>20</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_42">
+                          <property name="maximumSize">
+                           <size>
+                            <width>210</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>'camelCaseString' with option of 3-digit suffix for auto connection of additive in-between shapes ie. 'camelCaseString050'</string>
+                          </property>
+                          <property name="wordWrap">
+                           <bool>true</bool>
+                          </property>
+                          <property name="indent">
+                           <number>30</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="verticalSpacer_6">
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                          <property name="sizeType">
+                           <enum>QSizePolicy::Minimum</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>20</width>
+                            <height>128</height>
+                           </size>
+                          </property>
+                         </spacer>
                         </item>
                        </layout>
                       </widget>
@@ -1686,7 +1679,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                      <item>
                       <widget class="QFrame" name="frame_3">
                        <property name="sizePolicy">
-                        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                          <horstretch>0</horstretch>
                          <verstretch>0</verstretch>
                         </sizepolicy>
@@ -1703,31 +1696,7 @@ alternate-background-color: rgb(121, 121, 121);</string>
                        <property name="frameShadow">
                         <enum>QFrame::Plain</enum>
                        </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_49">
-                        <item>
-                         <layout class="QVBoxLayout" name="verticalLayout_51">
-                          <item>
-                           <widget class="QLabel" name="label_31">
-                            <property name="font">
-                             <font>
-                              <weight>75</weight>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>Blend Shape Channel Box</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="frbToolsBlendShapeChannelBoxPushButton">
-                            <property name="text">
-                             <string>Pop Channel Box For Selected Mesh</string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </item>
+                       <layout class="QVBoxLayout" name="verticalLayout_72">
                         <item>
                          <layout class="QVBoxLayout" name="verticalLayout_48">
                           <item>
@@ -1753,17 +1722,122 @@ alternate-background-color: rgb(121, 121, 121);</string>
                          </layout>
                         </item>
                         <item>
-                         <spacer name="verticalSpacer_3">
-                          <property name="orientation">
-                           <enum>Qt::Vertical</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>20</width>
-                            <height>115</height>
-                           </size>
-                          </property>
-                         </spacer>
+                         <layout class="QVBoxLayout" name="verticalLayout_49">
+                          <item>
+                           <widget class="QLabel" name="label_37">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Invert Blend Shape Weights</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_40">
+                            <item>
+                             <widget class="QPushButton" name="frbToolsInvertBlendShapeWeightsEnvelopePushButton">
+                              <property name="text">
+                               <string>Envelope</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="frbToolsInvertBlendShapeWeightsTargetsPushButton">
+                              <property name="text">
+                               <string>Targets</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_69">
+                          <item>
+                           <widget class="QLabel" name="label_43">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Create Taper Shapes</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_43">
+                            <item>
+                             <widget class="QPushButton" name="frbToolsCreateTaperShapesEnvelopePushButton">
+                              <property name="text">
+                               <string>Envelope</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="frbToolsCreateTaperShapesTargetsPushButton">
+                              <property name="text">
+                               <string>Targets</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_71">
+                          <item>
+                           <widget class="QLabel" name="label_44">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Split Targets XYZ</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="frbToolsSplitTargetsXYZPushButton">
+                            <property name="text">
+                             <string>Split Targets XYZ</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_51">
+                          <item>
+                           <widget class="QLabel" name="label_31">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Blend Shape Channel Box</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="frbToolsBlendShapeChannelBoxPushButton">
+                            <property name="text">
+                             <string>Pop Channel Box For Selected Mesh</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </item>
                        </layout>
                       </widget>
@@ -3681,6 +3755,31 @@ alternate-background-color: rgb(121, 121, 121);</string>
     <string>toolsFaceGUIControlMirrorModeRadioChange</string>
    </property>
   </action>
+  <action name="actionToolsInvertBlendShapeWeightsEnvelopePushButtonClicked">
+   <property name="text">
+    <string>ToolsInvertBlendShapeWeightsEnvelopePushButtonClicked</string>
+   </property>
+  </action>
+  <action name="actionToolsInvertBlendShapeWeightsTargetsPushButtonClicked">
+   <property name="text">
+    <string>ToolsInvertBlendShapeWeightsTargetsPushButtonClicked</string>
+   </property>
+  </action>
+  <action name="actionToolsCreateTaperShapesEnvelopePushButtonClicked">
+   <property name="text">
+    <string>ToolsCreateTaperShapesEnvelopePushButtonClicked</string>
+   </property>
+  </action>
+  <action name="actionToolsCreateTaperShapesTargetsPushButtonClicked">
+   <property name="text">
+    <string>ToolsInvertBlendShapeWeightsEnvelopePushButtonClicked</string>
+   </property>
+  </action>
+  <action name="actionToolsSplitTargetsXYZPushButtonClicked">
+   <property name="text">
+    <string>ToolsSplitTargetsXYZPushButtonClicked</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>
@@ -3885,22 +3984,6 @@ alternate-background-color: rgb(121, 121, 121);</string>
     <hint type="sourcelabel">
      <x>260</x>
      <y>193</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>frbToolsBlendShapeLayoutPushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>actionToolsBlendShapeLayoutPushButtonClicked</receiver>
-   <slot>trigger()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>317</x>
-     <y>317</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>
@@ -4405,22 +4488,6 @@ alternate-background-color: rgb(121, 121, 121);</string>
    </hints>
   </connection>
   <connection>
-   <sender>frbToolsBlendShapeChannelBoxPushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>actionToolsBlendShapeChannelBoxPushButtonClicked</receiver>
-   <slot>trigger()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>315</x>
-     <y>434</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>frbToolsInterfaceNodeChannelBoxPushButton</sender>
    <signal>clicked()</signal>
    <receiver>actionToolsInterfaceNodeChannelBoxPushButtonClicked</receiver>
@@ -4509,6 +4576,118 @@ alternate-background-color: rgb(121, 121, 121);</string>
     <hint type="sourcelabel">
      <x>664</x>
      <y>365</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsBlendShapeLayoutPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsBlendShapeLayoutPushButtonClicked</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>317</x>
+     <y>317</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsBlendShapeChannelBoxPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsBlendShapeChannelBoxPushButtonClicked</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>315</x>
+     <y>434</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsInvertBlendShapeWeightsEnvelopePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsInvertBlendShapeWeightsEnvelopePushButtonClicked</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>515</x>
+     <y>376</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsInvertBlendShapeWeightsTargetsPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsInvertBlendShapeWeightsTargetsPushButtonClicked</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>635</x>
+     <y>376</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsCreateTaperShapesEnvelopePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsCreateTaperShapesEnvelopePushButtonClicked</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>515</x>
+     <y>428</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsCreateTaperShapesTargetsPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsCreateTaperShapesTargetsPushButtonClicked</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>635</x>
+     <y>428</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>frbToolsSplitTargetsXYZPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionToolsSplitTargetsXYZPushButtonClicked</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>575</x>
+     <y>479</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>

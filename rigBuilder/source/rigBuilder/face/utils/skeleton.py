@@ -106,7 +106,6 @@ class FaceSkeletonBuilder(object):
             self.bindJointsSet = pymel.core.general.sets(
                 name='faceBindJoints', em=True)
 
-
         # Build the skeleton.
         self.skeletonRoot = self._buildSkeletonRoot()
 
@@ -115,7 +114,6 @@ class FaceSkeletonBuilder(object):
 
         for side in ['L', 'R']:
             self._buildEyeSkeleton(side=side, parent=self.skeletonRoot)
-
 
         return self.skeletonRoot
 
@@ -137,7 +135,7 @@ class FaceSkeletonBuilder(object):
         try:
             eyeGuide = pymel.core.PyNode(EYE_GUIDE % (self._guideNamespace, side))
         except:
-            sys.stdout.write("Can't find eye guide...")
+            sys.stdout.write("Can't find eye guide...\n")
             return False
 
         # Create the basic set of eye joints.
@@ -305,8 +303,10 @@ class FaceSkeletonBuilder(object):
 
                 self.__matchJointToGuide(guide, jawJoints[suffix][i])
 
+        if not (mouthJoints and jawJoints):
+            return None
 
-        # Add relevant joints to the bind set.
+        # Add relevant joints to the bind set.           
         self.bindJointsSet.addMembers([mouthJoints[0], jawJoints['Upper'][0],
             jawJoints['Lower'][0]])
 
@@ -319,8 +319,10 @@ class FaceSkeletonBuilder(object):
         rootJoints = list()
 
         for i, guide in enumerate(rootGuides):
-
-            guidePyNode = pymel.core.PyNode('%s:%s' % (self._guideNamespace, guide))
+            try:
+                guidePyNode = pymel.core.PyNode('%s:%s' % (self._guideNamespace, guide))
+            except:
+                continue
 
             # Creation.
             rootJoints.append(pymel.core.createNode('joint', name=guide.replace('_gui_', '_jnt_')))
@@ -341,6 +343,9 @@ class FaceSkeletonBuilder(object):
 
             dagUtils.rotationToJointOrient(rootJoints[i])
 
+        if not rootJoints:
+            return None
+
         # Add the root joint to the bind set.
         self.bindJointsSet.addMembers(rootJoints)
 
@@ -351,6 +356,9 @@ class FaceSkeletonBuilder(object):
 
         tongueGuides = pymel.core.ls('%s:C_tongue_gui_*' % self._guideNamespace, typ='transform')
         tongueJoints = list()
+
+        if not tongueGuides:
+            return None
 
         # Tongue base first.
         tongueJoints.append(pymel.core.createNode('joint', name='C_tongueBase_jnt_0'))
@@ -369,7 +377,6 @@ class FaceSkeletonBuilder(object):
             tongueJoints[i + 1].setParent(tongueJoints[i])
 
             self.__matchJointToGuide(guide, tongueJoints[i + 1])
-
 
         # Add all but the tongue base joint to the bind set.
         self.bindJointsSet.addMembers(tongueJoints[1:])

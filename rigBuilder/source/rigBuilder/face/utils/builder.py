@@ -55,15 +55,16 @@ def connectRigModulesToComponent():
 
 class SetupVisibilitySwitches(object):
 
-    switchNodeName = 'visibility_grp'
+    switchNodeName  = 'visibility_grp'
 
-    guideNamespace = FACE_SKELETON_GUIDE_NS
-    guideTopGroup = guideNamespace + ':' + FACE_SKELETON_GUIDE_ROOT
+    guideNamespace  = FACE_SKELETON_GUIDE_NS
+    guideTopGroup   = guideNamespace + ':' + FACE_SKELETON_GUIDE_ROOT
 
-    modelNamespace = FACE_MODEL_COMPONENT_BASE_NS
-    modelTopGroup = modelNamespace + ':' + FACE_MODEL_COMPONENT_BASE_ROOT
+    modelNamespace  = FACE_MODEL_COMPONENT_BASE_NS
+    modelTopGroup   = modelNamespace + ':' + FACE_MODEL_COMPONENT_BASE_ROOT
 
-    shapeTopGroup = FACE_MODEL_COMPONENT_SHAPE_ROOT
+    shapeNamespace  = FACE_MODEL_COMPONENT_SHAPE_NS
+    shapeTopGroup   = shapeNamespace + ':' + FACE_MODEL_COMPONENT_SHAPE_ROOT
 
     @classmethod
     def guideSwitches(cls, default=False):
@@ -103,6 +104,8 @@ class SetupVisibilitySwitches(object):
             except:
                 pass
 
+        return True
+        
 
     @classmethod
     def skeletonSwitches(cls):
@@ -143,6 +146,8 @@ class SetupVisibilitySwitches(object):
         # Lock the reverse
         reverse.ihi.set(False)
         attributeUtils.lockAll(reverse)
+        
+        return True
 
 
     @classmethod
@@ -215,31 +220,3 @@ class SetupVisibilitySwitches(object):
         switchNode.attr('%sMeshDisplayMode' % prefix) >> shapeTopGroup.overrideDisplayType
 
         return True
-
-
-    @classmethod
-    def stickyControlSwitches(cls):
-
-        prefix = 'stickyControls'
-
-        switchNode = pymel.core.PyNode(cls.switchNodeName)
-        switchNode.addAttr('%sDisplayMarker' % prefix, nn=' ',
-            at='enum', en=nameUtils.camelCaseToNiceString(prefix), k=True)
-        switchNode.stickyControlsDisplayMarker.lock()
-
-        switchNode.addAttr('%sDisplayControls' % prefix, at='bool', k=False,
-            nn='Display Controls')
-        switchNode.attr('%sDisplayControls' % prefix).set(cb=True)
-        switchNode.attr('%sDisplayControls' % prefix).set(False)
-
-        for control in pymel.core.ls('*_*Sticky_ctl_*', type='transform'):
-            for child in control.getChildren(shapes=True):
-
-                child.overrideEnabled.unlock()
-                child.overrideEnabled.set(True)
-                child.overrideEnabled.lock()
-
-                child.overrideVisibility.unlock()
-                switchNode.attr('%sDisplayControls' % prefix) >> child.overrideVisibility
-                child.overrideVisibility.lock()
-

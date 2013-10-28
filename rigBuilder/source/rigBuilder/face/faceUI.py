@@ -166,7 +166,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         # Tools:
         self._buildFaceGUIGuideTools()
-
+        
 
     #===========================================================================
     # GUI Build / Update Methods
@@ -697,13 +697,13 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def on_actionBlendShapesPublishPushButtonClicked_triggered(self, *args):
         if not args: return None
 
+        assert maya.cmds.objExists(FACE_MODEL_COMPONENT_SHAPE_ROOT), ("Can not "
+            "find shape root node '%s'..." % FACE_MODEL_COMPONENT_SHAPE_ROOT)
+
         if not assetPublishConfirmDialog('BlendShapes'):
             return False
 
-        facePublish.publishBlendShapesFromScene(
-            character=self._getSelectedCharacter(),
-            description=str()
-            )
+        facePublish.publishBlendShapesFromScene(character=self._getSelectedCharacter())
 
         self._refreshVersions(['BlendShapes'])
         return True
@@ -911,6 +911,31 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             mode=abs(1 - self.frbToolsFaceGUIControlMirrorDirectionRadio0.isChecked()),
             flipXAxis=self.frbToolsFaceGUIControlMirrorFlipXAxisCheckBox.checkState()
             )
+
+
+    def on_actionToolsInvertBlendShapeWeightsEnvelopePushButtonClicked_triggered(self, *args):
+        if not args: return None
+        return blendShapeUtils.invertBlendShapeWeightsOnSelection(envelope=True)
+        
+        
+    def on_actionToolsInvertBlendShapeWeightsTargetsPushButtonClicked_triggered(self, *args):
+        if not args: return None
+        return blendShapeUtils.invertBlendShapeWeightsOnSelection(envelope=False)
+
+
+    def on_actionToolsCreateTaperShapesEnvelopePushButtonClicked_triggered(self, *args):
+        if not args: return None
+        return blendShapeUtils.createTaperShapesFromSelection(envelope=True)
+        
+        
+    def on_actionToolsCreateTaperShapesTargetsPushButtonClicked_triggered(self, *args):
+        if not args: return None
+        return blendShapeUtils.createTaperShapesFromSelection(envelope=False)
+
+
+    def on_actionToolsSplitTargetsXYZPushButtonClicked_triggered(self, *args):
+        if not args: return None
+        return blendShapeUtils.splitTargetsXYZOnSelection()
 
 
     def on_actionToolsSkeletonGuideBuildSkeletonPushButtonClicked_triggered(self, *args):

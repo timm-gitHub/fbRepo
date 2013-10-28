@@ -77,9 +77,21 @@ def faceRigBuilder(character, modelPath, skeletonGuidePath, guiGuidePath=None,
 
             # Setup blendShapes.
             elif layer == FACE_MODEL_COMPONENT_SHAPE_NS:
+                rigUtils.log('Referencing Blend Shapes...')
 
-                rig.importModelComponent(filePath=filePath, namespace=None)
-                blendShapeUtils.connectAllBlendShapeTargets(autoInBetween=True)
+                rig.referenceShapeComponent(
+                    filePath    = filePath,
+                    namespace   = FACE_MODEL_COMPONENT_SHAPE_NS
+                    )
+                
+                rigUtils.log('Connecting Blend Shapes...')
+                blendShapeUtils.connectAllBlendShapeTargets(
+                    modelNamespace  = FACE_MODEL_COMPONENT_BASE_NS,
+                    shapeGroup      = '%s:%s' %(FACE_MODEL_COMPONENT_SHAPE_NS, FACE_MODEL_COMPONENT_SHAPE_ROOT),
+                    autoInBetween   = True
+                    )
+
+                rigUtils.log('Blend Shape Connection Complete...')
 
 
         # Face Control GUI Layer.
@@ -195,8 +207,8 @@ def faceRigBuilder(character, modelPath, skeletonGuidePath, guiGuidePath=None,
     rig.removeRigComponentGuideReference()
 
     # Delete the shapes.
-    pymel.core.delete(pymel.core.ls('%s:*' % FACE_MODEL_COMPONENT_SHAPE_NS))
+    rig.removeShapeComponentReference()
 
     # Publish.
-    return facePublish.publishFaceRigFromScene(character, description)
+    return facePublish.publishFaceRigFromScene(character)
 

@@ -161,7 +161,7 @@ def getWeightingVersions(character):
 # Publishers
 #===============================================================================
 
-def publishBlendShapes(character, source, description=str()):
+def publishBlendShapes(character, source):
     """ Save face rig blend shapes on the server.  """
 
     path = '%s/%s/rig/face/blendShapes' % (ROOTCHAR, character)
@@ -172,20 +172,39 @@ def publishBlendShapes(character, source, description=str()):
 
 
 @faceUtils.restoreSelectionDecorator
-def publishBlendShapesFromScene(character, description=str()):
+def publishBlendShapesFromScene(character, allowHistory=True):
 
-    rootNode = FACE_MODEL_COMPONENT_SHAPE_ROOT
+    assert maya.cmds.objExists(FACE_MODEL_COMPONENT_SHAPE_ROOT), ('Can not find'
+        ' the shape root node...')
+    
+    assemblies = maya.cmds.ls(assemblies=True)
+    if FACE_MODEL_COMPONENT_SHAPE_ROOT in assemblies:
+        assemblies.pop(assemblies.index(FACE_MODEL_COMPONENT_SHAPE_ROOT))
+    
+    validExport = True
+    for node in maya.cmds.listRelatives(FACE_MODEL_COMPONENT_SHAPE_ROOT, ad=True,
+            f=True, typ='transform'):
+                
+        for item in maya.cmds.ls(maya.cmds.listHistory(node), assemblies=True,
+                 type='transform'):
+                     
+            if item in assemblies:
+                validExport = False
+                break
 
-    maya.cmds.select(rootNode)
+    assert validExport, ("All nodes being exported should be parented under the"
+        " shape root node: '%s'..." % FACE_MODEL_COMPONENT_SHAPE_ROOT)
+
+    maya.cmds.select(FACE_MODEL_COMPONENT_SHAPE_ROOT)
 
     tempPath = fileUtils.getTempFilePath([character, 'blendShapes'], 'ma')
-    maya.cmds.file(tempPath, typ='mayaAscii', es=True, ch=False, con=False,
-        exp=False, sh=False)
+    maya.cmds.file(tempPath, typ='mayaAscii', es=allowHistory, ch=allowHistory,
+        con=allowHistory, exp=allowHistory, sh=False)
 
-    return publishBlendShapes(character, tempPath, description)
+    return publishBlendShapes(character, tempPath)
 
 
-def publishGuide(character, source, guideType='gui', description=str()):
+def publishGuide(character, source, guideType='gui'):
     """ Save a character face rig guide on the server.  """
 
     path = '%s/%s/rig/face/%sGuide' % (ROOTCHAR, character, guideType)
@@ -195,7 +214,7 @@ def publishGuide(character, source, guideType='gui', description=str()):
 
 
 @faceUtils.restoreSelectionDecorator
-def publishGuideFromScene(character, guideType='gui', description=str()):
+def publishGuideFromScene(character, guideType='gui'):
 
     rootNode = globals()['FACE_%s_GUIDE_ROOT' % guideType.upper()]
 
@@ -205,10 +224,10 @@ def publishGuideFromScene(character, guideType='gui', description=str()):
     maya.cmds.file(tempPath, typ='mayaAscii', es=True, ch=True, con=True,
         exp=True, sh=False)
 
-    return publishGuide(character, tempPath, guideType, description)
+    return publishGuide(character, tempPath, guideType)
 
 
-def publishDrivenKeysData(character, source, description=str()):
+def publishDrivenKeysData(character, source):
     """ Save character face rig driven keyframe data on the server.  """
 
     path = '%s/%s/rig/face/drivenKeys' % (ROOTCHAR, character)
@@ -216,15 +235,15 @@ def publishDrivenKeysData(character, source, description=str()):
     return bodyPublish.publishToServer(source, path, pattern)
 
 
-def publishDrivenKeysDataFromScene(character, description=str()):
+def publishDrivenKeysDataFromScene(character):
 
     tempPath = fileUtils.getTempFilePath([character, 'drivenKeys'], 'json')
     faceIO.exportSceneDrivenKeysData(tempPath, verbose=True)
 
-    return publishDrivenKeysData(character, tempPath, description)
+    return publishDrivenKeysData(character, tempPath)
 
 
-def publishFaceRig(character, source, description=str()):
+def publishFaceRig(character, source):
     """ Save character face rig on the server.  """
 
     path = '%s/%s/rig/face/anim' % (ROOTCHAR, character)
@@ -234,7 +253,7 @@ def publishFaceRig(character, source, description=str()):
 
 
 @faceUtils.restoreSelectionDecorator
-def publishFaceRigFromScene(character, description=str()):
+def publishFaceRigFromScene(character):
 
     rootNode = FACE_RIG_ROOT
 
@@ -244,10 +263,10 @@ def publishFaceRigFromScene(character, description=str()):
     maya.cmds.file(tempPath, typ='mayaAscii', es=True, ch=True, con=True,
         exp=True, sh=True)
 
-    return publishFaceRig(character, tempPath, description)
+    return publishFaceRig(character, tempPath)
 
 
-def publishPreferenceData(character, source, description=str()):
+def publishPreferenceData(character, source):
     """ Save face rig preference data on the server.  """
 
     path = '%s/%s/rig/face/preferences' % (ROOTCHAR, character)
@@ -255,16 +274,16 @@ def publishPreferenceData(character, source, description=str()):
     return bodyPublish.publishToServer(source, path, pattern)
 
 
-def publishPreferenceDataFromScene(character, description=str()):
+def publishPreferenceDataFromScene(character):
 
     tempPath = fileUtils.getTempFilePath([character, 'preferences'], 'json')
     faceIO.exportAttributeData(FACE_PREFERENCE_GRP, tempPath, verbose=True,
         ud=True, sa=True)
 
-    return publishPreferenceData(character, tempPath, description)
+    return publishPreferenceData(character, tempPath)
 
 
-def publishWeightingData(character, source, description=str()):
+def publishWeightingData(character, source):
     """ Save face rig weighting data on the server.  """
 
     path = '%s/%s/rig/face/weighting' % (ROOTCHAR, character)
@@ -272,10 +291,10 @@ def publishWeightingData(character, source, description=str()):
     return bodyPublish.publishToServer(source, path, pattern)
 
 
-def publishWeightingDataFromScene(character, description=str()):
+def publishWeightingDataFromScene(character):
 
     tempPath = fileUtils.getTempFilePath([character, 'weighting'], 'json')
     bodyIO.exportSkinByRef(FACE_MODEL_COMPONENT_BASE_NS, tempPath)
 
-    return publishWeightingData(character, tempPath, description)
+    return publishWeightingData(character, tempPath)
 
