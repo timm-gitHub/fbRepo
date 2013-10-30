@@ -13,7 +13,7 @@ from rigBuilder import rigUtils, rigEnv
 
 def getLatestFile(path,pattern):
     """Return the latest asset as the base name."""
-
+    
     if not os.path.isdir(path): return
     
     latest  = None
@@ -23,7 +23,7 @@ def getLatestFile(path,pattern):
         
         if not re.match(pattern,output): continue
         
-        fileversion = int(re.search('[0-9]{3}',output).group(0))
+        fileversion = int(re.search('v[0-9]{3}',output).group(0)[1:])
         
         if fileversion > version: 
             version = fileversion
@@ -42,7 +42,7 @@ def getVersionedFile(path,pattern,version):
         
         if not re.match(pattern,output): continue
         
-        fileversion = re.search('[0-9]{3}',output).group(0)
+        fileversion = re.search('v[0-9]{3}',output).group(0)[1:]
         
         if fileversion == version: f = output
         
@@ -60,7 +60,7 @@ def getLatestVersion(path,pattern):
         
         if not re.match(pattern,output): continue
         
-        fileversion = int(re.search('[0-9]{3}',output).group(0))
+        fileversion = int(re.search('v[0-9]{3}',output).group(0)[1:])
         
         if fileversion > version: 
             version = fileversion
@@ -76,7 +76,7 @@ def getNextFile(path,pattern):
     if not latest:
         return string.replace(pattern,'[0-9]{3}','001')[:-1]
     
-    version     = re.search('[0-9]{3}',latest).group(0)
+    version     = re.search('v[0-9]{3}',latest).group(0)[1:]
     nextversion = str(int(version)+1).zfill(3)
     
     return string.replace(latest,version,nextversion)
@@ -102,7 +102,7 @@ def getVersions(path,pattern):
         
         if not re.match(pattern,output): continue
         
-        version = re.search('[0-9]{3}',output).group(0)
+        version = re.search('v[0-9]{3}',output).group(0)[1:]
         versions.append(version)
         
     versions.sort()
@@ -137,12 +137,16 @@ def getComponentBuildScript(component, module, relativepath=False):
 
 def getModel(character, lod, typ, relativepath=False):
     """Return character model."""
-
-    path    = '%s/%s/model/%s/%s/mb' % (rigEnv.ROOTCHAR, character, lod, typ)
-    version = getLatestFile(path,'v[0-9]{3}')
-    if not version: return
-    pattern = '[a-zA-Z0-9]+_model_%s_%s_v[0-9]{3}_[A-Z]{4}.mb$' % (lod, typ)
-    path    = os.path.join(path,version)
+    
+    path = '//bjserver3/Tank/blinky_bill_movie/assets/character/%s/Model/publish/maya' % character
+    #path    = '%s/%s/model/%s/%s/mb' % (rigEnv.ROOTCHAR, character, lod, typ)
+    #version = getLatestFile(path,'v[0-9]{3}')
+    
+    #if not version: return
+    
+    pattern = '[a-zA-Z0-9]+_model_100_base.v[0-9]{3}.ma$'
+    #pattern = '[a-zA-Z0-9]+_model_%s_%s_v[0-9]{3}_[A-Z]{4}.mb$' % (lod, typ)
+    #path    = os.path.join(path,version)
     output  = getLatestFile(path,pattern)
     
     if not output: return

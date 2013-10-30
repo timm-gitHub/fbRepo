@@ -134,12 +134,14 @@ class Rig(object):
         # Character build next
         path    = None
         version = 0
+        # testing WIP
         for file in os.listdir(rigEnv.LOCALBUILDS):
             if re.match('%s_rig_%sBuildScript_v[0-9]{3}_[A-Z]{4}.py$' % (self.name,mod),file):
                 if version < int(re.search('[0-9]{3}',file).group(0)):
                     version = int(re.search('[0-9]{3}',file).group(0))
                     path    = os.path.join(rigEnv.LOCALBUILDS,file)
         
+        # get the build script
         if not path: path = bodyPublish.getRigBuildScript(self.name,module)
         if not path:
             rigUtils.log('%s not found: %s' % (module,self.name)) 
@@ -745,7 +747,8 @@ class Rig(object):
     
     def getRootNodes(self):
         
-        rootnodes = []
+        rootnodes        = []
+        orderedRootNodes = []
         
         x = 0
         while x < len(self.data):
@@ -780,7 +783,19 @@ class Rig(object):
                 
             x = x + 1
         
-        return rootnodes
+        # find the torso first
+        for rootnode in rootnodes:
+            if 'torso' in rootnode.asset.lower():
+                orderedRootNodes.append(rootnodes.pop(rootnodes.index(rootnode)))
+        
+        # find the neck second
+        for rootnode in rootnodes:
+            if 'neck' in rootnode.asset.lower():
+                orderedRootNodes.append(rootnodes.pop(rootnodes.index(rootnode)))
+        
+        orderedRootNodes = orderedRootNodes + rootnodes
+        
+        return orderedRootNodes
     
     def guideRemove(self):
         """Remove references to component guide rigs from the scene."""

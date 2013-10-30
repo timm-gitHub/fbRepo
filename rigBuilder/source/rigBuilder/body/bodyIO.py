@@ -44,7 +44,7 @@ def exportControlData(file):
         shpbuffer = {}
         spans = cmds.getAttr('%s.spans' % shp)
         if not spans: continue
-
+        
         deg = 0
         if not cmds.getAttr('%s.form' % shp): deg = 3
 
@@ -570,18 +570,16 @@ def importSkin(skindict, geo, count=0, mirrored=False, **kwargs):
     """Import and apply skin weighting from json file."""
 
     influences = skindict['influences']
-    pointdata = skindict['pointdata']
-
-    notfound = []
-    tmp = []
+    pointdata  = skindict['pointdata']
+    notfound   = []
+    tmp        = []
+    
     for inf in influences:
-
         if mirrored:
             if inf[0] == 'R':
                 inf = 'L%s' % inf[1:]
             elif inf[0] == 'L':
                 inf = 'R%s' % inf[1:]
-
             tmp.append(inf)
 
         if not cmds.objExists(inf): notfound.append(inf)
@@ -600,29 +598,31 @@ def importSkin(skindict, geo, count=0, mirrored=False, **kwargs):
 
     # test skin cluster existence
     skincluster = rigUtils.findSkinClusterOnNode(geo)
-    if not skincluster:
+    
+    if skincluster: cmds.delete(skincluster)
+    #if not skincluster:
+        
+    # ensure geo is visible
+    shps   = cmds.listRelatives(geo, s=True)
+    geosrc = cmds.listConnections('%s.v' % geo, s=True, d=False, p=True)
 
-        # ensure geo is visible
-        shps = cmds.listRelatives(geo, s=True)
-        geosrc = cmds.listConnections('%s.v' % geo, s=True, d=False, p=True)
+    if geosrc:
+        cmds.disconnectAttr(geosrc[0], '%s.v' % geo)
+        cmds.setAttr('%s.v' % geo, 1)
+    for shp in shps:
+        shpsrc = cmds.listConnections('%s.v' % shp, s=True, d=False, p=True)
+        if shpsrc:
+            cmds.disconnectAttr(shpsrc[0], '%s.v' % shp)
+            cmds.setAttr('%s.v' % shp, 1)
+    # apply
+    ###################################################################
+    # hack - need to replace with storing of skin position in JSON file
+    ###################################################################
 
-        if geosrc:
-            cmds.disconnectAttr(geosrc[0], '%s.v' % geo)
-            cmds.setAttr('%s.v' % geo, 1)
-        for shp in shps:
-            shpsrc = cmds.listConnections('%s.v' % shp, s=True, d=False, p=True)
-            if shpsrc:
-                cmds.disconnectAttr(shpsrc[0], '%s.v' % shp)
-                cmds.setAttr('%s.v' % shp, 1)
-        # apply
-        ###################################################################
-        # hack - need to replace with storing of skin position in JSON file
-        ###################################################################
-
-        bShapes = None
-        shape = cmds.listRelatives(geo, ad=True, s=True)
-        if shape:
-            bShapes = cmds.listConnections(shape[0], s=True, d=False, p=False, type='blendShape')
+    bShapes = None
+    shape = cmds.listRelatives(geo, ad=True, s=True)
+    if shape:
+        bShapes = cmds.listConnections(shape[0], s=True, d=False, p=False, type='blendShape')
 
 #         if 'jacket' in geo:
 #             skincluster = cmds.skinCluster(influences, geo, sm=2, foc=False, tsb=True, nw=2)[0]
@@ -631,32 +631,32 @@ def importSkin(skindict, geo, count=0, mirrored=False, **kwargs):
 #         else:
 #             skincluster = cmds.skinCluster(influences, geo, sm=2, foc=True, tsb=True, nw=2)[0]
 
-        VALID_ARGS = [
-            ('af', 'after'),
-            ('ar', 'afterReference'),
-            ('bf', 'before'),
-            ('ex', 'exclusive'),
-            ('foc', 'frontOfChain'),
-            ('par', 'parallel')
-            ]
+    VALID_ARGS = [
+        ('af', 'after'),
+        ('ar', 'afterReference'),
+        ('bf', 'before'),
+        ('ex', 'exclusive'),
+        ('foc', 'frontOfChain'),
+        ('par', 'parallel')
+        ]
 
-        skinArgs = dict()
+    skinArgs = dict()
 
-        if not kwargs:
-            skinArgs['foc'] = True
-        else:
-            for item in VALID_ARGS:
-                for i in item:
-                    if i in kwargs:
-                        skinArgs[i] = kwargs[i]
-                        break
+    if not kwargs:
+        skinArgs['foc'] = True
+    else:
+        for item in VALID_ARGS:
+            for i in item:
+                if i in kwargs:
+                    skinArgs[i] = kwargs[i]
+                    break
 
-        skincluster = cmds.skinCluster(influences, geo, sm=2, tsb=True, nw=2, **skinArgs)[0]
+    skincluster = cmds.skinCluster(influences, geo, sm=2, tsb=True, nw=1, **skinArgs)[0]
 
-        # reconnect
-        if geosrc: cmds.connectAttr(geosrc[0], '%s.v' % geo)
-        if shpsrc: cmds.connectAttr(shpsrc[0], '%s.v' % shp)
-
+    # reconnect
+    if geosrc: cmds.connectAttr(geosrc[0], '%s.v' % geo)
+    if shpsrc: cmds.connectAttr(shpsrc[0], '%s.v' % shp)
+    
     # Check to see that the influences are actually attached to the skinCluster.
     invalidInfs = list()
     skinInfluences = cmds.skinCluster(skincluster, q=True, inf=True)

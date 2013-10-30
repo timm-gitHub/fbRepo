@@ -422,6 +422,10 @@ class BaseRigWindow(object):
         
         sel = self.tableViewComponent.selectionModel()
         
+        if not sel.hasSelection():
+            rigUtils.log('Nothing selected','w')
+            return
+        
         rows = []
         for index in sel.selectedIndexes():
             if index.row() not in rows: rows.append(index.row())
