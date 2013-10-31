@@ -5,25 +5,7 @@
 
     Author: Evan Jacobson
 
-    Exporting/Importing of json skin files assumes the following dict structure:
-
-    {
-     <object1>:
-     {
-      "deformer":<deformer name>,
-      "influences":[<list of influences>],
-      "pointdata":
-      {
-       "<vertex number>":
-       {
-         "position":[<array of vertex world space position>],
-         "skinweights":[<array of weight value per influence>]
-         "blendweight":<dual quot - linear blend weight value>
-       }
-      }
-     }
-     ...
-    }
+    This is a test
 
 """
 
@@ -364,8 +346,8 @@ def importDeformer(dagnode, j):
                 if pointdata[i] == '1' and cmds.objExists(set):
                     cmds.sets('%s.vtx[%s]' % (dagnode, i), add=set)
                 i = i + 1
-                
-            cmds.reorderDeformers(skincluster,deformer,dagnode)
+            
+            if skincluster: cmds.reorderDeformers(skincluster,deformer,dagnode)
                 
             continue
 
