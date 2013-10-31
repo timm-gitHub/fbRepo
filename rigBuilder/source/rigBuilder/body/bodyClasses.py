@@ -156,6 +156,23 @@ class Rig(object):
         
         return builds
     
+    def buildCustom(self,version=None):
+        """Process a custombuild script."""
+        
+        # get the build script
+        path = bodyPublish.getRigBuildScriptVersion(self.name,'custombuild',version)
+        
+        # test for existence
+        if not path:
+            rigUtils.log('Custom build script not found: %s' % self.name) 
+            return
+        
+        rigUtils.log('custom building %s: %s' % (self.name,path))
+        
+        build    = imp.load_source("build",path)
+        rigbuild = build.RigBuild()
+        rigbuild.build()
+    
     def buildGuide(self,refgeo=False,verbose=True,version=None):
         """Open the guide rig, check guide rig components, update guide with missing components."""
         

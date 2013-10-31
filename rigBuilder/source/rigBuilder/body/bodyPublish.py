@@ -202,11 +202,25 @@ def getRigVersions(character, typ='anim', relativepath=False):
     return getPublishedAssetVersions(path,pattern)
 
 def getRigBuildScript(character, module, relativepath=False):
-    """Return the latest character prebuild or postbuild script."""
+    """Return the latest character prebuild, postbuild or custombuild script."""
     
     path    = '%s/%s/rig/body/%s' % (rigEnv.ROOTCHAR, character, module)
     pattern = '[a-zA-Z0-9]+_rig_%s_v[0-9]{3}.py$' % module
     return getPublishedAsset(path,pattern)
+
+def getRigBuildScriptVersion(character, module, version, relativepath=False):
+    """Return the specified version of a character prebuild, postbuild or custombuild script."""
+    
+    path    = '%s/%s/rig/body/%s' % (rigEnv.ROOTCHAR, character, module)
+    pattern = '[a-zA-Z0-9]+_rig_%s_v[0-9]{3}.py$' % module
+    return getPublishedAssetVersion(path,pattern,version)
+
+def getRigBuildScriptVersions(character, module, relativepath=False):
+    """Return the latest character prebuild, postbuild or custombuild script."""
+    
+    path    = '%s/%s/rig/body/%s' % (rigEnv.ROOTCHAR, character, module)
+    pattern = '[a-zA-Z0-9]+_rig_%s_v[0-9]{3}.py$' % module
+    return getPublishedAssetVersions(path,pattern)
 
 def getRigData(character, relativepath=False):
     """Return the latest character rig data."""

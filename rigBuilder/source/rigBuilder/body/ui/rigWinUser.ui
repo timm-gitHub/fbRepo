@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>686</width>
-    <height>431</height>
+    <height>510</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>686</width>
-    <height>431</height>
+    <height>510</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>686</width>
-    <height>431</height>
+    <height>510</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -364,6 +364,18 @@ alternate-background-color: rgb(89, 89, 89);</string>
           </item>
           <item>
            <widget class="QToolBox" name="toolBox">
+            <property name="minimumSize">
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>105</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>10</pointsize>
@@ -391,7 +403,7 @@ alternate-background-color: rgb(89, 89, 89);</string>
              <number>0</number>
             </property>
             <property name="tabSpacing">
-             <number>0</number>
+             <number>6</number>
             </property>
             <widget class="QWidget" name="page_4">
              <property name="geometry">
@@ -399,7 +411,7 @@ alternate-background-color: rgb(89, 89, 89);</string>
                <x>0</x>
                <y>0</y>
                <width>105</width>
-               <height>157</height>
+               <height>170</height>
               </rect>
              </property>
              <attribute name="label">
@@ -551,7 +563,7 @@ alternate-background-color: rgb(89, 89, 89);</string>
                <x>0</x>
                <y>0</y>
                <width>105</width>
-               <height>157</height>
+               <height>170</height>
               </rect>
              </property>
              <property name="font">
@@ -720,7 +732,7 @@ alternate-background-color: rgb(89, 89, 89);</string>
                <x>0</x>
                <y>0</y>
                <width>105</width>
-               <height>157</height>
+               <height>170</height>
               </rect>
              </property>
              <property name="font">
@@ -849,7 +861,7 @@ alternate-background-color: rgb(89, 89, 89);</string>
                <x>0</x>
                <y>0</y>
                <width>105</width>
-               <height>157</height>
+               <height>170</height>
               </rect>
              </property>
              <property name="font">
@@ -1025,7 +1037,7 @@ alternate-background-color: rgb(89, 89, 89);</string>
                <x>0</x>
                <y>0</y>
                <width>105</width>
-               <height>157</height>
+               <height>170</height>
               </rect>
              </property>
              <property name="autoFillBackground">
@@ -1074,6 +1086,12 @@ alternate-background-color: rgb(89, 89, 89);</string>
               </item>
               <item>
                <widget class="QComboBox" name="comboBoxControls">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -1191,17 +1209,102 @@ alternate-background-color: rgb(89, 89, 89);</string>
               </item>
              </layout>
             </widget>
+            <widget class="QWidget" name="page_7">
+             <attribute name="label">
+              <string>6. Custom</string>
+             </attribute>
+             <layout class="QVBoxLayout" name="verticalLayout_10">
+              <property name="spacing">
+               <number>1</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>9</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QComboBox" name="comboBoxCustom">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>25</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnCustomBuild">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Build Custom</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_9">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
             <widget class="QWidget" name="page_6">
              <property name="geometry">
               <rect>
                <x>0</x>
                <y>0</y>
                <width>105</width>
-               <height>157</height>
+               <height>170</height>
               </rect>
              </property>
              <attribute name="label">
-              <string>6. Publish</string>
+              <string>7. Publish</string>
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout_8">
               <property name="spacing">
@@ -1209,6 +1312,9 @@ alternate-background-color: rgb(89, 89, 89);</string>
               </property>
               <property name="leftMargin">
                <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>9</number>
               </property>
               <property name="rightMargin">
                <number>0</number>
@@ -1222,20 +1328,20 @@ alternate-background-color: rgb(89, 89, 89);</string>
                  <bool>false</bool>
                 </property>
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>105</width>
+                  <width>0</width>
                   <height>25</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>105</width>
+                  <width>122</width>
                   <height>25</height>
                  </size>
                 </property>
@@ -1267,13 +1373,13 @@ alternate-background-color: rgb(89, 89, 89);</string>
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>105</width>
+                  <width>0</width>
                   <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>105</width>
+                  <width>126</width>
                   <height>16777215</height>
                  </size>
                 </property>
@@ -1295,13 +1401,13 @@ alternate-background-color: rgb(89, 89, 89);</string>
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>105</width>
+                  <width>0</width>
                   <height>25</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>105</width>
+                  <width>121</width>
                   <height>25</height>
                  </size>
                 </property>
@@ -1312,6 +1418,12 @@ alternate-background-color: rgb(89, 89, 89);</string>
               </item>
               <item>
                <widget class="Line" name="line">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -1331,6 +1443,12 @@ alternate-background-color: rgb(89, 89, 89);</string>
               </item>
               <item>
                <widget class="QComboBox" name="comboBoxRig">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -1357,20 +1475,20 @@ alternate-background-color: rgb(89, 89, 89);</string>
                  <bool>false</bool>
                 </property>
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>105</width>
+                  <width>0</width>
                   <height>25</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>105</width>
+                  <width>119</width>
                   <height>25</height>
                  </size>
                 </property>
@@ -1782,6 +1900,11 @@ alternate-background-color: rgb(89, 89, 89);</string>
     <string>FindGeo</string>
    </property>
   </action>
+  <action name="actionBuildCustomComponent">
+   <property name="text">
+    <string>BuildCustomComponent</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>
@@ -2066,6 +2189,22 @@ alternate-background-color: rgb(89, 89, 89);</string>
     <hint type="sourcelabel">
      <x>602</x>
      <y>357</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnCustomBuild</sender>
+   <signal>clicked()</signal>
+   <receiver>actionBuildCustomComponent</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>621</x>
+     <y>292</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>

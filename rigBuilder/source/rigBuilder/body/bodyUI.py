@@ -837,6 +837,7 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         self.btnComponentRemove.setDisabled(False)
         self.btnGuideBuild.setDisabled(False)
         self.btnRigBuild.setDisabled(False)
+        self.btnCustomBuild.setDisabled(False)
         self.btnOpenLatest.setDisabled(False)
         self.btnImportMappingAll.setDisabled(False)
         self.btnImportMappingSelected.setDisabled(False)
@@ -894,6 +895,13 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
                 self.comboBoxRig.addItem(version)
             self.comboBoxRig.setCurrentIndex(self.comboBoxRig.count()-1)
         
+        self.comboBoxCustom.clear()
+        versions = bodyPublish.getRigBuildScriptVersions(char.name,'custombuild')
+        if versions:
+            for version in versions:
+                self.comboBoxCustom.addItem(version)
+            self.comboBoxCustom.setCurrentIndex(self.comboBoxCustom.count()-1)
+            
         if not data: return
         
         for namespace,asset,mapping,symmetry,count in data:
@@ -926,6 +934,17 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
             self.btnPublishControls.setDisabled(True)
         else:
             self.btnPublishControls.setDisabled(False)
+    
+    def on_actionBuildCustomComponent_triggered(self,checked=None):
+        """Create advanced skeleton rig."""
+        
+        if checked is None: return
+        
+        if not confirmDialog('Building custom component. Continue?'): return
+        
+        char    = self.currentCharacter()
+        version = self.comboBoxCustom.currentText()
+        char.buildCustom(version)
         
     def on_actionBuildRig_triggered(self,checked=None):
         """Create advanced skeleton rig."""
@@ -1015,6 +1034,7 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         self.btnGuideBuild.setDisabled(True)
         self.btnPublishGuide.setDisabled(True)
         self.btnRigBuild.setDisabled(True)
+        self.btnCustomBuild.setDisabled(True)
         self.btnPublishRig.setDisabled(True)
         self.btnPublishMapping.setDisabled(True)
         self.btnImportMappingAll.setDisabled(True)
@@ -1049,6 +1069,7 @@ class RigWindowUser(BaseRigWindow,form_class_user,base_class_user):
         self.comboBoxGuide.clear()
         self.comboBoxMapping.clear()
         self.comboBoxControls.clear()
+        self.comboBoxCustom.clear()
         self.comboBoxRig.clear()
         self.copy = None
     
