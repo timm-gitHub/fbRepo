@@ -12,28 +12,28 @@ INDEX_INDEX = 3
 def getPosition(nameString):
     if not checkValidNameString(nameString):
         return None
-        
+
     return nameString.split('_')[POSITION_INDEX]
 
 
 def getDescription(nameString):
     if not checkValidNameString(nameString):
         return None
-        
+
     return nameString.split('_')[DESCRIPTION_INDEX]
 
 
 def getNodeType(nameString):
     if not checkValidNameString(nameString):
         return None
-        
+
     return nameString.split('_')[NODETYPE_INDEX]
 
 
 def getIndex(nameString, asInt=False):
     if not checkValidNameString(nameString):
         return None
-        
+
     index = nameString.split('_')[INDEX_INDEX]
     if not asInt:
         return index
@@ -46,24 +46,24 @@ def getIndex(nameString, asInt=False):
 def subPosition(nameString, position):
     if not checkValidNameString(nameString):
         return nameString
-    
+
     valid_prefix = ['C', 'L', 'R']
-    
+
     if not position[0] in valid_prefix and int(position[1:]):
         sys.stderr.write("String '%s' is not a valid position." % (position))
         return nameString
-        
+
     return '%s_%s' % (position, nameString.split('_', 1)[-1])
 
 
 def subDescription(nameString, description):
     if not checkValidNameString(nameString):
         return nameString
-    
+
     if not isinstance(description, basestring):
         sys.stderr.write("String '%s' is not a valid description." % (description))
         return nameString
-        
+
     splitName = nameString.split('_')
     return '%s_%s_%s_%s' % (splitName[POSITION_INDEX], description,
         splitName[NODETYPE_INDEX], splitName[INDEX_INDEX])
@@ -72,11 +72,11 @@ def subDescription(nameString, description):
 def addDescription(nameString, description):
     if not checkValidNameString(nameString):
         return nameString
-    
+
     if not isinstance(description, basestring):
         sys.stderr.write("String '%s' is not a valid description." % (description))
         return nameString
-        
+
     oldDescription = getDescription(nameString)
     return subDescription(nameString, oldDescription + description[0].upper() + description[1:])
 
@@ -84,7 +84,7 @@ def addDescription(nameString, description):
 def subNodeType(nameString, nodeType):
     if not checkValidNameString(nameString):
         return nameString
-    
+
     if not isinstance(nodeType, basestring) and len(nodeType) == 3:
         sys.stderr.write("String '%s' is not a valid node type." % (nodeType))
         return nameString
@@ -97,11 +97,11 @@ def subNodeType(nameString, nodeType):
 def subIndex(nameString, index):
     if not checkValidNameString(nameString):
         return nameString
-    
+
     if not isinstance(index, (int, long)) or int(index):
         sys.stderr.write("Input '%s' is not a valid index." % (str(index)))
         return nameString
-        
+
     return '%s_%s' % (nameString.rsplit('_', 1)[0], str(index))
 
 
@@ -118,6 +118,7 @@ def checkValidNameString(nameString):
     #    Convention Check
     if not len(splitName) == 4:
         result = False
+        return result
 
     #    Position Check
     if not checkValidPosition(position=splitName[0]):
@@ -126,7 +127,7 @@ def checkValidNameString(nameString):
     #    Description Check
     if not checkValidDescription(description=splitName[1]):
         result = False
-        
+
     #    Type Check
     if not checkValidNodeType(nodeType=splitName[2]):
         result = False
@@ -212,47 +213,47 @@ def camelCaseToList(inputString, titleCase=True):
         else:
             if len(item) > 1:
                 cleanList.append(item)
-    
+
             else:
                 if cleanList[-1].isupper() and item.isupper():
                     cleanList[-1] += item
-                    
+
                 else:
                     cleanList.append(item)
-            
+
     return cleanList
 
 
-def camelCaseToNiceString(inputString):   
+def camelCaseToNiceString(inputString):
     return listToNiceString(camelCaseToList(inputString))
 
 
 def listToNiceString(inputList):
     result = str()
-    
+
     for i, token in enumerate(inputList):
-        
+
         # Keep upper case blocks
         if token.isupper(): result += token
-        
+
         # Otherwise make them title case.
         else: result += token.title()
-        
+
         if i < (len(inputList) - 1):
             result += ' '
-        
+
     return result
 
 
 def niceNameToCamelCase(inputString, leadingCapital=False):
     result = str()
-    
+
     for i, token in enumerate(inputString.split(' ')):
         if not i and leadingCapital:
             result += token
         else:
             result += token.title()
-        
+
     return result
-    
-    
+
+

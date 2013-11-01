@@ -36,26 +36,26 @@ ASSET_TYPES = [
     ]
 
 
-VAR_PREFIX                      = 'faceRigBuilder'
-ASSET_COPY_PASTE_VAR            = '%sAssetCopyPaste' % VAR_PREFIX
-PREV_CHAR_VAR                   = '%sPreviousCharacter' % VAR_PREFIX
-PREV_MODEL_PATH_VAR             = '%sPreviousModelPath' % VAR_PREFIX
-PREV_GUI_TEMPLATE_VAR           = '%sPreviousGUITemplate' % VAR_PREFIX
-PREV_GUI_CTL_TYPE_VAR           = '%sPreviousControlType' % VAR_PREFIX
-PREV_GUI_CTL_SHP_VAR            = '%sPreviousControlShape' % VAR_PREFIX
-PREV_GUI_CTL_POS_VAR            = '%sPreviousControlPosition' % VAR_PREFIX
-PREV_GUI_CTL_DESC_VAR           = '%sPreviousControlDescription' % VAR_PREFIX
-PREV_GUI_CTL_INDEX_VAR          = '%sPreviousControlIndex' % VAR_PREFIX
-PREV_GUI_CTL_MIRROR_VAR         = '%sPreviousControlAddMirrored' % VAR_PREFIX
-PREV_GUI_CTL_MIRROR_MODE_VAR    = '%sPreviousControlMirrorMode' % VAR_PREFIX
-PREV_GUI_CTL_FLIP_X_AXIS_VAR    = '%sPreviousControlFlipXAxis' % VAR_PREFIX
+VAR_PREFIX = 'faceRigBuilder'
+ASSET_COPY_PASTE_VAR = '%sAssetCopyPaste' % VAR_PREFIX
+PREV_CHAR_VAR = '%sPreviousCharacter' % VAR_PREFIX
+PREV_MODEL_PATH_VAR = '%sPreviousModelPath' % VAR_PREFIX
+PREV_GUI_TEMPLATE_VAR = '%sPreviousGUITemplate' % VAR_PREFIX
+PREV_GUI_CTL_TYPE_VAR = '%sPreviousControlType' % VAR_PREFIX
+PREV_GUI_CTL_SHP_VAR = '%sPreviousControlShape' % VAR_PREFIX
+PREV_GUI_CTL_POS_VAR = '%sPreviousControlPosition' % VAR_PREFIX
+PREV_GUI_CTL_DESC_VAR = '%sPreviousControlDescription' % VAR_PREFIX
+PREV_GUI_CTL_INDEX_VAR = '%sPreviousControlIndex' % VAR_PREFIX
+PREV_GUI_CTL_MIRROR_VAR = '%sPreviousControlAddMirrored' % VAR_PREFIX
+PREV_GUI_CTL_MIRROR_MODE_VAR = '%sPreviousControlMirrorMode' % VAR_PREFIX
+PREV_GUI_CTL_FLIP_X_AXIS_VAR = '%sPreviousControlFlipXAxis' % VAR_PREFIX
 
 
 
 def assetPublishConfirmDialog(assetType):
     ''' Creates a standardized Maya confirmation dialog, confirming that the user
     wants to publish the asset type passed in as an argument. '''
-    
+
     niceString = nameUtils.camelCaseToNiceString(assetType)
 
     result = maya.cmds.confirmDialog(
@@ -76,40 +76,40 @@ def assetPublishConfirmDialog(assetType):
 
 def showFaceRigBuilderUI():
     qMainWindow = getMayaWindow()
-    
+
     for child in qMainWindow.children():
         if not hasattr(child, 'isWindow'):
             continue
-        
+
         if not child.isWindow():
             continue
-        
+
         if child.windowTitle() == 'Face Rig Builder':
             if not child.isVisible():
                 child.show()
             child.activateWindow()
             return True
-            
+
     window = FaceRigBuilderUI()
     window.show()
     window.activateWindow()
-    
+
     return True
 
 
 def deleteAllFaceRigBuilderUIInstances():
     ''' This function hunts down all children of Maya's main window, and kills
     them if they have the title 'Face Rig Builder'. '''
-    
+
     qMainWindow = getMayaWindow()
-    
+
     for child in qMainWindow.children():
         if not hasattr(child, 'isWindow'):
             continue
-        
+
         if not child.isWindow():
             continue
-        
+
         if child.windowTitle() == 'Face Rig Builder':
             child.hide()
             child.setParent(None)
@@ -129,7 +129,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     FIELD_PREFIX = 'frb'
 
     def __init__(self, parent=getMayaWindow()):
-        
+
         ''' Builds the GUI '''
         super(FaceRigBuilderUI, self).__init__(parent)
         self.setupUi(self)
@@ -166,7 +166,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         # Tools:
         self._buildFaceGUIGuideTools()
-        
+
 
     #===========================================================================
     # GUI Build / Update Methods
@@ -175,7 +175,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def _buildCharacterList(self):
 
         self._characterListBuilt = False
-        
+
         # Clear the list.
         self.frbCharacterAssetListWidget.clear()
 
@@ -212,46 +212,46 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         #=======================================================================
         # Setup the Option Var setters.
         #=======================================================================
-        
+
         # GUI Template.
         self.frbToolsFaceGUITemplateComboBox.currentIndexChanged['QString'].connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_TEMPLATE_VAR, str(x)]))
-        
+
         # Control Type.
         self.frbToolsFaceGUIControlTypeComboBox.currentIndexChanged['QString'].connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_TYPE_VAR, str(x)]))
-            
+
         # Control Shape.
         self.frbToolsFaceGUIControlShapeComboBox.currentIndexChanged['QString'].connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_SHP_VAR, str(x)]))
-            
+
         # Control Position.
         self.frbToolsFaceGUIControlPositionComboBox.currentIndexChanged['QString'].connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_POS_VAR, str(x)]))
-        
+
         # Control Description.
         self.frbToolsFaceGUIControlDescriptionLineEdit.textEdited.connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_DESC_VAR, str(x)]))
-        
+
         # Control Index.
         self.frbToolsFaceGUIControlIndexSpinBox.valueChanged['QString'].connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_INDEX_VAR, str(x)]))
-        
+
         # Add Mirrored Control CB.
         self.frbToolsFaceGUIAddMirroredControlCheckBox.stateChanged.connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_MIRROR_VAR, x]))
-        
+
         # Mirror Mode Radio.
         self.frbToolsFaceGUIControlMirrorDirectionRadio0.clicked.connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_MIRROR_MODE_VAR, 0]))
         self.frbToolsFaceGUIControlMirrorDirectionRadio1.clicked.connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_MIRROR_MODE_VAR, 1]))
-        
+
         # Flip X Axis CB.
         self.frbToolsFaceGUIControlMirrorFlipXAxisCheckBox.stateChanged.connect(
             lambda x: maya.cmds.optionVar(sv=[PREV_GUI_CTL_FLIP_X_AXIS_VAR, x]))
-        
-        
+
+
         #=======================================================================
         # Populate the combo boxes.
         #=======================================================================
@@ -259,10 +259,10 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         # Templates.
         templateNames = controlUtils.getFaceGUITemplateNames()
         prevTemplate = maya.cmds.optionVar(q=PREV_GUI_TEMPLATE_VAR)
-        
+
         for templateName in templateNames:
             self.frbToolsFaceGUITemplateComboBox.addItem(templateName)
-        
+
         if prevTemplate in templateNames:
             self.frbToolsFaceGUITemplateComboBox.setCurrentIndex(
                 templateNames.index(prevTemplate))
@@ -271,7 +271,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         # Control Types.
         ctlTypes = controlUtils.getFaceGUIControlNames()
         prevCtlType = maya.cmds.optionVar(q=PREV_GUI_CTL_TYPE_VAR)
-        
+
         for ctlType in ctlTypes:
             self.frbToolsFaceGUIControlTypeComboBox.addItem(ctlType)
 
@@ -283,7 +283,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         # Control Shapes.
         ctlShapes = controlUtils.getFaceGUIControlShapeNames()
         prevCtlShape = maya.cmds.optionVar(q=PREV_GUI_CTL_SHP_VAR)
-        
+
         for ctlShape in ctlShapes:
             self.frbToolsFaceGUIControlShapeComboBox.addItem(ctlShape)
 
@@ -297,23 +297,23 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         if prevCtlPos:
             self.frbToolsFaceGUIControlPositionComboBox.setCurrentIndex(
                 ['C', 'L', 'R'].index(prevCtlPos))
-        
+
         # Control Description
         prevCtlDesc = maya.cmds.optionVar(q=PREV_GUI_CTL_DESC_VAR)
         if prevCtlDesc:
             self.frbToolsFaceGUIControlDescriptionLineEdit.setText(prevCtlDesc)
-        
+
         # Control Index
         prevCtlIndex = maya.cmds.optionVar(q=PREV_GUI_CTL_INDEX_VAR)
         self.frbToolsFaceGUIControlIndexSpinBox.setValue(int(prevCtlIndex))
-        
+
         # Add Mirrored Control
         prevAddMirrored = maya.cmds.optionVar(q=PREV_GUI_CTL_MIRROR_VAR)
         self.frbToolsFaceGUIAddMirroredControlCheckBox.setCheckState(int(prevAddMirrored))
 
         # Mirror Mode
         prevMirrorMode = maya.cmds.optionVar(q=PREV_GUI_CTL_MIRROR_MODE_VAR)
-        getattr(self, '%sToolsFaceGUIControlMirrorDirectionRadio%s' %(
+        getattr(self, '%sToolsFaceGUIControlMirrorDirectionRadio%s' % (
             self.FIELD_PREFIX, str(prevMirrorMode))).setChecked(True)
 
         # Flip X Axis
@@ -322,10 +322,10 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         return True
 
-    
+
     def _buildCharacterListContextMenu(self):
         ''' Adds the right click context menu to the character list. '''
-        
+
         self.frbCharacterAssetListWidget.setContextMenuPolicy(
             QtCore.Qt.CustomContextMenu)
 
@@ -338,39 +338,39 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             self.PopupMenu._buildMenu)
 
         return True
-        
+
 
     def _buildVersionComboBoxContextMenus(self):
         ''' Adds the right click context menus to the version and build version
         combo boxes. '''
-        
+
         for assetType in ASSET_TYPES:
             for suffix in ['', 'Build']:
 
-                comboBox = getattr(self, '%s%s%sVersionComboBox' %(
+                comboBox = getattr(self, '%s%s%sVersionComboBox' % (
                     self.FIELD_PREFIX, suffix, assetType))
-                pathField = getattr(self, '%s%s%sVersionPathLineEdit' %(
+                pathField = getattr(self, '%s%s%sVersionPathLineEdit' % (
                     self.FIELD_PREFIX, suffix, assetType))
-    
+
                 comboBox.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-    
+
                 contextMenu = VersionComboBoxContextMenu(assetType,
-                    character = self._getSelectedCharacter, parent=comboBox,
+                    character=self._getSelectedCharacter, parent=comboBox,
                     pathField=pathField)
                 contextMenu._guiRefreshCallback = self._refreshGUI
                 comboBox.customContextMenuRequested.connect(contextMenu._buildMenu)
-    
-                setattr(self, '%s%sVersionComboContextMenu' %(self.FIELD_PREFIX,
+
+                setattr(self, '%s%sVersionComboContextMenu' % (self.FIELD_PREFIX,
                     assetType), contextMenu)
-                
+
         return True
-        
+
 
     def _refreshGUI(self):
         self._buildCharacterList()
         self._refreshVersions()
         self._updateModelFilePath(self._getSelectedCharacter())
-        
+
 
     def _refreshVersions(self, assetTypes=list()):
         ''' This method refreshes the version data stored in the class, then
@@ -546,7 +546,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             if not character:
                 self._assetVersions[assetType] = dict()
                 continue
-            
+
             self._assetVersions[assetType] = getattr(facePublish,
                 'get%sVersions' % assetType)(character)
 
@@ -735,9 +735,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             return False
 
         facePublish.publishDrivenKeysDataFromScene(
-            character=self._getSelectedCharacter(),
-            description=str()
-            )
+            character=self._getSelectedCharacter())
 
         self._refreshVersions(['DrivenKeys'])
         return True
@@ -765,9 +763,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         facePublish.publishGuideFromScene(
             character=self._getSelectedCharacter(),
-            guideType='gui',
-            description=str()
-            )
+            guideType='gui')
 
         self._refreshVersions(['GUIGuide'])
         return True
@@ -799,9 +795,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             return False
 
         facePublish.publishPreferenceDataFromScene(
-            character=self._getSelectedCharacter(),
-            description=str()
-            )
+            character=self._getSelectedCharacter())
 
         self._refreshVersions(['Preferences'])
         return True
@@ -830,9 +824,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 
         facePublish.publishGuideFromScene(
             character=self._getSelectedCharacter(),
-            guideType='skeleton',
-            description=str()
-            )
+            guideType='skeleton')
 
         self._refreshVersions(['SkeletonGuide'])
         return True
@@ -864,9 +856,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
             return False
 
         facePublish.publishWeightingDataFromScene(
-            character=self._getSelectedCharacter(),
-            description=str()
-            )
+            character=self._getSelectedCharacter())
 
         self._refreshVersions(['Weighting'])
         return True
@@ -903,8 +893,8 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
         if not args: return None
         return controlUtils.mirrorSelectedGUIControls(flipXAxis=
             self.frbToolsFaceGUIControlMirrorFlipXAxisCheckBox.checkState())
-        
-        
+
+
     def on_actionToolsFaceGUIControlMirrorAllButtonClicked_triggered(self, *args):
         if not args: return None
         return controlUtils.mirrorAllGUIControls(
@@ -916,8 +906,8 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def on_actionToolsInvertBlendShapeWeightsEnvelopePushButtonClicked_triggered(self, *args):
         if not args: return None
         return blendShapeUtils.invertBlendShapeWeightsOnSelection(envelope=True)
-        
-        
+
+
     def on_actionToolsInvertBlendShapeWeightsTargetsPushButtonClicked_triggered(self, *args):
         if not args: return None
         return blendShapeUtils.invertBlendShapeWeightsOnSelection(envelope=False)
@@ -926,8 +916,8 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
     def on_actionToolsCreateTaperShapesEnvelopePushButtonClicked_triggered(self, *args):
         if not args: return None
         return blendShapeUtils.createTaperShapesFromSelection(envelope=True)
-        
-        
+
+
     def on_actionToolsCreateTaperShapesTargetsPushButtonClicked_triggered(self, *args):
         if not args: return None
         return blendShapeUtils.createTaperShapesFromSelection(envelope=False)
@@ -1056,7 +1046,7 @@ class FaceRigBuilderUI(uiFormClass, uiBaseClass):
 class VersionComboBoxContextMenu(QtGui.QMenu):
     ''' This is a generic pop-up menu that will be used across all rigging guis
     character lists to allow for adding a new character easily. '''
-    
+
     PUBLISH_FUNCTIONS = {
         'SkeletonGuide' : facePublish.publishGuide,
         'GUIGuide'      : facePublish.publishGuide,
@@ -1065,29 +1055,29 @@ class VersionComboBoxContextMenu(QtGui.QMenu):
         'Preferences'   : facePublish.publishPreferenceData,
         'Weighting'     : facePublish.publishWeightingData
     }
-    
+
     def __init__(self, assetType, character=None, parent=None, pathField=None):
         super(VersionComboBoxContextMenu, self).__init__(parent)
-        
+
         self._character = character
         self._assetType = assetType
         self._pathField = pathField
 
-        # Make a nice name for the menu text.        
+        # Make a nice name for the menu text.
         assetTypeNice = nameUtils.camelCaseToNiceString(assetType)
 
-        copyAction  = self.addAction('Copy %s Version' % assetTypeNice)
+        copyAction = self.addAction('Copy %s Version' % assetTypeNice)
         pasteAction = self.addAction('Paste %s Version' % assetTypeNice)
-        
+
         copyAction.triggered.connect(self._copyAssetVersion)
         pasteAction.triggered.connect(self._pasteAssetVersion)
-        
+
 
     def _buildMenu(self):
-         
-        posX  = QtGui.QCursor().pos().x() - self.pos().x()
-        posY  = QtGui.QCursor().pos().y() - self.pos().y() - 20
- 
+
+        posX = QtGui.QCursor().pos().x() - self.pos().x()
+        posY = QtGui.QCursor().pos().y() - self.pos().y() - 20
+
         self.exec_(self.mapToGlobal(QtCore.QPoint(posX, posY)))
 
         return True
@@ -1104,36 +1094,36 @@ class VersionComboBoxContextMenu(QtGui.QMenu):
     def _copyAssetVersion(self):
         ''' Copies the path (if valid) into an option variable that can be called
         upon to paste into another character. '''
-        
+
         # Create a default buffer.
         cpBuffer = self._createDefaultBuffer()
-        
+
         # Overwrite it with anything that might already be stored in option vars.
         if maya.cmds.optionVar(ex=ASSET_COPY_PASTE_VAR):
             cpBuffer = eval(maya.cmds.optionVar(q=ASSET_COPY_PASTE_VAR))
-        
+
         # Query the path field.
         path = self._pathField.text()
         if os.path.exists(path):
             cpBuffer[self._assetType] = str(path)
-        
+
         return maya.cmds.optionVar(sv=[ASSET_COPY_PASTE_VAR, str(cpBuffer)])
-        
+
 
     def _pasteAssetVersion(self):
         ''' Does lookup on option variable and "pastes" a publish to the new
         destination. '''
-        
+
         # Create a default buffer.
         cpBuffer = self._createDefaultBuffer()
-                
+
         # Overwrite it with anything that might already be stored in option vars.
         if maya.cmds.optionVar(ex=ASSET_COPY_PASTE_VAR):
             cpBuffer = eval(maya.cmds.optionVar(q=ASSET_COPY_PASTE_VAR))
 
         # Confirm that there is something in the buffer for that asset type.
         if not cpBuffer[self._assetType]: return False
-        
+
         # Confirm that the path exists.
         if not os.path.exists(cpBuffer[self._assetType]): return False
 
@@ -1147,7 +1137,7 @@ class VersionComboBoxContextMenu(QtGui.QMenu):
         }
         if 'Guide' in self._assetType:
             kwargs['guideType'] = self._assetType[:-5].lower()
-        
+
         # Publish.
         self.PUBLISH_FUNCTIONS[self._assetType](**kwargs)
 
@@ -1162,7 +1152,7 @@ class VersionComboBoxContextMenu(QtGui.QMenu):
 def createChannelBoxForNode(node):
     ''' This function pops open an independent channel box window in maya, for
     the node supplied in the arguments. '''
-    
+
     assert cmds.objExists(node), "Node %s does not exist!!!" % node
 
     selectionConnectionName = ("%s_rigBuilderSelectionConnection" % node)

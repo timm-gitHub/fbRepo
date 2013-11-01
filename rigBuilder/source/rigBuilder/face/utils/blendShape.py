@@ -20,9 +20,9 @@ def connectAllBlendShapeTargets(modelNamespace, shapeGroup,
     ''' '''
 
     assert maya.cmds.objExists(shapeGroup), "Cannot find shape group '%s'..." % str(shapeGroup)
-    
+
     result = list()
-    
+
     # Collate the shapes to connect.
     shapes = list()
     for child in maya.cmds.listRelatives(shapeGroup, c=True) or list():
@@ -30,7 +30,10 @@ def connectAllBlendShapeTargets(modelNamespace, shapeGroup,
         ''' From the hierarchy of the shape group, figure out what the target
         mesh name is; ie. If there is a group named C_face_grp_0 parented to
         the shape group, then the child meshes would be connected to
-        'C_face_geo_0' in the model namespace. ''' 
+        'C_face_geo_0' in the model namespace. '''
+
+        if not nameUtils.checkValidNameString(child):
+            continue
 
         target = '%s:%s' % (modelNamespace, nameUtils.subNodeType(
             child.rsplit(':')[-1], 'geo'))
@@ -40,7 +43,7 @@ def connectAllBlendShapeTargets(modelNamespace, shapeGroup,
 
         ''' Get a list of shapes to connect. To be safe we use full paths, and
         we look for meshes and then get the parent of each mesh. '''
-         
+
         shapes = maya.cmds.listRelatives(child, ad=True, f=True,
             ni=True, typ='mesh')
 
@@ -56,7 +59,7 @@ def connectAllBlendShapeTargets(modelNamespace, shapeGroup,
         if useExistingBlendShapeNodes:
             temp = getRelatedBlendShapeForNode(target)
             if temp:
-                exisitingBlendShapeNode=temp[0]
+                exisitingBlendShapeNode = temp[0]
 
         # Connect Shapes.
         result.append(connectBlendShapeTargets(target, transforms,
@@ -94,9 +97,9 @@ def connectBlendShapeTargets(mesh, shapes, blendShape=None, autoInBetween=False,
     if autoInBetween:
         for shape in shapes:
             # See if it has the in-between naming convention.
-            path, shapeShortName = str(shape).rsplit('|', 1)           
+            path, shapeShortName = str(shape).rsplit('|', 1)
             description = nameUtils.getDescription(shapeShortName)
-            print '*'*5, description, type(description), '*'*5
+            print '*' * 5, description, type(description), '*' * 5
             a = re.match('^(.*)([0-9]{3})$', description)
             if not a:
                 continue
@@ -104,21 +107,21 @@ def connectBlendShapeTargets(mesh, shapes, blendShape=None, autoInBetween=False,
             # If it is an in-between then we need to make sure there is a main
             # shape to drive it.
             driverShortName = nameUtils.subDescription(shapeShortName, a.groups()[0])
-            driverShape     = '%s|%s' %(path,  driverShortName)
+            driverShape = '%s|%s' % (path, driverShortName)
             if not ((driverShape in shapes) or (pymel.core.PyNode(driverShape) in shapes)):
                 continue
 
-            # Go ahead and hook up the auto driving.            
+            # Go ahead and hook up the auto driving.
             src = blendShape.attr(driverShortName.split(':')[-1])
             dst = blendShape.attr(shapeShortName.split(':')[-1])
-            
+
             pymel.core.animation.setDrivenKeyframe(dst, cd=src, dv=0.0, v=0.0)
-            
+
             pymel.core.animation.setDrivenKeyframe(dst, cd=src,
                 dv=int(a.groups()[-1]) / 100.0, v=1.0)
-            
+
             pymel.core.animation.setDrivenKeyframe(dst, cd=src, dv=1.0, v=0.0)
-            
+
     return blendShape
 
 
@@ -264,7 +267,7 @@ def createTaperShapes(blendShape, envelope=False):
 
 def createTaperShapesFromSelection(envelope=False):
     return [createTaperShapes(blendShape, envelope) for blendShape in getRelatedBlendShapeForSelection()]
-    
+
 
 def getActiveTargets(blendShape):
     blendShape = pymel.core.PyNode(blendShape)
@@ -285,9 +288,9 @@ def getOutputMesh(blendShape):
 
 
 def getRelatedBlendShapeForNode(node):
-    
+
     assert maya.cmds.objExists(str(node)), 'Node %s does not exist...' % node
-    
+
     blendShapeNodeList = list()
 
     if maya.cmds.objectType(node, isType='blendShape'):
@@ -298,10 +301,10 @@ def getRelatedBlendShapeForNode(node):
         for h in (maya.cmds.listHistory(node) or list()):
             if not maya.cmds.objectType(h, isType='blendShape'):
                 continue
-                
+
             if h in blendShapeNodeList:
                 continue
-                
+
             blendShapeNodeList.append(h)
 
     return blendShapeNodeList
@@ -310,7 +313,7 @@ def getRelatedBlendShapeForNode(node):
 def getRelatedBlendShapeForSelection():
 
     blendShapeNodeList = list()
-    
+
     for obj in maya.cmds.ls(sl=True):
         blendShapeNodeList.extend(getRelatedBlendShapeForNode(obj))
 
@@ -386,28 +389,28 @@ def splitTargetsXYZ(blendShape):
 
     for index in indices:
         for i, axis in enumerate(['X', 'Y', 'Z']):
-            
+
             # Get the original point locations.
             newMesh = dagUtils.TransformAndShapes(geo.transform.duplicate(n='%s_%s' % (axis, getWeightAliasList(blendShape)[index]))[0])
             newMeshPoints = newMesh.shapes[0].getPoints(space='object')
- 
+
             # Get the target point locations.
             targetMesh = blendShape.inputTarget[0].inputTargetGroup[index].inputTargetItem[6000].inputGeomTarget.inputs()
             targetPoints = targetMesh[0].getPoints(space='object')
- 
+
             resultPoints = newMeshPoints
- 
+
             for j in range(len(resultPoints)):
                 for k in range(3):
                     if not i == k:
                         continue
- 
+
                     resultPoints[j][k] = targetPoints[j][k]
-                    
+
             newMesh.shapes[0].setPoints(resultPoints, space='object')
 
     return True
-                    
-                    
+
+
 def splitTargetsXYZOnSelection():
     return [splitTargetsXYZ(blendShape) for blendShape in getRelatedBlendShapeForSelection()]
